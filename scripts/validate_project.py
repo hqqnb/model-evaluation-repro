@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import sys
@@ -13,6 +14,7 @@ from typing import Any
 
 SUPPORTED_PROTOCOLS = {"chat_completions", "responses", "anthropic"}
 ENV_NAME = re.compile(r"^[A-Z][A-Z0-9_]*$")
+QUESTION_BANK_MANIFEST = "benchmark/question_bank/manifest.json"
 
 
 def validate_provider_config(config: dict[str, Any]) -> list[str]:
@@ -72,6 +74,12 @@ def validate_repository_layout(root: Path) -> list[str]:
         ("runners", True),
         ("evaluation", True),
         ("scripts", True),
+        (QUESTION_BANK_MANIFEST, False),
+        ("benchmark/question_bank/validate_manifest.py", False),
+        ("benchmark/question_bank/single_turn/dataset/prompts.json", False),
+        ("benchmark/question_bank/single_turn/rubrics/rubrics.json", False),
+        ("benchmark/question_bank/agent/manifest.json", False),
+        ("benchmark/question_bank/agent/tasks.md", False),
     )
     errors: list[str] = []
     for relative, is_dir in required:
@@ -80,6 +88,30 @@ def validate_repository_layout(root: Path) -> list[str]:
             errors.append(f"{relative} is missing")
         elif is_dir and not path.is_dir():
             errors.append(f"{relative} is not a directory")
+    return errors
+
+
+def validate_question_bank_manifest(root: Path) -> list[str]:
+    manifest_path = root / QUESTION_BANK_MANIFEST
+    try:
+        with manifest_path.open(encoding="utf-8") as handle:
+            manifest = json.load(handle)
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"{QUESTION_BANK_MANIFEST} is not valid JSON: {exc}"]
+
+    errors: list[str] = []
+    if manifest.get("status") != "active":
+        errors.append("question-bank manifest must have status=active")
+    if manifest.get("task_count") != 28:
+        errors.append("question-bank manifest must describe 28 active tasks")
+    for relative in (
+        "benchmark/question_bank/single_turn/dataset/prompts.json",
+        "benchmark/question_bank/single_turn/rubrics/rubrics.json",
+        "benchmark/question_bank/agent/manifest.json",
+        "benchmark/question_bank/agent/tasks.md",
+    ):
+        if not (root / relative).is_file():
+            errors.append(f"{relative} is missing")
     return errors
 
 
@@ -99,6 +131,7 @@ def validate_files(root: Path, providers_path: Path, models_path: Path) -> list[
     errors = validate_repository_layout(root)
     if errors:
         return errors
+    errors.extend(validate_question_bank_manifest(root))
     providers = _load_yaml(providers_path)
     provider_errors = validate_provider_config(providers)
     provider_names = set(providers.get("providers", {}))

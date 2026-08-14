@@ -3,12 +3,15 @@
 ## Clean clone
 
 ```bash
-git clone <private-repository-url>
-cd model-evaluation
+git clone https://github.com/hqqnb/model-evaluation-repro.git
+cd model-evaluation-repro
 ./scripts/bootstrap.sh
 cp .env.example .env.local
 ./scripts/smoke-test.sh
 ```
+
+正式题库由 [`benchmark/question_bank/manifest.json`](../benchmark/question_bank/manifest.json)
+统一管理。开始运行前先确认题库版本、题量和题型范围，不要从历史归档目录直接挑题。
 
 ## API smoke test
 
@@ -21,7 +24,7 @@ CONFIG=runners/model-api-collector/config/qwen.yaml \
 ./scripts/run-evaluation.sh qwen3.8-max
 ```
 
-第一次只运行一题一次。确认结果文件和费用状态后，再运行正式 manifest。
+第一次只运行一题一次。确认结果文件和费用状态后，再根据统一题库清单选择正式运行范围。
 
 ## Agent evaluation
 

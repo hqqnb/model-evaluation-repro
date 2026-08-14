@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "bank_id": "model-evaluation-20260805",
+  "title": "统一大模型能力测评题库",
+  "status": "active",
+  "source": {
+    "type": "internal_knowledge_base",
+    "title": "大模型评测题库@20260805",
+    "url": "https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/MhgsouPC-w/NpaUpgpgHL/ZQoxvV6nTqwhrl"
+  },
+  "task_count": 28,
+  "categories": {
+    "reasoning": {
+      "count": 8,
+      "source": "single_turn/dataset/prompts.json",
+      "id_prefix": "reasoning-"
+    },
+    "coding": {
+      "count": 8,
+      "source": "single_turn/dataset/prompts.json",
+      "id_prefix": "coding-"
+    },
+    "multimodal": {
+      "count": 4,
+      "source": "single_turn/dataset/prompts.json",
+      "id_prefix": "multimodal-"
+    },
+    "agent": {
+      "count": 8,
+      "source": "agent/tasks.md",
+      "ids": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08"
+      ]
+    }
+  },
+  "representations": {
+    "model_facing_prompts": "single_turn/dataset/prompts.json",
+    "rubrics": "single_turn/rubrics/rubrics.json",
+    "multimodal_assets": "single_turn/assets/",
+    "coding_checks": "single_turn/source_material/评测脚本/",
+    "agent_tasks": "agent/tasks.md",
+    "agent_execution_notes": "agent/api_compatibility.md"
+  },
+  "history": "archive/"
+}

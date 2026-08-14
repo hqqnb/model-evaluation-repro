@@ -5,6 +5,7 @@ import unittest
 from scripts.validate_project import (
     validate_model_config,
     validate_provider_config,
+    validate_question_bank_manifest,
     validate_repository_layout,
 )
 
@@ -74,6 +75,12 @@ class ProjectValidationTests(unittest.TestCase):
                 "runners",
                 "evaluation",
                 "scripts",
+                "benchmark/question_bank/manifest.json",
+                "benchmark/question_bank/validate_manifest.py",
+                "benchmark/question_bank/single_turn/dataset/prompts.json",
+                "benchmark/question_bank/single_turn/rubrics/rubrics.json",
+                "benchmark/question_bank/agent/manifest.json",
+                "benchmark/question_bank/agent/tasks.md",
             ):
                 target = root / relative
                 if "." in target.name:
@@ -83,6 +90,13 @@ class ProjectValidationTests(unittest.TestCase):
                     target.mkdir(parents=True, exist_ok=True)
 
             self.assertEqual(validate_repository_layout(root), [])
+
+    def test_question_bank_manifest_is_part_of_repository_validation(self):
+        errors = validate_question_bank_manifest(
+            Path(__file__).resolve().parents[1]
+        )
+
+        self.assertEqual(errors, [])
 
 
 if __name__ == "__main__":

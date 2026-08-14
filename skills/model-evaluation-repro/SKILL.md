@@ -48,9 +48,10 @@ The goal is to make evaluation runs understandable, bounded, and repeatable.
 
 - Use `runners/model-api-collector` for one-shot answers, reasoning, coding,
   and multimodal response collection.
-- Use `benchmark/agent_benchmark` and `third_party/automationbench` for
+- Use `benchmark/question_bank/agent` and `third_party/automationbench` for
   multi-turn tool execution with simulated state and assertions.
-- Use `benchmark/curated-bank/评测脚本` for the deterministic Coding graders.
+- Use `benchmark/question_bank/single_turn/source_material/评测脚本`
+  for the deterministic Coding graders.
 - Do not turn an Agent task into a plain text prompt and call the result a
   full Agent evaluation.
 

@@ -15,6 +15,12 @@ def main() -> int:
         "configs/models.example.yaml",
         "scripts/smoke-test.sh",
         "benchmark",
+        "benchmark/question_bank/manifest.json",
+        "benchmark/question_bank/validate_manifest.py",
+        "benchmark/question_bank/single_turn/dataset/prompts.json",
+        "benchmark/question_bank/single_turn/rubrics/rubrics.json",
+        "benchmark/question_bank/agent/manifest.json",
+        "benchmark/question_bank/agent/tasks.md",
         "runners",
     )
     missing = [path for path in required if not (root / path).exists()]

@@ -37,7 +37,7 @@
     },
     {
       "source": "local-source/llm-evaluation-question-bank",
-      "destination": "benchmark/collector-bank",
+      "destination": "benchmark/question_bank/single_turn",
       "classification": "include",
       "contents": [
         "README.md",
@@ -56,7 +56,7 @@
     },
     {
       "source": "local-source/模型测评题库",
-      "destination": "benchmark/curated-bank",
+      "destination": "benchmark/question_bank/single_turn/source_material",
       "classification": "include",
       "contents": [
         "README.md",
@@ -80,8 +80,8 @@
     },
     {
       "source": "local-source/模型测试大师/benchmark",
-      "destination": "benchmark/agent_benchmark",
-      "classification": "include",
+      "destination": "benchmark/question_bank/archive/legacy_20260803/reasoning_and_candidates",
+      "classification": "review",
       "contents": [
         "AGENT_TASKS*.md",
         "CODING_*.md",
@@ -122,7 +122,7 @@
     },
     {
       "source": "local-source/模型测评_new",
-      "destination": "docs/agent-benchmark",
+      "destination": "benchmark/question_bank/agent",
       "classification": "include",
       "contents": [
         "Agent题库_最终版_v1.0.md",
@@ -132,7 +132,7 @@
     },
     {
       "source": "local-source/模型测评/Agent-Benchmark-知识库章节草稿.md",
-      "destination": "docs/agent-benchmark/knowledge-base-draft.md",
+      "destination": "benchmark/question_bank/archive/agent/knowledge-base-draft.md",
       "classification": "review",
       "contents": [
         "knowledge-base draft"

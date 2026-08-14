@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "bank_id": "model-evaluation-20260805",
+  "task_count": 8,
+  "tasks": [
+    {
+      "id": "T01",
+      "title": "退款处理"
+    },
+    {
+      "id": "T02",
+      "title": "Demo 排期"
+    },
+    {
+      "id": "T03",
+      "title": "Disney 三日旅行规划"
+    },
+    {
+      "id": "T04",
+      "title": "OpenRouter 数据采集与分析"
+    },
+    {
+      "id": "T05",
+      "title": "多文件分析与后续行动"
+    },
+    {
+      "id": "T06",
+      "title": "项目延期处理"
+    },
+    {
+      "id": "T07",
+      "title": "多轮推荐与银行业务办理"
+    },
+    {
+      "id": "T08",
+      "title": "任务中断与恢复"
+    }
+  ],
+  "task_document": "tasks.md",
+  "compatibility_document": "api_compatibility.md"
+}
