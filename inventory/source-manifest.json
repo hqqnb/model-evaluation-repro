@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-08-14",
+  "canonical_root": ".",
+  "policy": {
+    "preserve_originals": true,
+    "include_secrets": false,
+    "include_local_environments": false,
+    "include_generated_runs_by_default": false
+  },
+  "sources": [
+    {
+      "source": "local-source/model-api-collector",
+      "destination": "runners/model-api-collector",
+      "classification": "include",
+      "contents": [
+        "src",
+        "tests",
+        "pyproject.toml",
+        "README.md",
+        ".gitignore",
+        ".env.example",
+        ".env.*.example",
+        "config",
+        "prompts"
+      ],
+      "excluded": [
+        ".env",
+        ".env.*",
+        ".git",
+        ".venv",
+        ".playwright-cli",
+        "runs",
+        "__pycache__",
+        "*.egg-info"
+      ],
+      "reason": "Core OpenAI-compatible and OneAPI response collector with tests and provider configuration examples."
+    },
+    {
+      "source": "local-source/llm-evaluation-question-bank",
+      "destination": "benchmark/collector-bank",
+      "classification": "include",
+      "contents": [
+        "README.md",
+        "assets",
+        "dataset",
+        "rubrics",
+        "scripts",
+        "outputs/README.md"
+      ],
+      "excluded": [
+        ".git",
+        "runs",
+        "outputs/*.jsonl"
+      ],
+      "reason": "Reusable prompt dataset, multimodal assets, rubrics, validation, and result-recording utilities."
+    },
+    {
+      "source": "local-source/模型测评题库",
+      "destination": "benchmark/curated-bank",
+      "classification": "include",
+      "contents": [
+        "README.md",
+        "题目",
+        "dataset",
+        "rubrics",
+        "assets",
+        "评测脚本",
+        "scripts",
+        "内部答案",
+        "接续任务"
+      ],
+      "excluded": [
+        ".git",
+        ".superpowers",
+        "outputs",
+        "评测结果",
+        "__pycache__"
+      ],
+      "reason": "Complete curated reasoning, coding, and multimodal question bank with deterministic graders and private answer keys."
+    },
+    {
+      "source": "local-source/模型测试大师/benchmark",
+      "destination": "benchmark/agent_benchmark",
+      "classification": "include",
+      "contents": [
+        "AGENT_TASKS*.md",
+        "CODING_*.md",
+        "FORMAL_QUESTION_BANK.md",
+        "HIGH_PRESSURE_*.md",
+        "MODEL_BENCHMARK_OVERVIEW.md",
+        "MULTIMODAL_TASKS.md",
+        "QUESTIONS.md",
+        "answer_key.json",
+        "high_pressure",
+        "short_logic",
+        "short_logic_answer_key.json",
+        "questions.json",
+        "grade.py",
+        "reference_checks.py",
+        "render_questions.py",
+        "validate_*.py",
+        "assets"
+      ],
+      "excluded": [
+        "external/automationbench/.git",
+        "external/automationbench/.venv",
+        "external/automationbench/node_modules",
+        "external/automationbench/visualizer/runs",
+        "__pycache__",
+        "*.pyc"
+      ],
+      "reason": "Agent, reasoning, coding, and multimodal benchmark definitions plus local graders and tests."
+    },
+    {
+      "source": "local-source/模型测试大师/benchmark/external/automationbench",
+      "destination": "third_party/automationbench",
+      "classification": "review",
+      "contents": [
+        "source tree excluding local environments and generated artifacts"
+      ],
+      "reason": "Important execution dependency, but license, upstream version, repository size, and vendoring strategy require review before committing."
+    },
+    {
+      "source": "local-source/模型测评_new",
+      "destination": "docs/agent-benchmark",
+      "classification": "include",
+      "contents": [
+        "Agent题库_最终版_v1.0.md",
+        "Agent题库_API评估兼容性检查_v1.0.md"
+      ],
+      "reason": "Current Agent benchmark methodology, task definitions, and compatibility analysis."
+    },
+    {
+      "source": "local-source/模型测评/Agent-Benchmark-知识库章节草稿.md",
+      "destination": "docs/agent-benchmark/knowledge-base-draft.md",
+      "classification": "review",
+      "contents": [
+        "knowledge-base draft"
+      ],
+      "reason": "Useful context document whose publication status and canonical wording need review."
+    },
+    {
+      "source": "local-source/llm-eval",
+      "destination": "legacy/llm-eval",
+      "classification": "review",
+      "contents": [
+        "source and tests excluding local run logs and environments"
+      ],
+      "reason": "Older standalone evaluator with provider adapters; preserve as legacy until overlap with the canonical collector is resolved."
+    }
+  ]
+}

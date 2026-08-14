@@ -1,0 +1,43 @@
+models:
+  glm-5.2:
+    model: GLM-5.2
+    stream: false
+    parameters:
+      temperature: 0
+      reasoning_effort: max
+  gpt-5.6-sol:
+    model: gpt-5.6-sol
+    stream: false
+    parameters:
+      temperature: 0
+      reasoning_effort: max
+  gpt-5.5:
+    model: gpt-5.5
+    stream: false
+    parameters:
+      temperature: 0
+      reasoning_effort: xhigh
+  opus-5:
+    model: Opus 5
+    endpoint: /v1/responses
+    stream: true
+    parameters:
+      temperature: 0
+      store: false
+      tools: []
+      reasoning_effort: max
+  opus-4.8:
+    model: Opus 4.8
+    endpoint: /v1/responses
+    stream: true
+    parameters:
+      temperature: 0
+      store: false
+      tools: []
+      reasoning_effort: max
+  deepseek-v4-flash:
+    model: DeepSeek-V4-Flash
+    stream: false
+    parameters:
+      temperature: 0
+      reasoning_effort: max

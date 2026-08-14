@@ -1,0 +1,7 @@
+models:
+  qwen3.8-max:
+    model: qwen3.8-max
+    stream: false
+    parameters:
+      reasoning_effort: max
+      temperature: 0.6

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650">
+  <rect width="900" height="650" fill="#f4f0e8"/>
+  <text x="450" y="34" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#23313d">Which tile completes the matrix?</text>
+  <g stroke="#23313d" stroke-width="2" fill="none">
+    <rect x="70" y="70" width="360" height="360"/>
+    <path d="M190 70V430 M310 70V430 M70 190H430 M70 310H430"/>
+  </g>
+  <g font-family="sans-serif" font-size="18" fill="#23313d">
+    <text x="115" y="106">A</text><text x="235" y="106">B</text><text x="355" y="106">C</text>
+    <text x="115" y="226">D</text><text x="235" y="226">E</text><text x="355" y="226">F</text>
+    <text x="115" y="346">G</text><text x="235" y="346">H</text><text x="355" y="346">?</text>
+  </g>
+  <g stroke="#153b50" stroke-width="7" stroke-linecap="round" fill="#e07a5f">
+    <path d="M130 165 L130 105 L150 125 M130 105 L110 125"/>
+    <path d="M250 165 L310 165 L290 145 M310 165 L290 185"/>
+    <path d="M370 165 L370 225 L350 205 M370 225 L390 205"/>
+    <path d="M130 285 L190 285 L170 265 M190 285 L170 305"/>
+    <path d="M250 285 L250 345 L230 325 M250 345 L270 325"/>
+    <path d="M370 285 L310 285 L330 265 M310 285 L330 305"/>
+    <path d="M130 345 L130 405 L110 385 M130 405 L150 385"/>
+    <path d="M250 405 L190 405 L210 385 M190 405 L210 425"/>
+  </g>
+  <g fill="#23313d">
+    <circle cx="130" cy="145" r="5"/>
+    <circle cx="250" cy="145" r="5"/><circle cx="250" cy="125" r="5"/>
+    <circle cx="370" cy="145" r="5"/><circle cx="370" cy="125" r="5"/><circle cx="370" cy="105" r="5"/>
+    <circle cx="130" cy="265" r="5"/><circle cx="130" cy="245" r="5"/>
+    <circle cx="250" cy="265" r="5"/><circle cx="250" cy="245" r="5"/><circle cx="250" cy="225" r="5"/>
+    <circle cx="370" cy="265" r="5"/><circle cx="370" cy="245" r="5"/><circle cx="370" cy="225" r="5"/><circle cx="370" cy="205" r="5"/>
+    <circle cx="130" cy="385" r="5"/><circle cx="130" cy="365" r="5"/><circle cx="130" cy="345" r="5"/>
+    <circle cx="250" cy="385" r="5"/><circle cx="250" cy="365" r="5"/><circle cx="250" cy="345" r="5"/><circle cx="250" cy="325" r="5"/>
+  </g>
+  <g font-family="sans-serif" font-size="19" fill="#23313d">
+    <text x="520" y="90">Options</text>
+    <text x="535" y="145">A</text><text x="685" y="145">B</text>
+    <text x="535" y="295">C</text><text x="685" y="295">D</text>
+  </g>
+  <g stroke="#153b50" stroke-width="7" stroke-linecap="round" fill="#e07a5f">
+    <path d="M575 175 L575 135 L560 150 M575 135 L590 150"/>
+    <path d="M725 175 L765 175 L750 160 M765 175 L750 190"/>
+    <path d="M575 365 L575 325 L560 340 M575 325 L590 340"/>
+    <path d="M725 325 L685 325 L700 310 M685 325 L700 340"/>
+  </g>
+  <g fill="#23313d">
+    <circle cx="575" cy="160" r="5"/><circle cx="575" cy="145" r="5"/>
+    <circle cx="725" cy="160" r="5"/><circle cx="725" cy="145" r="5"/><circle cx="725" cy="130" r="5"/>
+    <circle cx="575" cy="350" r="5"/><circle cx="575" cy="335" r="5"/><circle cx="575" cy="320" r="5"/><circle cx="575" cy="305" r="5"/><circle cx="575" cy="290" r="5"/>
+    <circle cx="725" cy="350" r="5"/><circle cx="725" cy="335" r="5"/><circle cx="725" cy="320" r="5"/><circle cx="725" cy="305" r="5"/>
+  </g>
+</svg>

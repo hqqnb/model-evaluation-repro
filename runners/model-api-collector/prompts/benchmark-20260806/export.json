@@ -1,0 +1,15 @@
+{
+  "source": "historical-source/llm-evaluation-question-bank/dataset/prompts.json",
+  "source_sha256": "b91f85107d03b435890d54e3b04f9a16b1b101c54212d25db9a20984a0220637",
+  "item_count": 20,
+  "files": {
+    "chat": {
+      "path": "prompts-chat.jsonl",
+      "sha256": "0ebd68298ef1b95569043318502fa2ffee88b4b9935add4865972bf8c77c9f7d"
+    },
+    "responses": {
+      "path": "prompts-responses.jsonl",
+      "sha256": "aebf41df36a874f17f36d1a47f50f7485f074e0a072a9fd0e23a9d2c8338ff8a"
+    }
+  }
+}

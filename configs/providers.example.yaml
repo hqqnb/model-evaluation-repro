@@ -1,0 +1,33 @@
+providers:
+  lingzhi:
+    display_name: Lingzhi OpenAI-compatible relay
+    base_url: https://lingzhi.agibot.com/v1
+    api_key_env: LINGZHI_API_KEY
+    protocol: chat_completions
+    notes: User-provided relay endpoint; verify model availability with a one-request smoke test.
+
+  oneapi:
+    display_name: OneAPI-compatible gateway
+    base_url: https://your-oneapi-host.example.com
+    api_key_env: ONEAPI_API_KEY
+    protocol: chat_completions
+    notes: Replace the placeholder with the gateway root used by the local collector.
+
+  qwen:
+    display_name: Alibaba Cloud Model Studio compatible endpoint
+    base_url: https://dashscope.aliyuncs.com/compatible-mode
+    api_key_env: QWEN_API_KEY
+    protocol: chat_completions
+    notes: Confirm the region and compatible-mode path before live use.
+
+  kimi:
+    display_name: Kimi Open Platform
+    base_url: https://api.moonshot.cn
+    api_key_env: KIMI_API_KEY
+    protocol: chat_completions
+
+  deepseek:
+    display_name: DeepSeek official API
+    base_url: https://api.deepseek.com
+    api_key_env: DEEPSEEK_API_KEY
+    protocol: chat_completions

@@ -1,0 +1,3575 @@
+{
+  "rows": [
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "b7d7779bc34043d79c4d46f51838b8b2",
+      "task_id": "T01",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 83422.721833,
+      "total_tokens": 8995,
+      "format_compliant": false,
+      "component_results": {
+        "availability": false,
+        "active_orders": false,
+        "waiting_orders": false,
+        "failed_operations": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/b7d7779bc34043d79c4d46f51838b8b2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "e19c20e2282348289d2a89dc3c4fb53a",
+      "task_id": "T02",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 72475.311625,
+      "total_tokens": 8996,
+      "format_compliant": false,
+      "component_results": {
+        "facts": false,
+        "overridden_ids": false,
+        "system_record_count": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/e19c20e2282348289d2a89dc3c4fb53a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "cbc0c489f7f747e38f7849d30a5d323b",
+      "task_id": "T03",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 95174.714,
+      "total_tokens": 8668,
+      "format_compliant": true,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/cbc0c489f7f747e38f7849d30a5d323b/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "6f6f4f26b21d46288750ff1fcd8a0c73",
+      "task_id": "T04",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 81331.343167,
+      "total_tokens": 9078,
+      "format_compliant": false,
+      "component_results": {
+        "winners": false,
+        "invalid_draws": false,
+        "department_counts": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/6f6f4f26b21d46288750ff1fcd8a0c73/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "288f83feac7643b697800d65b79bb5b5",
+      "task_id": "T05",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 79093.0455,
+      "total_tokens": 8948,
+      "format_compliant": false,
+      "component_results": {
+        "final_state": false,
+        "illegal_commands": false,
+        "successful_mix_count": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/288f83feac7643b697800d65b79bb5b5/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "6b109c597f0e4b2393ef4461697c009b",
+      "task_id": "T06",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 51483.220083,
+      "total_tokens": 6774,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/6b109c597f0e4b2393ef4461697c009b/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "90e6c024d4d647bbaf783a159b4b6dae",
+      "task_id": "T07",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 88839.406,
+      "total_tokens": 8861,
+      "format_compliant": false,
+      "component_results": {
+        "combinations": false,
+        "count": false,
+        "first": false,
+        "last": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/90e6c024d4d647bbaf783a159b4b6dae/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "bd89daecc5284f36986a866223f60ec7",
+      "task_id": "T08",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 81489.459833,
+      "total_tokens": 8579,
+      "format_compliant": false,
+      "component_results": {
+        "blocks": false,
+        "decoded": false,
+        "length_without_separators": false,
+        "count_R": false,
+        "checksum_mod_997": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/bd89daecc5284f36986a866223f60ec7/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "7dc5922ada294513b8023e8280bc1021",
+      "task_id": "T09",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 92720.8605,
+      "total_tokens": 8763,
+      "format_compliant": false,
+      "component_results": {
+        "sequence": false,
+        "damage": false,
+        "cost": false,
+        "steps": false,
+        "final": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/7dc5922ada294513b8023e8280bc1021/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+      "request_id": "6d03f8e6ae41411bb8518b7b85146ec0",
+      "task_id": "T10",
+      "model": "DeepSeek-V4-Flash",
+      "model_alias": "deepseek-v4-flash",
+      "http_status": 200,
+      "total_time_ms": 100524.511167,
+      "total_tokens": 8699,
+      "format_compliant": false,
+      "component_results": {
+        "lasers": false,
+        "count": false,
+        "target_sources": false,
+        "unused_safe_mounts": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8/requests/6d03f8e6ae41411bb8518b7b85146ec0/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "7e0085a9c39a49fc95c94e8eba800ef8",
+      "task_id": "T01",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 3979.680709,
+      "total_tokens": 903,
+      "format_compliant": true,
+      "component_results": {
+        "availability": false,
+        "active_orders": false,
+        "waiting_orders": false,
+        "failed_operations": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 0,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 2
+          },
+          "G101-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 0
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 0
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O04",
+          "O06",
+          "O08",
+          "O09",
+          "O11",
+          "W01",
+          "W02",
+          "W03",
+          "W04",
+          "W05"
+        ],
+        "waiting_orders": [
+          "W01",
+          "W02",
+          "W03",
+          "W04",
+          "W05"
+        ],
+        "failed_operations": [
+          8,
+          9,
+          10,
+          13,
+          14,
+          20,
+          24,
+          25,
+          27,
+          28,
+          29
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/7e0085a9c39a49fc95c94e8eba800ef8/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "f2c68d85d53e4840bccaade7163cdfe0",
+      "task_id": "T02",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 6409.048958,
+      "total_tokens": 1018,
+      "format_compliant": true,
+      "component_results": {
+        "facts": false,
+        "overridden_ids": false,
+        "system_record_count": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:05",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F03",
+          "F05",
+          "F06",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 0
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/f2c68d85d53e4840bccaade7163cdfe0/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "cd422b91c3e54ca389a1533e16c501a2",
+      "task_id": "T03",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 392167.74525,
+      "total_tokens": 66179,
+      "format_compliant": false,
+      "component_results": {
+        "STEP": false,
+        "CAPTURE": false,
+        "STAR": false,
+        "WIN": false,
+        "Q_legal_moves": false,
+        "R": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/cd422b91c3e54ca389a1533e16c501a2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "7efde0d734ac41de918654e35f7fd88a",
+      "task_id": "T04",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 22386.678916,
+      "total_tokens": 4567,
+      "format_compliant": false,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/7efde0d734ac41de918654e35f7fd88a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "b13a05433f7e4fd492dd209e3eeecd22",
+      "task_id": "T05",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 469001.014333,
+      "total_tokens": 66180,
+      "format_compliant": false,
+      "component_results": {
+        "final_state": false,
+        "illegal_commands": false,
+        "successful_mix_count": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/b13a05433f7e4fd492dd209e3eeecd22/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "ac971bdf590647ef8c6529872bfed633",
+      "task_id": "T06",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 2412.188292,
+      "total_tokens": 621,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": false,
+        "rows": false,
+        "main_diagonal": true,
+        "checksum": false
+      },
+      "points": 1,
+      "whole_correct": false,
+      "status": "partial",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P6",
+          "P3",
+          "P4",
+          "P2",
+          "P5",
+          "P4",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DDCCBBAA",
+          "BBAADDCC",
+          "ABCDABCD",
+          "DDCCBBAA",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 5760
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/ac971bdf590647ef8c6529872bfed633/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "4f1489c18f0e48c580b386af03624b1d",
+      "task_id": "T07",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 361581.843958,
+      "total_tokens": 39126,
+      "format_compliant": true,
+      "component_results": {
+        "combinations": true,
+        "count": true,
+        "first": true,
+        "last": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "combinations": [
+          "ABCDEL",
+          "ABDELP",
+          "ACEGIP",
+          "ACGLOP",
+          "AEGKOP",
+          "BDEIKM",
+          "CGHILM",
+          "FHIJMP"
+        ],
+        "count": 8,
+        "first": "ABCDEL",
+        "last": "FHIJMP"
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/4f1489c18f0e48c580b386af03624b1d/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "cfc36d1363544453bcfdcd04556d7c54",
+      "task_id": "T08",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 181363.126459,
+      "total_tokens": 9034,
+      "format_compliant": true,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/cfc36d1363544453bcfdcd04556d7c54/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "243ebecb5d6f4c31a814afb3cbef1576",
+      "task_id": "T09",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 22766.791833,
+      "total_tokens": 3802,
+      "format_compliant": false,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/243ebecb5d6f4c31a814afb3cbef1576/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+      "request_id": "9c9d8067d3034f27a436ae5fa2348b9f",
+      "task_id": "T10",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 70862.580667,
+      "total_tokens": 3598,
+      "format_compliant": true,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b/requests/9c9d8067d3034f27a436ae5fa2348b9f/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "19cfb2f8f4db4f28b1f6ca02b59ee3ab",
+      "task_id": "T01",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 61475.849917,
+      "total_tokens": 2762,
+      "format_compliant": true,
+      "component_results": {
+        "availability": true,
+        "active_orders": true,
+        "waiting_orders": true,
+        "failed_operations": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 1,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 1
+          },
+          "G101-二等": {
+            "A-B": 2,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O02",
+          "O04",
+          "O05",
+          "O09",
+          "O10",
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "waiting_orders": [
+          "W05"
+        ],
+        "failed_operations": [
+          12,
+          16,
+          18,
+          19,
+          20,
+          21,
+          24,
+          27,
+          28,
+          30
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/19cfb2f8f4db4f28b1f6ca02b59ee3ab/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "f634f26164c24b64ad4428d5156f9d83",
+      "task_id": "T02",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 17307.665875,
+      "total_tokens": 1521,
+      "format_compliant": true,
+      "component_results": {
+        "facts": true,
+        "overridden_ids": true,
+        "system_record_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:10",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 15
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/f634f26164c24b64ad4428d5156f9d83/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "54032eeff6b54cfea3bb2371d850f359",
+      "task_id": "T03",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 12523.200833,
+      "total_tokens": 1003,
+      "format_compliant": true,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/54032eeff6b54cfea3bb2371d850f359/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "fd6b63e41c1f4519a2d05403f04e219e",
+      "task_id": "T04",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 19993.062291,
+      "total_tokens": 1545,
+      "format_compliant": true,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/fd6b63e41c1f4519a2d05403f04e219e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "903a77b97fa8424daa7ad16ec6ce886f",
+      "task_id": "T05",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 21886.771166,
+      "total_tokens": 1526,
+      "format_compliant": true,
+      "component_results": {
+        "final_state": true,
+        "illegal_commands": true,
+        "successful_mix_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "final_state": {
+          "power": "OFF",
+          "battery": 1,
+          "temperature": 9,
+          "pressure": 0,
+          "hatch": "CLOSED",
+          "material": 1,
+          "coolant": 1,
+          "lock": 1,
+          "fault": "E-DANGER",
+          "mixed_batches": 1
+        },
+        "illegal_commands": [
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          23,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "first_danger_check": 10,
+        "successful_mix_count": 1
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/903a77b97fa8424daa7ad16ec6ce886f/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "cca4e3c7e7614249b4f168740bec8edc",
+      "task_id": "T06",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 18699.625083,
+      "total_tokens": 1518,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/cca4e3c7e7614249b4f168740bec8edc/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "a42080e503ec4365b14a945390809ac2",
+      "task_id": "T07",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 121170.892583,
+      "total_tokens": null,
+      "format_compliant": false,
+      "component_results": {},
+      "points": 0,
+      "whole_correct": false,
+      "status": "api_failure",
+      "error": "timeout"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "87b37624462f494caa3d13a9dc023ea9",
+      "task_id": "T08",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 19851.868583,
+      "total_tokens": 1143,
+      "format_compliant": true,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/87b37624462f494caa3d13a9dc023ea9/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "b7e1a9f762ae4641ac7d9118a3f1e5ad",
+      "task_id": "T09",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 8891.4865,
+      "total_tokens": 929,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/b7e1a9f762ae4641ac7d9118a3f1e5ad/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+      "request_id": "85b9f0efe06a4ddabe4275fc765aa3b0",
+      "task_id": "T10",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 22829.331625,
+      "total_tokens": 1005,
+      "format_compliant": true,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8/requests/85b9f0efe06a4ddabe4275fc765aa3b0/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "55e4a0eed8a942c49480bf4040be5b15",
+      "task_id": "T01",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 382941.845042,
+      "total_tokens": 26023,
+      "format_compliant": true,
+      "component_results": {
+        "availability": true,
+        "active_orders": true,
+        "waiting_orders": true,
+        "failed_operations": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 1,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 1
+          },
+          "G101-二等": {
+            "A-B": 2,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O02",
+          "O04",
+          "O05",
+          "O09",
+          "O10",
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "waiting_orders": [
+          "W05"
+        ],
+        "failed_operations": [
+          12,
+          16,
+          18,
+          19,
+          20,
+          21,
+          24,
+          27,
+          28,
+          30
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/55e4a0eed8a942c49480bf4040be5b15/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "bbf22fa5f2ab4d0f95028d9731b8ebd7",
+      "task_id": "T02",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 212018.582042,
+      "total_tokens": 17447,
+      "format_compliant": true,
+      "component_results": {
+        "facts": true,
+        "overridden_ids": true,
+        "system_record_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:10",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 15
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/bbf22fa5f2ab4d0f95028d9731b8ebd7/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "44091181c9b340e9ba6354ab1b5c749a",
+      "task_id": "T03",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 324148.024916,
+      "total_tokens": 22023,
+      "format_compliant": true,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/44091181c9b340e9ba6354ab1b5c749a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "f086800776614ade9a5f2ced5ed31507",
+      "task_id": "T04",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 150047.451,
+      "total_tokens": 11939,
+      "format_compliant": true,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/f086800776614ade9a5f2ced5ed31507/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "f8b7fba2df4040268faeced9633daffa",
+      "task_id": "T05",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 305641.907625,
+      "total_tokens": 22088,
+      "format_compliant": true,
+      "component_results": {
+        "final_state": true,
+        "illegal_commands": true,
+        "successful_mix_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "final_state": {
+          "power": "OFF",
+          "battery": 1,
+          "temperature": 9,
+          "pressure": 0,
+          "hatch": "CLOSED",
+          "material": 1,
+          "coolant": 1,
+          "lock": 1,
+          "fault": "E-DANGER",
+          "mixed_batches": 1
+        },
+        "illegal_commands": [
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          23,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "first_danger_check": 10,
+        "successful_mix_count": 1
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/f8b7fba2df4040268faeced9633daffa/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "a22971578a224046af20d33bbdee9808",
+      "task_id": "T06",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 160689.183833,
+      "total_tokens": 12745,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/a22971578a224046af20d33bbdee9808/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "e459c4b7a75049bab79e29443787c44e",
+      "task_id": "T07",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 531450.760791,
+      "total_tokens": 38112,
+      "format_compliant": true,
+      "component_results": {
+        "combinations": true,
+        "count": true,
+        "first": true,
+        "last": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "combinations": [
+          "ABCDEL",
+          "ABDELP",
+          "ACEGIP",
+          "ACGLOP",
+          "AEGKOP",
+          "BDEIKM",
+          "CGHILM",
+          "FHIJMP"
+        ],
+        "count": 8,
+        "first": "ABCDEL",
+        "last": "FHIJMP"
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/e459c4b7a75049bab79e29443787c44e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "aa3c124b4575469ba2b6cb345473299e",
+      "task_id": "T08",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 126883.932667,
+      "total_tokens": 9449,
+      "format_compliant": true,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/aa3c124b4575469ba2b6cb345473299e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "0ac6468b69934bf9be8e15ecd0a35dea",
+      "task_id": "T09",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 130910.218125,
+      "total_tokens": 9416,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/0ac6468b69934bf9be8e15ecd0a35dea/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+      "request_id": "012ea5387309489ca87d90053ef864a9",
+      "task_id": "T10",
+      "model": "hy3",
+      "model_alias": "hy3",
+      "http_status": 200,
+      "total_time_ms": 237935.240583,
+      "total_tokens": 16518,
+      "format_compliant": true,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e/requests/012ea5387309489ca87d90053ef864a9/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "b769051a76424bc5ad8c008a33a7ebf2",
+      "task_id": "T01",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 383957.0535,
+      "total_tokens": 13357,
+      "format_compliant": true,
+      "component_results": {
+        "availability": true,
+        "active_orders": true,
+        "waiting_orders": true,
+        "failed_operations": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 1,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 1
+          },
+          "G101-二等": {
+            "A-B": 2,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O02",
+          "O04",
+          "O05",
+          "O09",
+          "O10",
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "waiting_orders": [
+          "W05"
+        ],
+        "failed_operations": [
+          12,
+          16,
+          18,
+          19,
+          20,
+          21,
+          24,
+          27,
+          28,
+          30
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/b769051a76424bc5ad8c008a33a7ebf2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "6eccd460394d45118d653d1442673541",
+      "task_id": "T02",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 97434.807834,
+      "total_tokens": 4485,
+      "format_compliant": true,
+      "component_results": {
+        "facts": true,
+        "overridden_ids": true,
+        "system_record_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:10",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 15
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/6eccd460394d45118d653d1442673541/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "1f184408c44a40f0a7d83fc611893203",
+      "task_id": "T03",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 177004.537917,
+      "total_tokens": 6034,
+      "format_compliant": true,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/1f184408c44a40f0a7d83fc611893203/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "13e15b015eef4af1bed0ce290a00574d",
+      "task_id": "T04",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 105648.861625,
+      "total_tokens": 5175,
+      "format_compliant": true,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/13e15b015eef4af1bed0ce290a00574d/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "a368a64dee4143d782f7c1e858a2ff13",
+      "task_id": "T05",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 320953.975542,
+      "total_tokens": 11498,
+      "format_compliant": true,
+      "component_results": {
+        "final_state": true,
+        "illegal_commands": true,
+        "successful_mix_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "final_state": {
+          "power": "OFF",
+          "battery": 1,
+          "temperature": 9,
+          "pressure": 0,
+          "hatch": "CLOSED",
+          "material": 1,
+          "coolant": 1,
+          "lock": 1,
+          "fault": "E-DANGER",
+          "mixed_batches": 1
+        },
+        "illegal_commands": [
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          23,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "first_danger_check": 10,
+        "successful_mix_count": 1
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/a368a64dee4143d782f7c1e858a2ff13/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "1895d22018494ce3bec1988ea5a47d50",
+      "task_id": "T06",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 90837.811708,
+      "total_tokens": 4398,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/1895d22018494ce3bec1988ea5a47d50/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "e36c0401b62a4286becf77cb3ec159de",
+      "task_id": "T07",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 710074.825583,
+      "total_tokens": 28070,
+      "format_compliant": true,
+      "component_results": {
+        "combinations": true,
+        "count": true,
+        "first": true,
+        "last": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "combinations": [
+          "ABCDEL",
+          "ABDELP",
+          "ACEGIP",
+          "ACGLOP",
+          "AEGKOP",
+          "BDEIKM",
+          "CGHILM",
+          "FHIJMP"
+        ],
+        "count": 8,
+        "first": "ABCDEL",
+        "last": "FHIJMP"
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/e36c0401b62a4286becf77cb3ec159de/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "7316005a28064bf8bda9ff9c2ca389c8",
+      "task_id": "T08",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 94191.244083,
+      "total_tokens": 4326,
+      "format_compliant": true,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/7316005a28064bf8bda9ff9c2ca389c8/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "6d1b12c331434cd9be6939791fd17285",
+      "task_id": "T09",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 115089.618583,
+      "total_tokens": 4152,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/6d1b12c331434cd9be6939791fd17285/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+      "request_id": "f1b148333eff43b0a24bf523072bb3f6",
+      "task_id": "T10",
+      "model": "kimi-k3",
+      "model_alias": "kimi-k3",
+      "http_status": 200,
+      "total_time_ms": 98174.542792,
+      "total_tokens": 3804,
+      "format_compliant": true,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf/requests/f1b148333eff43b0a24bf523072bb3f6/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "13088394fb064906baa99199bf4d3b8c",
+      "task_id": "T01",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 42579.535,
+      "total_tokens": 12722,
+      "format_compliant": false,
+      "component_results": {
+        "availability": true,
+        "active_orders": true,
+        "waiting_orders": true,
+        "failed_operations": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 1,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 1
+          },
+          "G101-二等": {
+            "A-B": 2,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O02",
+          "O04",
+          "O05",
+          "O09",
+          "O10",
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "waiting_orders": [
+          "W05"
+        ],
+        "failed_operations": [
+          12,
+          16,
+          18,
+          19,
+          20,
+          21,
+          24,
+          27,
+          28,
+          30
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/13088394fb064906baa99199bf4d3b8c/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "0466ab9c285e423c92b83be7479e8f44",
+      "task_id": "T02",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 21036.7,
+      "total_tokens": 10349,
+      "format_compliant": false,
+      "component_results": {
+        "facts": true,
+        "overridden_ids": true,
+        "system_record_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:10",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 15
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/0466ab9c285e423c92b83be7479e8f44/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "70d8d00e797848bbb3fb2bb5132589a1",
+      "task_id": "T03",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 23482.276208,
+      "total_tokens": 6568,
+      "format_compliant": false,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/70d8d00e797848bbb3fb2bb5132589a1/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "6fcb524e9e5f4368bf9646adc6abb133",
+      "task_id": "T04",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 22275.187792,
+      "total_tokens": 10540,
+      "format_compliant": false,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/6fcb524e9e5f4368bf9646adc6abb133/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "074822e70a4b4bd1a4620a8ee357e5fa",
+      "task_id": "T05",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 24109.123584,
+      "total_tokens": 10842,
+      "format_compliant": false,
+      "component_results": {
+        "final_state": true,
+        "illegal_commands": true,
+        "successful_mix_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "final_state": {
+          "power": "OFF",
+          "battery": 1,
+          "temperature": 9,
+          "pressure": 0,
+          "hatch": "CLOSED",
+          "material": 1,
+          "coolant": 1,
+          "lock": 1,
+          "fault": "E-DANGER",
+          "mixed_batches": 1
+        },
+        "illegal_commands": [
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          23,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "first_danger_check": 2,
+        "successful_mix_count": 1
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/074822e70a4b4bd1a4620a8ee357e5fa/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "b3b9bfb8a0a644a28e78057889a0887b",
+      "task_id": "T06",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 24842.297166,
+      "total_tokens": 9829,
+      "format_compliant": false,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/b3b9bfb8a0a644a28e78057889a0887b/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "04bdd092e28943dc847a6692f9f9d055",
+      "task_id": "T07",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 197459.612791,
+      "total_tokens": 31376,
+      "format_compliant": false,
+      "component_results": {
+        "combinations": true,
+        "count": true,
+        "first": true,
+        "last": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "combinations": [
+          "ABCDEL",
+          "ABDELP",
+          "ACEGIP",
+          "ACGLOP",
+          "AEGKOP",
+          "BDEIKM",
+          "CGHILM",
+          "FHIJMP"
+        ],
+        "count": 8,
+        "first": "ABCDEL",
+        "last": "FHIJMP"
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/04bdd092e28943dc847a6692f9f9d055/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "11fceb2d9b824e2192ae04b0aaaf7581",
+      "task_id": "T08",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 25706.787416,
+      "total_tokens": 6613,
+      "format_compliant": false,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/11fceb2d9b824e2192ae04b0aaaf7581/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "6b0ed866e1514665a069e1d1fc31e53c",
+      "task_id": "T09",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 18213.945375,
+      "total_tokens": 9400,
+      "format_compliant": false,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/6b0ed866e1514665a069e1d1fc31e53c/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+      "request_id": "cd184830e765442fa80f4562ee254552",
+      "task_id": "T10",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 20863.3915,
+      "total_tokens": 9167,
+      "format_compliant": false,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a/requests/cd184830e765442fa80f4562ee254552/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "73276ae82a5849b3ba381da9214f3240",
+      "task_id": "T01",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 263601.911875,
+      "total_tokens": 14895,
+      "format_compliant": true,
+      "component_results": {
+        "availability": true,
+        "active_orders": true,
+        "waiting_orders": true,
+        "failed_operations": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "availability": {
+          "G101-一等": {
+            "A-B": 1,
+            "B-C": 1,
+            "C-D": 1,
+            "D-E": 1
+          },
+          "G101-二等": {
+            "A-B": 2,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          },
+          "G202-二等": {
+            "A-B": 0,
+            "B-C": 0,
+            "C-D": 0,
+            "D-E": 2
+          }
+        },
+        "active_orders": [
+          "O01",
+          "O02",
+          "O04",
+          "O05",
+          "O09",
+          "O10",
+          "W01",
+          "W02",
+          "W04"
+        ],
+        "waiting_orders": [
+          "W05"
+        ],
+        "failed_operations": [
+          12,
+          16,
+          18,
+          19,
+          20,
+          21,
+          24,
+          27,
+          28,
+          30
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/73276ae82a5849b3ba381da9214f3240/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "73de137e12ff4cc2b2c862df6b668a07",
+      "task_id": "T02",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 98907.733209,
+      "total_tokens": 6419,
+      "format_compliant": true,
+      "component_results": {
+        "facts": true,
+        "overridden_ids": true,
+        "system_record_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "facts": {
+          "雪松": {
+            "责任人": "陈默",
+            "金额": "69",
+            "时间": "14:10",
+            "状态": "已关闭"
+          },
+          "轨道": {
+            "责任人": "周岚",
+            "金额": "51",
+            "时间": "11:50",
+            "状态": "已恢复"
+          },
+          "灯塔": {
+            "责任人": "赵宁",
+            "金额": "56",
+            "时间": "09:32",
+            "状态": "已恢复"
+          },
+          "港湾": {
+            "责任人": "陈默",
+            "金额": "34",
+            "时间": "18:55",
+            "状态": "已恢复"
+          }
+        },
+        "overridden_ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F10",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F19",
+          "F21",
+          "F24",
+          "F26",
+          "F27",
+          "F29",
+          "F32",
+          "F33",
+          "F34",
+          "F39",
+          "F40"
+        ],
+        "system_record_count": 15
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/73de137e12ff4cc2b2c862df6b668a07/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "b7b19e2555f84710a5ee343134555640",
+      "task_id": "T03",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 249789.813125,
+      "total_tokens": 10612,
+      "format_compliant": true,
+      "component_results": {
+        "STEP": true,
+        "CAPTURE": true,
+        "STAR": true,
+        "WIN": true,
+        "Q_legal_moves": true,
+        "R": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "STEP": "O",
+        "CAPTURE": "J",
+        "STAR": "E",
+        "WIN": "H",
+        "Q_legal_moves": [
+          "b2>a2",
+          "b2>b1",
+          "b2>b4",
+          "b2>d2"
+        ],
+        "R": {
+          "legal": true,
+          "ended": true,
+          "winner": "红"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/b7b19e2555f84710a5ee343134555640/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "34e5a1719cf046868b2ea40c96e4bb85",
+      "task_id": "T04",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 94102.716333,
+      "total_tokens": 5638,
+      "format_compliant": true,
+      "component_results": {
+        "winners": true,
+        "invalid_draws": true,
+        "department_counts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "winners": {
+          "金奖1": "P01",
+          "金奖2": "P05",
+          "团队奖": "产品",
+          "创新1": "P17",
+          "创新2": "P14",
+          "创新3": "P13",
+          "幸运1": "P06",
+          "幸运2": "P07",
+          "幸运3": "P19",
+          "幸运4": "P18"
+        },
+        "invalid_draws": [
+          "金奖1:P04",
+          "金奖1:P03",
+          "金奖1:P02",
+          "金奖2:P08",
+          "团队奖:P10",
+          "创新1:P05",
+          "创新1:P02",
+          "创新2:P09",
+          "创新2:P11",
+          "创新3:P15",
+          "幸运1:P11",
+          "幸运2:P09",
+          "幸运3:P14",
+          "幸运3:P17",
+          "幸运3:P01",
+          "幸运4:P13",
+          "幸运4:P12"
+        ],
+        "department_counts": {
+          "研发": 1,
+          "销售": 3,
+          "产品": 1,
+          "运营": 2,
+          "财务": 3
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/34e5a1719cf046868b2ea40c96e4bb85/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "40d4387cd13b496bbfb9bd3d5e58236c",
+      "task_id": "T05",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 343148.703917,
+      "total_tokens": 16458,
+      "format_compliant": true,
+      "component_results": {
+        "final_state": true,
+        "illegal_commands": true,
+        "successful_mix_count": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "final_state": {
+          "power": "OFF",
+          "battery": 1,
+          "temperature": 9,
+          "pressure": 0,
+          "hatch": "CLOSED",
+          "material": 1,
+          "coolant": 1,
+          "lock": 1,
+          "fault": "E-DANGER",
+          "mixed_batches": 1
+        },
+        "illegal_commands": [
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          23,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "first_danger_check": 10,
+        "successful_mix_count": 1
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/40d4387cd13b496bbfb9bd3d5e58236c/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "c43f15a998e24131aa3f55e177fab00e",
+      "task_id": "T06",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 68308.18875,
+      "total_tokens": 4863,
+      "format_compliant": true,
+      "component_results": {
+        "patterns_by_row": true,
+        "rows": true,
+        "main_diagonal": true,
+        "checksum": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "patterns_by_row": [
+          "P5",
+          "P2",
+          "P7",
+          "P4",
+          "P1",
+          "P6",
+          "P3",
+          "P8"
+        ],
+        "rows": [
+          "ABCDABCD",
+          "BBAADDCC",
+          "CDABCDAB",
+          "DDCCBBAA",
+          "AABBCCDD",
+          "BCDABCDA",
+          "CCDDAABB",
+          "DABCDABC"
+        ],
+        "main_diagonal": "ABACCCBC",
+        "checksum": 3164
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/c43f15a998e24131aa3f55e177fab00e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "94879c35d0f743c6a5f26c851bfccb67",
+      "task_id": "T07",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 465804.434167,
+      "total_tokens": 26833,
+      "format_compliant": true,
+      "component_results": {
+        "combinations": true,
+        "count": true,
+        "first": true,
+        "last": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "combinations": [
+          "ABCDEL",
+          "ABDELP",
+          "ACEGIP",
+          "ACGLOP",
+          "AEGKOP",
+          "BDEIKM",
+          "CGHILM",
+          "FHIJMP"
+        ],
+        "count": 8,
+        "first": "ABCDEL",
+        "last": "FHIJMP"
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/94879c35d0f743c6a5f26c851bfccb67/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "3b5ef2a431804868b094fce80535cd86",
+      "task_id": "T08",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 100719.495125,
+      "total_tokens": 6041,
+      "format_compliant": true,
+      "component_results": {
+        "blocks": true,
+        "decoded": true,
+        "length_without_separators": true,
+        "count_R": true,
+        "checksum_mod_997": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "blocks": [
+          "RIVER",
+          "STONESTONE",
+          "HTRON",
+          "ECHOXXX",
+          "STONESTONE",
+          "THGILTHGIL",
+          "RIVEROHCERIVEROHCE",
+          "QRIVERZ",
+          "ENOTSENOTS",
+          "NORTHECHOXXX"
+        ],
+        "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+        "length_without_separators": 94,
+        "count_R": 10,
+        "checksum_mod_997": 336
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/3b5ef2a431804868b094fce80535cd86/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "8aea89798b454e28bfe9fa542929a54e",
+      "task_id": "T09",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 139336.198416,
+      "total_tokens": 6866,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "damage": true,
+        "cost": true,
+        "steps": true,
+        "final": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "关闭进水",
+          "打开旁路",
+          "排空",
+          "拆滤网",
+          "投化学剂",
+          "准备泵",
+          "反冲B",
+          "装滤网",
+          "关闭旁路",
+          "打开进水"
+        ],
+        "damage": 0,
+        "cost": 12,
+        "steps": 10,
+        "final": {
+          "inlet_open": 1,
+          "bypass_open": 0,
+          "drained": 0,
+          "block_A": 0,
+          "block_B": 0,
+          "filter_installed": 1,
+          "chemical_used": 1,
+          "pump_ready": 1
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/8aea89798b454e28bfe9fa542929a54e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+      "request_id": "f7b40c5dd93248f58fab9262fe96c4c2",
+      "task_id": "T10",
+      "model": "qwen3.8-max",
+      "model_alias": "qwen3.8-max",
+      "http_status": 200,
+      "total_time_ms": 55201.664875,
+      "total_tokens": 3029,
+      "format_compliant": true,
+      "component_results": {
+        "lasers": true,
+        "count": true,
+        "target_sources": true,
+        "unused_safe_mounts": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "lasers": [
+          "C",
+          "F",
+          "G",
+          "I"
+        ],
+        "count": 4,
+        "target_sources": {
+          "T1": [
+            "F:E",
+            "I:W"
+          ],
+          "T2": [
+            "G:S"
+          ],
+          "T3": [
+            "C:S"
+          ],
+          "T4": [
+            "C:S",
+            "I:W"
+          ],
+          "T5": [
+            "G:S"
+          ],
+          "T6": [
+            "F:E"
+          ]
+        },
+        "unused_safe_mounts": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "H"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1/requests/f7b40c5dd93248f58fab9262fe96c4c2/response.md"
+    }
+  ],
+  "model_summary": [
+    {
+      "model": "Opus 5",
+      "score": 100,
+      "whole_correct": 10,
+      "partial": 0,
+      "unfinished": 0,
+      "api_failure": 0,
+      "format_noncompliant": 10
+    },
+    {
+      "model": "hy3",
+      "score": 100,
+      "whole_correct": 10,
+      "partial": 0,
+      "unfinished": 0,
+      "api_failure": 0,
+      "format_noncompliant": 0
+    },
+    {
+      "model": "kimi-k3",
+      "score": 100,
+      "whole_correct": 10,
+      "partial": 0,
+      "unfinished": 0,
+      "api_failure": 0,
+      "format_noncompliant": 0
+    },
+    {
+      "model": "qwen3.8-max",
+      "score": 100,
+      "whole_correct": 10,
+      "partial": 0,
+      "unfinished": 0,
+      "api_failure": 0,
+      "format_noncompliant": 0
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "score": 90,
+      "whole_correct": 9,
+      "partial": 0,
+      "unfinished": 0,
+      "api_failure": 1,
+      "format_noncompliant": 0
+    },
+    {
+      "model": "GLM-5.2",
+      "score": 51,
+      "whole_correct": 5,
+      "partial": 1,
+      "unfinished": 2,
+      "api_failure": 0,
+      "format_noncompliant": 4
+    },
+    {
+      "model": "DeepSeek-V4-Flash",
+      "score": 20,
+      "whole_correct": 2,
+      "partial": 0,
+      "unfinished": 8,
+      "api_failure": 0,
+      "format_noncompliant": 8
+    }
+  ],
+  "task_summary": [
+    {
+      "task_id": "T01",
+      "pass_count": 5,
+      "average_points": 7.14,
+      "statuses": {
+        "unfinished": 1,
+        "wrong": 1,
+        "correct": 5
+      }
+    },
+    {
+      "task_id": "T02",
+      "pass_count": 5,
+      "average_points": 7.14,
+      "statuses": {
+        "unfinished": 1,
+        "wrong": 1,
+        "correct": 5
+      }
+    },
+    {
+      "task_id": "T03",
+      "pass_count": 6,
+      "average_points": 8.57,
+      "statuses": {
+        "correct": 6,
+        "unfinished": 1
+      }
+    },
+    {
+      "task_id": "T04",
+      "pass_count": 6,
+      "average_points": 8.57,
+      "statuses": {
+        "unfinished": 1,
+        "correct": 6
+      }
+    },
+    {
+      "task_id": "T05",
+      "pass_count": 5,
+      "average_points": 7.14,
+      "statuses": {
+        "unfinished": 2,
+        "correct": 5
+      }
+    },
+    {
+      "task_id": "T06",
+      "pass_count": 6,
+      "average_points": 8.71,
+      "statuses": {
+        "correct": 6,
+        "partial": 1
+      }
+    },
+    {
+      "task_id": "T07",
+      "pass_count": 5,
+      "average_points": 7.14,
+      "statuses": {
+        "unfinished": 1,
+        "correct": 5,
+        "api_failure": 1
+      }
+    },
+    {
+      "task_id": "T08",
+      "pass_count": 6,
+      "average_points": 8.57,
+      "statuses": {
+        "unfinished": 1,
+        "correct": 6
+      }
+    },
+    {
+      "task_id": "T09",
+      "pass_count": 6,
+      "average_points": 8.57,
+      "statuses": {
+        "unfinished": 1,
+        "correct": 6
+      }
+    },
+    {
+      "task_id": "T10",
+      "pass_count": 6,
+      "average_points": 8.57,
+      "statuses": {
+        "unfinished": 1,
+        "correct": 6
+      }
+    }
+  ]
+}

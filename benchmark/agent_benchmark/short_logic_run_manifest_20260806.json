@@ -1,0 +1,42 @@
+[
+  {
+    "role": "primary",
+    "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+    "run_id": "20260806T061903262278Z-a6d720b2",
+    "created_at": "2026-08-06T06:19:03.262946Z",
+    "model_aliases": [
+      "gpt-5.6-sol",
+      "opus-5",
+      "glm-5.2"
+    ],
+    "prompt_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06"
+    ],
+    "record_count": 18,
+    "prompts_sha256": "45397c2934826eca6341b6043afbabdc68d76f244a17edfac9299729b2602c71",
+    "config_sha256": "0e7cf6b519f6e866e89be27f5e3534f161d14a9bd888c088c411ca399cc14909",
+    "oneapi_base_url": "https://oneapi-comate.baidu-int.com"
+  },
+  {
+    "role": "delivery_retry",
+    "run_dir": "historical-runs/20260806T062716371088Z-90b951b9",
+    "run_id": "20260806T062716371088Z-90b951b9",
+    "created_at": "2026-08-06T06:27:16.371647Z",
+    "model_aliases": [
+      "gpt-5.6-sol",
+      "glm-5.2"
+    ],
+    "prompt_ids": [
+      "S03"
+    ],
+    "record_count": 2,
+    "prompts_sha256": "a4d5feda0a20665278295d4bd559bfb093a9668dc3a456f0b918c2cd1407c86f",
+    "config_sha256": "0e7cf6b519f6e866e89be27f5e3534f161d14a9bd888c088c411ca399cc14909",
+    "oneapi_base_url": "https://oneapi-comate.baidu-int.com"
+  }
+]

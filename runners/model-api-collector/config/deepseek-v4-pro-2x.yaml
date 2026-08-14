@@ -1,0 +1,15 @@
+models:
+  deepseek-v4-pro-r1:
+    model: deepseek-v4-pro
+    stream: false
+    parameters:
+      temperature: 0
+      max_tokens: 131072
+      reasoning_effort: max
+  deepseek-v4-pro-r2:
+    model: deepseek-v4-pro
+    stream: false
+    parameters:
+      temperature: 0
+      max_tokens: 131072
+      reasoning_effort: max

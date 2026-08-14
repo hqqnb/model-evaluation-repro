@@ -1,0 +1,142 @@
+[
+  {
+    "id": "R01",
+    "expected": "D",
+    "near_miss": "A",
+    "solution_summary": "Beta 先因琥珀标签进入存储区，再因易碎跳过自动检查进入隔离区；绿色封条使其进入人工复核，因此不能直接放行。",
+    "verification": {"method": "rule_chain", "unique_solution_count": 1}
+  },
+  {
+    "id": "R02",
+    "expected": ["B", "D"],
+    "near_miss": ["A", "E"],
+    "solution_summary": "枚举六个合法的跨组二人组合并计算五句真值，只有 B、D 组合恰好产生两句真话。",
+    "verification": {"method": "exhaustive_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R03",
+    "expected": {"step": 5, "values": [-8, 8]},
+    "near_miss": {"step": 4, "values": [8]},
+    "solution_summary": "步骤④得到平方值 64 是正确的；步骤⑤遗漏负平方根。x+y 可为 8 或 -8，两种情况都与已知条件一致。",
+    "verification": {"method": "symbolic_check", "unique_solution_count": 1}
+  },
+  {
+    "id": "R04",
+    "expected": 12,
+    "near_miss": 18,
+    "solution_summary": "只有规则 D 同时满足三条观测；代入 (7,4,2) 得 7×2-4+2=12。",
+    "verification": {"method": "candidate_elimination", "unique_solution_count": 1}
+  },
+  {
+    "id": "R05",
+    "expected": "010",
+    "near_miss": "101",
+    "solution_summary": "三条日志共同锁定规则 C。001 经 M 得 011，经 K 得 101，再经 M 得 010。",
+    "verification": {"method": "state_simulation", "unique_solution_count": 1}
+  },
+  {
+    "id": "R06",
+    "expected": {"rule": "B", "wrong_index": 6, "correct_value": 21, "a9": 62},
+    "near_miss": {"rule": "B", "wrong_index": 6, "correct_value": 20, "a9": 61},
+    "solution_summary": "规则 B 生成 3,8,8,12,15,21,29,42，恰与记录相差一项；继续递推得到 a9=42+29-9=62。",
+    "verification": {"method": "recurrence_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R07",
+    "expected": ["B", "C", "E"],
+    "near_miss": ["A", "B", "D"],
+    "solution_summary": "两项原因无法覆盖七个现象。三原因全覆盖候选为 A-B-D 与 B-C-E；A-B 排他排除前者，因此唯一最小解释是 B、C、E。",
+    "verification": {"method": "set_cover_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R08",
+    "expected": ["W", "U", "V", "X"],
+    "near_miss": ["W", "V", "U", "X"],
+    "solution_summary": "枚举四个操作的 24 种排列并逐步核对残缺日志，只有 W、U、V、X 产生 (2,1)、(3,1)、(3,4)、(2,8)。",
+    "verification": {"method": "permutation_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R09",
+    "expected": ["D", "B", "F", "E", "A", "C"],
+    "near_miss": ["D", "B", "E", "F", "A", "C"],
+    "solution_summary": "DB 与 AC 构成固定相邻块，B-E 固定间隔和 B<E<A 决定 E 在第4位；D<F 及边界限制将 F 固定在第3位。",
+    "verification": {"method": "permutation_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R10",
+    "expected": 13,
+    "near_miss": 12,
+    "solution_summary": "为避免四个同类，每类最多取 3 个；为避免某一形状三色齐全，圆形至少缺一色且方形至少缺一色。最多可在不触发目标时取 12 个，因此第 13 个必然触发。",
+    "verification": {"method": "bounded_count_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R11",
+    "expected": {"projects": ["B", "C", "F"], "cost": 12, "value": 25},
+    "near_miss": {"projects": ["A", "D", "E"], "cost": 12, "value": 24},
+    "solution_summary": "枚举全部 64 个项目子集并过滤预算、依赖和互斥条件，B、C、F 的收益 25 为唯一最高值。",
+    "verification": {"method": "subset_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R12",
+    "expected": {"X": 5, "Y": 10, "Z": 15, "W": 25},
+    "near_miss": {"X": 5, "Y": 10, "Z": 3, "W": 13},
+    "solution_summary": "do(Y=10) 只替换 Y 方程，X 保持 5；随后 Z=20-5=15，W=15+10=25。",
+    "verification": {"method": "structural_equation_evaluation", "unique_solution_count": 1}
+  },
+  {
+    "id": "R13",
+    "expected": {"B": 4, "C": 5, "D": 11},
+    "near_miss": {"B": 2, "C": 1, "D": 3},
+    "solution_summary": "由观测得到 UB=2、UC=2、UD=2。设 A=1 后，B=4，C=4-1+2=5，D=5+4+2=11。",
+    "verification": {"method": "counterfactual_abduction_action_prediction", "unique_solution_count": 1}
+  },
+  {
+    "id": "R14",
+    "expected": 0.198,
+    "near_miss": 0.1099,
+    "solution_summary": "失效路径权重为 0.1×0.8×0.25×0.6=0.012；未失效路径权重为 0.9×0.2×0.9×0.3=0.0486；归一化得到 0.1980198。",
+    "verification": {"method": "bayes_exact_arithmetic", "unique_solution_count": 1}
+  },
+  {
+    "id": "R15",
+    "expected": {"strategy": "C", "expected_value": 52.99},
+    "near_miss": {"strategy": "B", "expected_value": 50.2},
+    "solution_summary": "A 的期望净收益为 42.80，B 为 50.20。C 的高信号分支无条件贡献 34.385，低信号概率 0.53、贡献 26.606，再扣检测成本 8，得到 52.991。",
+    "verification": {"method": "decision_tree_expectation", "unique_solution_count": 1}
+  },
+  {
+    "id": "R16",
+    "expected": ["P", "Q", "R", "P"],
+    "near_miss": ["P", "Q", "R", "T"],
+    "solution_summary": "前三步 P、Q、R 是激活 G 的最短链，此时状态为 (0,0,0,1)；最后执行 P 才同时得到 A=1、B=1。",
+    "verification": {"method": "breadth_first_search", "unique_solution_count": 1}
+  },
+  {
+    "id": "R17",
+    "expected": {"guaranteed": 6, "first_action": "A"},
+    "near_miss": {"guaranteed": 5, "first_action": "D"},
+    "solution_summary": "对四轮状态、剩余破坏次数和对手是否当轮破坏做极小极大回溯。首轮 A 的最坏结果为 6，首轮 D 的最坏结果为 5。",
+    "verification": {"method": "minimax_dynamic_programming", "unique_solution_count": 1}
+  },
+  {
+    "id": "R18",
+    "expected": {"sequence": ["A", "C", "B", "D"], "time": 8},
+    "near_miss": {"sequence": ["A", "B", "C", "D"], "time": 9},
+    "solution_summary": "枚举满足 A<C、B<D 的六个顺序，并计入模式切换与 B 的释放时间。A、C、B、D 在时间 8 完成，严格优于其他合法顺序。",
+    "verification": {"method": "schedule_enumeration", "unique_solution_count": 1}
+  },
+  {
+    "id": "R19",
+    "expected": {"east": -2, "north": 0, "up": 1},
+    "near_miss": {"east": 0, "north": -2, "up": 1},
+    "solution_summary": "(2,1,1) 顺时针旋转后为 (1,-2,1)，镜像后为 (-1,-2,1)，减去观察者坐标 (1,-2,0) 得 (-2,0,1)。",
+    "verification": {"method": "coordinate_transform", "unique_solution_count": 1}
+  },
+  {
+    "id": "R20",
+    "expected": ["B", "C", "D", "E", "F", "G"],
+    "near_miss": ["B", "C", "D", "E", "F", "G", "H", "I"],
+    "solution_summary": "k1→B→k2,t1→C→k3→D→t2→E→artifact→F→k4→G 构成可达闭包。H 与 I 互相依赖 k5、k6，但闭包中没有初始入口。",
+    "verification": {"method": "reachability_fixed_point", "unique_solution_count": 1}
+  }
+]

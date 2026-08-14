@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="650" viewBox="0 0 1320 650">
+  <defs>
+    <style>
+      .title { font: 700 26px "Noto Sans CJK SC", sans-serif; fill: #20313b; }
+      .label { font: 700 20px "Noto Sans CJK SC", sans-serif; fill: #20313b; }
+      .rule { font: 17px "Noto Sans CJK SC", sans-serif; fill: #344a55; }
+      .small { font: 15px "Noto Sans CJK SC", sans-serif; fill: #51656f; }
+    </style>
+    <g id="shelf">
+      <rect x="0" y="0" width="250" height="360" rx="8" fill="#f9f6ed" stroke="#384c55" stroke-width="4"/>
+      <path d="M0 120H250 M0 240H250" stroke="#7b8b91" stroke-width="4"/>
+      <path d="M18 360V378 M232 360V378" stroke="#384c55" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g id="aid">
+      <rect x="0" y="0" width="66" height="50" rx="8" fill="#d94b45" stroke="#8f2925" stroke-width="3"/>
+      <rect x="27" y="9" width="12" height="32" fill="#fff7ed"/>
+      <rect x="17" y="19" width="32" height="12" fill="#fff7ed"/>
+    </g>
+    <g id="toolbox">
+      <rect x="0" y="10" width="76" height="43" rx="6" fill="#efb43c" stroke="#9b6a12" stroke-width="3"/>
+      <path d="M22 10V2H54V10" fill="none" stroke="#9b6a12" stroke-width="5"/>
+      <rect x="33" y="25" width="10" height="8" fill="#9b6a12"/>
+    </g>
+    <g id="bottle">
+      <path d="M8 0H22V10L27 19V55Q27 61 20 61H10Q3 61 3 55V19L8 10Z" fill="#3f8fc9" stroke="#1f5f8b" stroke-width="2"/>
+      <rect x="8" y="1" width="14" height="7" rx="2" fill="#d8efff"/>
+      <path d="M7 36H23" stroke="#d8efff" stroke-width="3"/>
+    </g>
+  </defs>
+
+  <rect width="1320" height="650" fill="#eef2ed"/>
+  <text x="660" y="40" text-anchor="middle" class="title">连续盘点：找出唯一不符合规则的状态</text>
+
+  <rect x="55" y="58" width="1210" height="82" rx="14" fill="#fffaf0" stroke="#c5b88e" stroke-width="2"/>
+  <text x="78" y="88" class="label">操作卡</text>
+  <text x="190" y="88" class="rule">1. 红色急救箱每次向下一层移动，到底层后回到顶层</text>
+  <text x="190" y="116" class="rule">2. 蓝色水瓶每次增加 1 个</text>
+  <text x="610" y="116" class="rule">3. 黄色工具箱始终放在中层右侧</text>
+
+  <g transform="translate(40 190)">
+    <text x="125" y="-18" text-anchor="middle" class="label">P1</text>
+    <use href="#shelf"/>
+    <use href="#aid" x="30" y="34"/>
+    <use href="#toolbox" x="150" y="151"/>
+    <use href="#bottle" x="176" y="274"/>
+    <text x="125" y="408" text-anchor="middle" class="small">第 1 次盘点</text>
+  </g>
+
+  <g transform="translate(365 190)">
+    <text x="125" y="-18" text-anchor="middle" class="label">P2</text>
+    <use href="#shelf"/>
+    <use href="#aid" x="30" y="154"/>
+    <use href="#toolbox" x="150" y="151"/>
+    <use href="#bottle" x="140" y="274"/>
+    <use href="#bottle" x="176" y="274"/>
+    <text x="125" y="408" text-anchor="middle" class="small">第 2 次盘点</text>
+  </g>
+
+  <g transform="translate(690 190)">
+    <text x="125" y="-18" text-anchor="middle" class="label">P3</text>
+    <use href="#shelf"/>
+    <use href="#aid" x="30" y="274"/>
+    <use href="#toolbox" x="150" y="151"/>
+    <use href="#bottle" x="120" y="274"/>
+    <use href="#bottle" x="156" y="274"/>
+    <use href="#bottle" x="192" y="274"/>
+    <text x="125" y="408" text-anchor="middle" class="small">第 3 次盘点</text>
+  </g>
+
+  <g transform="translate(1015 190)">
+    <text x="125" y="-18" text-anchor="middle" class="label">P4</text>
+    <use href="#shelf"/>
+    <use href="#aid" x="30" y="34"/>
+    <use href="#toolbox" x="150" y="31"/>
+    <use href="#bottle" x="88" y="274"/>
+    <use href="#bottle" x="124" y="274"/>
+    <use href="#bottle" x="160" y="274"/>
+    <use href="#bottle" x="196" y="274"/>
+    <text x="125" y="408" text-anchor="middle" class="small">第 4 次盘点</text>
+  </g>
+</svg>

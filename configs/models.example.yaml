@@ -1,0 +1,36 @@
+models:
+  qwen3.8-max:
+    provider: lingzhi
+    model: qwen3.8-max
+    protocol: chat_completions
+    parameters:
+      temperature: 0.6
+      reasoning_effort: max
+
+  glm-5:
+    provider: lingzhi
+    model: glm-5
+    protocol: chat_completions
+    parameters:
+      reasoning_effort: max
+
+  qwen3.7-plus:
+    provider: qwen
+    model: qwen3.7-plus
+    protocol: chat_completions
+    parameters:
+      temperature: 0.6
+
+  kimi-k3:
+    provider: kimi
+    model: kimi-k3
+    protocol: chat_completions
+    parameters:
+      reasoning_effort: max
+
+  deepseek-v4-pro:
+    provider: deepseek
+    model: deepseek-v4-pro
+    protocol: chat_completions
+    parameters:
+      reasoning_effort: max

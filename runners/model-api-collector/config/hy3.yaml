@@ -1,0 +1,9 @@
+models:
+  hy3:
+    model: hy3
+    stream: false
+    parameters:
+      reasoning_effort: high
+      preserved_thinking: false
+      stream_options:
+        include_usage: true

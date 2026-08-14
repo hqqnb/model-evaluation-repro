@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="360" viewBox="0 0 1400 360">
+  <rect width="1400" height="360" fill="#eef2f4"/>
+  <text x="700" y="34" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#243746">Track the transformation and find the local anomaly</text>
+  <g transform="translate(55,70)" font-family="sans-serif" font-size="18" fill="#243746">
+    <g transform="translate(0,0)">
+      <rect width="240" height="230" rx="16" fill="#fff" stroke="#243746" stroke-width="3"/>
+      <text x="120" y="28" text-anchor="middle">P1</text>
+      <path d="M120 165 L120 70 L100 92 M120 70 L140 92" fill="none" stroke="#4f87a8" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="185" cy="70" r="18" fill="#e07a5f" stroke="#243746" stroke-width="5"/>
+    </g>
+    <g transform="translate(260,0)">
+      <rect width="240" height="230" rx="16" fill="#fff" stroke="#243746" stroke-width="3"/>
+      <text x="120" y="28" text-anchor="middle">P2</text>
+      <path d="M120 165 L120 70 L100 92 M120 70 L140 92" transform="rotate(90 120 115)" fill="none" stroke="#4f87a8" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="185" cy="70" r="18" fill="none" stroke="#e07a5f" stroke-width="6"/>
+    </g>
+    <g transform="translate(520,0)">
+      <rect width="240" height="230" rx="16" fill="#fff" stroke="#243746" stroke-width="3"/>
+      <text x="120" y="28" text-anchor="middle">P3</text>
+      <path d="M120 165 L120 70 L100 92 M120 70 L140 92" transform="rotate(180 120 115)" fill="none" stroke="#4f87a8" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="185" cy="70" r="18" fill="#e07a5f" stroke="#243746" stroke-width="5"/>
+    </g>
+    <g transform="translate(780,0)">
+      <rect width="240" height="230" rx="16" fill="#fff" stroke="#243746" stroke-width="3"/>
+      <text x="120" y="28" text-anchor="middle">P4</text>
+      <path d="M120 165 L120 70 L100 92 M120 70 L140 92" transform="rotate(270 120 115)" fill="none" stroke="#4f87a8" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="185" cy="70" r="18" fill="#e07a5f" stroke="#243746" stroke-width="5"/>
+    </g>
+    <g transform="translate(1040,0)">
+      <rect width="240" height="230" rx="16" fill="#fff" stroke="#243746" stroke-width="3"/>
+      <text x="120" y="28" text-anchor="middle">P5</text>
+      <path d="M120 165 L120 70 L100 92 M120 70 L140 92" transform="rotate(360 120 115)" fill="none" stroke="#4f87a8" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="185" cy="70" r="18" fill="#e07a5f" stroke="#243746" stroke-width="5"/>
+    </g>
+  </g>
+  <text x="700" y="334" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#5a6872">Two visual properties change from panel to panel. One local property is wrong.</text>
+</svg>

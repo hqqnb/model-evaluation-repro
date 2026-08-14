@@ -1,0 +1,1 @@
+{"id": "coding-c03", "title": "coding #3", "messages": [{"role": "user", "content": "使用 Three.js 制作一个隐形眼镜盒的 3D 模型。眼镜盒应有醒目的 L 和 R 标识，并配有盒盖。此外，用户应能点击盒盖将其打开。使用 HTML、CSS 和 JavaScript 构建。只给我一个文件。不要查看其他文件，直接创建。\n\n输出要求：\n请直接完成任务并交付可运行产物；同时提供运行方式和必要的测试说明。"}], "tags": ["coding", "benchmark-20260806"], "notes": "由题库原文自动导出；未添加系统提示词。"}

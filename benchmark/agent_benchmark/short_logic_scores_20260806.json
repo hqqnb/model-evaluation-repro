@@ -1,0 +1,2005 @@
+{
+  "scoring_policy": {
+    "primary_result_is_authoritative_for_semantic_answers": true,
+    "retry_replaces_statuses": [
+      "api_failure",
+      "unfinished"
+    ],
+    "semantic_error_statuses": [
+      "partial",
+      "wrong"
+    ]
+  },
+  "primary_rows": [
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "2103e0a8973548578f16aa545d06991e",
+      "task_id": "S01",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 9372.385041,
+      "total_tokens": 597,
+      "format_compliant": true,
+      "component_results": {
+        "worlds": true,
+        "world_count": true,
+        "query_classes": true,
+        "witnesses": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "worlds": [
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 3,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "impossible"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "BC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "CE"
+          },
+          "A": {
+            "true": null,
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/2103e0a8973548578f16aa545d06991e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "82fae2a8d91044ca9d22b6f7461c462a",
+      "task_id": "S02",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 12882.155291,
+      "total_tokens": 790,
+      "format_compliant": true,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/82fae2a8d91044ca9d22b6f7461c462a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "db5e599df28547278d68de92157fb5a6",
+      "task_id": "S03",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 1143.301333,
+      "total_tokens": null,
+      "format_compliant": false,
+      "component_results": {},
+      "points": 0,
+      "whole_correct": false,
+      "status": "api_failure",
+      "error": "incomplete_stream"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "ae6f737e5d654baab2ea01e059c95eb4",
+      "task_id": "S04",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 15101.440125,
+      "total_tokens": 983,
+      "format_compliant": true,
+      "component_results": {
+        "solutions": false,
+        "count": false,
+        "always_true": false,
+        "always_false": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF",
+          "TTFTTT",
+          "TTTFFT"
+        ],
+        "count": 3,
+        "always_true": [],
+        "always_false": []
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/ae6f737e5d654baab2ea01e059c95eb4/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "ccf42543fba44faaadaffd25ba2e73e3",
+      "task_id": "S05",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 19274.505167,
+      "total_tokens": 1315,
+      "format_compliant": true,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "state": 2
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/ccf42543fba44faaadaffd25ba2e73e3/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "fdf632ec41c348c99e8bc3b110f8f2a2",
+      "task_id": "S06",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 10932.661542,
+      "total_tokens": 625,
+      "format_compliant": true,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/fdf632ec41c348c99e8bc3b110f8f2a2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "9c8efa3cd7c8401bb2d82693b21d4b7a",
+      "task_id": "S01",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9861.180958,
+      "total_tokens": 8248,
+      "format_compliant": false,
+      "component_results": {
+        "worlds": true,
+        "world_count": true,
+        "query_classes": true,
+        "witnesses": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "worlds": [
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 3,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "impossible"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "BC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "CE"
+          },
+          "A": {
+            "true": null,
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/9c8efa3cd7c8401bb2d82693b21d4b7a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "288cc5fb9dff4df9b37324354a782d6f",
+      "task_id": "S02",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 7103.102125,
+      "total_tokens": 8066,
+      "format_compliant": false,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/288cc5fb9dff4df9b37324354a782d6f/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "0efcce6e902a4ec388b41d34c4e39cce",
+      "task_id": "S03",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 20039.129709,
+      "total_tokens": 9032,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/0efcce6e902a4ec388b41d34c4e39cce/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "19cd954b712644f1bcc034fe1d849aa5",
+      "task_id": "S04",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 12109.033041,
+      "total_tokens": 8420,
+      "format_compliant": false,
+      "component_results": {
+        "solutions": true,
+        "count": true,
+        "always_true": true,
+        "always_false": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF"
+        ],
+        "count": 1,
+        "always_true": [
+          3,
+          5
+        ],
+        "always_false": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/19cd954b712644f1bcc034fe1d849aa5/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "8e9aa9bb699347a7ba5c654b0c2be1c0",
+      "task_id": "S05",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9929.487042,
+      "total_tokens": 8311,
+      "format_compliant": false,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "n": 2,
+          "feedback": "even",
+          "guess": 0,
+          "result": "fail"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/8e9aa9bb699347a7ba5c654b0c2be1c0/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "e50a5ed149824104897e3fe014514f68",
+      "task_id": "S06",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9507.564209,
+      "total_tokens": 8186,
+      "format_compliant": false,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/e50a5ed149824104897e3fe014514f68/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "0a29239493e145b88e4d77d130529ae4",
+      "task_id": "S01",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 7033.501833,
+      "total_tokens": 1135,
+      "format_compliant": true,
+      "component_results": {
+        "worlds": false,
+        "world_count": false,
+        "query_classes": false,
+        "witnesses": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "worlds": [
+          "AC",
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 4,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "possible_only"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "AC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "AC"
+          },
+          "A": {
+            "true": "AC",
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/0a29239493e145b88e4d77d130529ae4/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "d5e82e7ca7a346c792601f2ba78d6ef6",
+      "task_id": "S02",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 5807.807,
+      "total_tokens": 448,
+      "format_compliant": true,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/d5e82e7ca7a346c792601f2ba78d6ef6/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "66e84b0175114b6ab071f9538bbf6ac2",
+      "task_id": "S03",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 18326.357209,
+      "total_tokens": 0,
+      "format_compliant": false,
+      "component_results": {
+        "sequence": false,
+        "steps": false,
+        "final_by_initial": false,
+        "lower_bound": false,
+        "coverage": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "unfinished",
+      "parsed_answer": null,
+      "error": "no JSON object found",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/66e84b0175114b6ab071f9538bbf6ac2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "fea1f1122fbf4c1db5fcf0ae6c4fadb3",
+      "task_id": "S04",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 96672.407875,
+      "total_tokens": 4716,
+      "format_compliant": true,
+      "component_results": {
+        "solutions": true,
+        "count": true,
+        "always_true": true,
+        "always_false": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF"
+        ],
+        "count": 1,
+        "always_true": [
+          3,
+          5
+        ],
+        "always_false": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/fea1f1122fbf4c1db5fcf0ae6c4fadb3/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "4a71894d3f3845b1802014a259ae45dc",
+      "task_id": "S05",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 16057.510167,
+      "total_tokens": 2370,
+      "format_compliant": false,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "failing_state": 2
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/4a71894d3f3845b1802014a259ae45dc/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "1a9107ea01674af88cb573b8fa6093d8",
+      "task_id": "S06",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 56110.903208,
+      "total_tokens": 2872,
+      "format_compliant": true,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/1a9107ea01674af88cb573b8fa6093d8/response.md"
+    }
+  ],
+  "retry_rows": [
+    {
+      "run_dir": "historical-runs/20260806T062716371088Z-90b951b9",
+      "request_id": "b7c33b01ff3c465c98931c96672fe70b",
+      "task_id": "S03",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 18894.038792,
+      "total_tokens": 1242,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T062716371088Z-90b951b9/requests/b7c33b01ff3c465c98931c96672fe70b/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T062716371088Z-90b951b9",
+      "request_id": "627eb94f709b4a318904ec6615cab1b0",
+      "task_id": "S03",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 7370.257541,
+      "total_tokens": 384,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T062716371088Z-90b951b9/requests/627eb94f709b4a318904ec6615cab1b0/response.md"
+    }
+  ],
+  "merged_rows": [
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "2103e0a8973548578f16aa545d06991e",
+      "task_id": "S01",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 9372.385041,
+      "total_tokens": 597,
+      "format_compliant": true,
+      "component_results": {
+        "worlds": true,
+        "world_count": true,
+        "query_classes": true,
+        "witnesses": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "worlds": [
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 3,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "impossible"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "BC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "CE"
+          },
+          "A": {
+            "true": null,
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/2103e0a8973548578f16aa545d06991e/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "82fae2a8d91044ca9d22b6f7461c462a",
+      "task_id": "S02",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 12882.155291,
+      "total_tokens": 790,
+      "format_compliant": true,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/82fae2a8d91044ca9d22b6f7461c462a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T062716371088Z-90b951b9",
+      "request_id": "b7c33b01ff3c465c98931c96672fe70b",
+      "task_id": "S03",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 18894.038792,
+      "total_tokens": 1242,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T062716371088Z-90b951b9/requests/b7c33b01ff3c465c98931c96672fe70b/response.md",
+      "replaced_by_retry": true,
+      "primary_status": "api_failure",
+      "primary_request_id": "db5e599df28547278d68de92157fb5a6"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "ae6f737e5d654baab2ea01e059c95eb4",
+      "task_id": "S04",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 15101.440125,
+      "total_tokens": 983,
+      "format_compliant": true,
+      "component_results": {
+        "solutions": false,
+        "count": false,
+        "always_true": false,
+        "always_false": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF",
+          "TTFTTT",
+          "TTTFFT"
+        ],
+        "count": 3,
+        "always_true": [],
+        "always_false": []
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/ae6f737e5d654baab2ea01e059c95eb4/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "ccf42543fba44faaadaffd25ba2e73e3",
+      "task_id": "S05",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 19274.505167,
+      "total_tokens": 1315,
+      "format_compliant": true,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "state": 2
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/ccf42543fba44faaadaffd25ba2e73e3/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "fdf632ec41c348c99e8bc3b110f8f2a2",
+      "task_id": "S06",
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "http_status": 200,
+      "total_time_ms": 10932.661542,
+      "total_tokens": 625,
+      "format_compliant": true,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/fdf632ec41c348c99e8bc3b110f8f2a2/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "9c8efa3cd7c8401bb2d82693b21d4b7a",
+      "task_id": "S01",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9861.180958,
+      "total_tokens": 8248,
+      "format_compliant": false,
+      "component_results": {
+        "worlds": true,
+        "world_count": true,
+        "query_classes": true,
+        "witnesses": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "worlds": [
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 3,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "impossible"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "BC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "CE"
+          },
+          "A": {
+            "true": null,
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/9c8efa3cd7c8401bb2d82693b21d4b7a/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "288cc5fb9dff4df9b37324354a782d6f",
+      "task_id": "S02",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 7103.102125,
+      "total_tokens": 8066,
+      "format_compliant": false,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/288cc5fb9dff4df9b37324354a782d6f/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "0efcce6e902a4ec388b41d34c4e39cce",
+      "task_id": "S03",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 20039.129709,
+      "total_tokens": 9032,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/0efcce6e902a4ec388b41d34c4e39cce/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "19cd954b712644f1bcc034fe1d849aa5",
+      "task_id": "S04",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 12109.033041,
+      "total_tokens": 8420,
+      "format_compliant": false,
+      "component_results": {
+        "solutions": true,
+        "count": true,
+        "always_true": true,
+        "always_false": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF"
+        ],
+        "count": 1,
+        "always_true": [
+          3,
+          5
+        ],
+        "always_false": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/19cd954b712644f1bcc034fe1d849aa5/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "8e9aa9bb699347a7ba5c654b0c2be1c0",
+      "task_id": "S05",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9929.487042,
+      "total_tokens": 8311,
+      "format_compliant": false,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "n": 2,
+          "feedback": "even",
+          "guess": 0,
+          "result": "fail"
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/8e9aa9bb699347a7ba5c654b0c2be1c0/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "e50a5ed149824104897e3fe014514f68",
+      "task_id": "S06",
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "http_status": 200,
+      "total_time_ms": 9507.564209,
+      "total_tokens": 8186,
+      "format_compliant": false,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/e50a5ed149824104897e3fe014514f68/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "0a29239493e145b88e4d77d130529ae4",
+      "task_id": "S01",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 7033.501833,
+      "total_tokens": 1135,
+      "format_compliant": true,
+      "component_results": {
+        "worlds": false,
+        "world_count": false,
+        "query_classes": false,
+        "witnesses": false
+      },
+      "points": 0,
+      "whole_correct": false,
+      "status": "wrong",
+      "parsed_answer": {
+        "worlds": [
+          "AC",
+          "BC",
+          "CE",
+          "DE"
+        ],
+        "world_count": 4,
+        "query_classes": {
+          "C_or_D": "necessary",
+          "B": "possible_only",
+          "A": "possible_only"
+        },
+        "witnesses": {
+          "C_or_D": {
+            "true": "AC",
+            "false": null
+          },
+          "B": {
+            "true": "BC",
+            "false": "AC"
+          },
+          "A": {
+            "true": "AC",
+            "false": "BC"
+          }
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/0a29239493e145b88e4d77d130529ae4/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "d5e82e7ca7a346c792601f2ba78d6ef6",
+      "task_id": "S02",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 5807.807,
+      "total_tokens": 448,
+      "format_compliant": true,
+      "component_results": {
+        "repair_size": true,
+        "deletion_sets": true,
+        "witnesses": true,
+        "common_kept": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "repair_size": 2,
+        "deletion_sets": [
+          [
+            "R1",
+            "R2"
+          ],
+          [
+            "R1",
+            "R4"
+          ],
+          [
+            "R2",
+            "R4"
+          ]
+        ],
+        "witnesses": {
+          "R1+R2": {
+            "color": "green",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R1+R4": {
+            "color": "blue",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          },
+          "R2+R4": {
+            "color": "red",
+            "C": 1,
+            "D": 1,
+            "E": 0
+          }
+        },
+        "common_kept": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/d5e82e7ca7a346c792601f2ba78d6ef6/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T062716371088Z-90b951b9",
+      "request_id": "627eb94f709b4a318904ec6615cab1b0",
+      "task_id": "S03",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 7370.257541,
+      "total_tokens": 384,
+      "format_compliant": true,
+      "component_results": {
+        "sequence": true,
+        "steps": true,
+        "final_by_initial": true,
+        "lower_bound": true,
+        "coverage": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "sequence": [
+          "A0",
+          "BA",
+          "flipB",
+          "CB",
+          "flipC"
+        ],
+        "steps": 5,
+        "final_by_initial": {
+          "000": "010",
+          "001": "010",
+          "010": "010",
+          "011": "010",
+          "100": "010",
+          "101": "010",
+          "110": "010",
+          "111": "010"
+        },
+        "lower_bound": 5,
+        "coverage": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T062716371088Z-90b951b9/requests/627eb94f709b4a318904ec6615cab1b0/response.md",
+      "replaced_by_retry": true,
+      "primary_status": "unfinished",
+      "primary_request_id": "66e84b0175114b6ab071f9538bbf6ac2"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "fea1f1122fbf4c1db5fcf0ae6c4fadb3",
+      "task_id": "S04",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 96672.407875,
+      "total_tokens": 4716,
+      "format_compliant": true,
+      "component_results": {
+        "solutions": true,
+        "count": true,
+        "always_true": true,
+        "always_false": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "solutions": [
+          "FFTFTF"
+        ],
+        "count": 1,
+        "always_true": [
+          3,
+          5
+        ],
+        "always_false": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/fea1f1122fbf4c1db5fcf0ae6c4fadb3/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "4a71894d3f3845b1802014a259ae45dc",
+      "task_id": "S05",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 16057.510167,
+      "total_tokens": 2370,
+      "format_compliant": false,
+      "component_results": {
+        "guaranteed_win": true,
+        "first_action": true,
+        "policy": true,
+        "worst_case_steps": true,
+        "fast_action_counterexample": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "guaranteed_win": true,
+        "first_action": "parity",
+        "policy": {
+          "even": {
+            "question": "low",
+            "low": "guess0",
+            "high": "guess2"
+          },
+          "odd": {
+            "question": "low",
+            "low": "guess1",
+            "high": "guess3"
+          }
+        },
+        "worst_case_steps": 3,
+        "fast_action_counterexample": {
+          "action": "parity_even_then_guess0",
+          "failing_state": 2
+        }
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/4a71894d3f3845b1802014a259ae45dc/response.md"
+    },
+    {
+      "run_dir": "historical-runs/20260806T061903262278Z-a6d720b2",
+      "request_id": "1a9107ea01674af88cb573b8fa6093d8",
+      "task_id": "S06",
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "http_status": 200,
+      "total_time_ms": 56110.903208,
+      "total_tokens": 2872,
+      "format_compliant": true,
+      "component_results": {
+        "baseline": true,
+        "do_D_0": true,
+        "do_A_1": true,
+        "invariants": true,
+        "minimum_causes_for_H_flip": true
+      },
+      "points": 10,
+      "whole_correct": true,
+      "status": "correct",
+      "parsed_answer": {
+        "baseline": {
+          "D": 1,
+          "E": 0,
+          "F": 1,
+          "G": 0,
+          "H": 1
+        },
+        "do_D_0": {
+          "D": 0,
+          "E": 0,
+          "F": 0,
+          "G": 0,
+          "H": 0
+        },
+        "do_A_1": {
+          "D": 0,
+          "E": 0,
+          "F": 1,
+          "G": 1,
+          "H": 0
+        },
+        "invariants": [
+          "D",
+          "E",
+          "H"
+        ],
+        "minimum_causes_for_H_flip": [
+          [
+            "D"
+          ]
+        ]
+      },
+      "error": "",
+      "response_path": "historical-runs/20260806T061903262278Z-a6d720b2/requests/1a9107ea01674af88cb573b8fa6093d8/response.md"
+    }
+  ],
+  "model_summary": [
+    {
+      "model": "Opus 5",
+      "model_alias": "opus-5",
+      "score": 60,
+      "whole_correct": 6,
+      "semantic_errors": 0,
+      "initial_api_failure": 0,
+      "initial_unfinished": 0,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0,
+      "format_noncompliant": 5
+    },
+    {
+      "model": "GLM-5.2",
+      "model_alias": "glm-5.2",
+      "score": 50,
+      "whole_correct": 5,
+      "semantic_errors": 1,
+      "initial_api_failure": 0,
+      "initial_unfinished": 1,
+      "initial_delivery_anomalies": 1,
+      "retries_recovered": 1,
+      "format_noncompliant": 1
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "model_alias": "gpt-5.6-sol",
+      "score": 50,
+      "whole_correct": 5,
+      "semantic_errors": 1,
+      "initial_api_failure": 1,
+      "initial_unfinished": 0,
+      "initial_delivery_anomalies": 1,
+      "retries_recovered": 1,
+      "format_noncompliant": 0
+    }
+  ],
+  "task_summary": [
+    {
+      "task_id": "S01",
+      "pass_count": 2,
+      "average_points": 6.67,
+      "statuses": {
+        "correct": 2,
+        "wrong": 1
+      },
+      "semantic_error_count": 1,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0
+    },
+    {
+      "task_id": "S02",
+      "pass_count": 3,
+      "average_points": 10.0,
+      "statuses": {
+        "correct": 3
+      },
+      "semantic_error_count": 0,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0
+    },
+    {
+      "task_id": "S03",
+      "pass_count": 3,
+      "average_points": 10.0,
+      "statuses": {
+        "correct": 3
+      },
+      "semantic_error_count": 0,
+      "initial_delivery_anomalies": 2,
+      "retries_recovered": 2
+    },
+    {
+      "task_id": "S04",
+      "pass_count": 2,
+      "average_points": 6.67,
+      "statuses": {
+        "wrong": 1,
+        "correct": 2
+      },
+      "semantic_error_count": 1,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0
+    },
+    {
+      "task_id": "S05",
+      "pass_count": 3,
+      "average_points": 10.0,
+      "statuses": {
+        "correct": 3
+      },
+      "semantic_error_count": 0,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0
+    },
+    {
+      "task_id": "S06",
+      "pass_count": 3,
+      "average_points": 10.0,
+      "statuses": {
+        "correct": 3
+      },
+      "semantic_error_count": 0,
+      "initial_delivery_anomalies": 0,
+      "retries_recovered": 0
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"id":"basic-001","title":"Simple factual response","messages":[{"role":"user","content":"Reply with exactly: hello"}],"tags":["smoke-test"],"notes":"Harmless local verification prompt."}

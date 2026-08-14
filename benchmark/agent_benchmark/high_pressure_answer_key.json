@@ -1,0 +1,888 @@
+[
+  {
+    "id": "T01",
+    "title": "火车售票",
+    "expected": {
+      "availability": {
+        "G101-一等": {
+          "A-B": 1,
+          "B-C": 1,
+          "C-D": 1,
+          "D-E": 1
+        },
+        "G101-二等": {
+          "A-B": 2,
+          "B-C": 0,
+          "C-D": 0,
+          "D-E": 2
+        },
+        "G202-二等": {
+          "A-B": 0,
+          "B-C": 0,
+          "C-D": 0,
+          "D-E": 2
+        }
+      },
+      "active_orders": [
+        "O01",
+        "O02",
+        "O04",
+        "O05",
+        "O09",
+        "O10",
+        "W01",
+        "W02",
+        "W04"
+      ],
+      "waiting_orders": [
+        "W05"
+      ],
+      "failed_operations": [
+        12,
+        16,
+        18,
+        19,
+        20,
+        21,
+        24,
+        27,
+        28,
+        30
+      ]
+    },
+    "near_miss": {
+      "availability": {
+        "G101-一等": {
+          "A-B": 1,
+          "B-C": 1,
+          "C-D": 1,
+          "D-E": 1
+        },
+        "G101-二等": {
+          "A-B": 2,
+          "B-C": 0,
+          "C-D": 0,
+          "D-E": 2
+        },
+        "G202-二等": {
+          "A-B": 0,
+          "B-C": 0,
+          "C-D": 0,
+          "D-E": 2
+        }
+      },
+      "active_orders": [
+        "O01",
+        "O02",
+        "O04",
+        "O05",
+        "O09",
+        "O10",
+        "W01",
+        "W02",
+        "W04"
+      ],
+      "waiting_orders": [
+        "W05"
+      ],
+      "failed_operations": [
+        12,
+        16,
+        18,
+        19,
+        20,
+        21,
+        24,
+        27,
+        28
+      ]
+    },
+    "components": [
+      {
+        "field": "availability",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "active_orders",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "waiting_orders",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "failed_operations",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T02",
+    "title": "交织档案解读",
+    "expected": {
+      "facts": {
+        "雪松": {
+          "责任人": "陈默",
+          "金额": "69",
+          "时间": "14:10",
+          "状态": "已关闭"
+        },
+        "轨道": {
+          "责任人": "周岚",
+          "金额": "51",
+          "时间": "11:50",
+          "状态": "已恢复"
+        },
+        "灯塔": {
+          "责任人": "赵宁",
+          "金额": "56",
+          "时间": "09:32",
+          "状态": "已恢复"
+        },
+        "港湾": {
+          "责任人": "陈默",
+          "金额": "34",
+          "时间": "18:55",
+          "状态": "已恢复"
+        }
+      },
+      "overridden_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F10",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F19",
+        "F21",
+        "F24",
+        "F26",
+        "F27",
+        "F29",
+        "F32",
+        "F33",
+        "F34",
+        "F39",
+        "F40"
+      ],
+      "system_record_count": 15
+    },
+    "near_miss": {
+      "facts": {
+        "雪松": {
+          "责任人": "陈默",
+          "金额": "69",
+          "时间": "14:05",
+          "状态": "已关闭"
+        },
+        "轨道": {
+          "责任人": "周岚",
+          "金额": "51",
+          "时间": "11:50",
+          "状态": "已恢复"
+        },
+        "灯塔": {
+          "责任人": "赵宁",
+          "金额": "56",
+          "时间": "09:32",
+          "状态": "已恢复"
+        },
+        "港湾": {
+          "责任人": "陈默",
+          "金额": "34",
+          "时间": "18:55",
+          "状态": "已恢复"
+        }
+      },
+      "overridden_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F10",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F19",
+        "F21",
+        "F24",
+        "F26",
+        "F27",
+        "F29",
+        "F32",
+        "F33",
+        "F34",
+        "F39",
+        "F40"
+      ],
+      "system_record_count": 15
+    },
+    "components": [
+      {
+        "field": "facts",
+        "points": 6,
+        "mode": "exact"
+      },
+      {
+        "field": "overridden_ids",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "system_record_count",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T03",
+    "title": "观棋不语",
+    "expected": {
+      "STEP": "O",
+      "CAPTURE": "J",
+      "STAR": "E",
+      "WIN": "H",
+      "Q_legal_moves": [
+        "b2>a2",
+        "b2>b1",
+        "b2>b4",
+        "b2>d2"
+      ],
+      "R": {
+        "legal": true,
+        "ended": true,
+        "winner": "红"
+      }
+    },
+    "near_miss": {
+      "STEP": "O",
+      "CAPTURE": "J",
+      "STAR": "E",
+      "WIN": "H",
+      "Q_legal_moves": [
+        "b2>a2",
+        "b2>b1",
+        "b2>b4"
+      ],
+      "R": {
+        "legal": true,
+        "ended": true,
+        "winner": "红"
+      }
+    },
+    "components": [
+      {
+        "field": "STEP",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "CAPTURE",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "STAR",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "WIN",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "Q_legal_moves",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "R",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T04",
+    "title": "年会抽奖审计",
+    "expected": {
+      "winners": {
+        "金奖1": "P01",
+        "金奖2": "P05",
+        "团队奖": "产品",
+        "创新1": "P17",
+        "创新2": "P14",
+        "创新3": "P13",
+        "幸运1": "P06",
+        "幸运2": "P07",
+        "幸运3": "P19",
+        "幸运4": "P18"
+      },
+      "invalid_draws": [
+        "金奖1:P04",
+        "金奖1:P03",
+        "金奖1:P02",
+        "金奖2:P08",
+        "团队奖:P10",
+        "创新1:P05",
+        "创新1:P02",
+        "创新2:P09",
+        "创新2:P11",
+        "创新3:P15",
+        "幸运1:P11",
+        "幸运2:P09",
+        "幸运3:P14",
+        "幸运3:P17",
+        "幸运3:P01",
+        "幸运4:P13",
+        "幸运4:P12"
+      ],
+      "department_counts": {
+        "产品": 1,
+        "研发": 1,
+        "财务": 3,
+        "运营": 2,
+        "销售": 3
+      }
+    },
+    "near_miss": {
+      "winners": {
+        "金奖1": "P01",
+        "金奖2": "P05",
+        "团队奖": "产品",
+        "创新1": "P17",
+        "创新2": "P14",
+        "创新3": "P13",
+        "幸运1": "P06",
+        "幸运2": "P07",
+        "幸运3": "P19",
+        "幸运4": "P18"
+      },
+      "invalid_draws": [
+        "金奖1:P04",
+        "金奖1:P03",
+        "金奖1:P02",
+        "金奖2:P08",
+        "团队奖:P10",
+        "创新1:P05",
+        "创新1:P02",
+        "创新2:P09",
+        "创新2:P11",
+        "创新3:P15",
+        "幸运1:P11",
+        "幸运2:P09",
+        "幸运3:P14",
+        "幸运3:P17",
+        "幸运3:P01",
+        "幸运4:P13"
+      ],
+      "department_counts": {
+        "产品": 1,
+        "研发": 1,
+        "财务": 3,
+        "运营": 2,
+        "销售": 3
+      }
+    },
+    "components": [
+      {
+        "field": "winners",
+        "points": 6,
+        "mode": "exact"
+      },
+      {
+        "field": "invalid_draws",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "department_counts",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T05",
+    "title": "大状态机器操作",
+    "expected": {
+      "final_state": {
+        "power": "OFF",
+        "battery": 1,
+        "temperature": 9,
+        "pressure": 0,
+        "hatch": "CLOSED",
+        "material": 1,
+        "coolant": 1,
+        "lock": 1,
+        "fault": "E-DANGER",
+        "mixed_batches": 1
+      },
+      "illegal_commands": [
+        10,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        23,
+        25,
+        26,
+        27,
+        28,
+        30
+      ],
+      "first_danger_check": 10,
+      "successful_mix_count": 1
+    },
+    "near_miss": {
+      "final_state": {
+        "power": "OFF",
+        "battery": 1,
+        "temperature": 9,
+        "pressure": 0,
+        "hatch": "CLOSED",
+        "material": 1,
+        "coolant": 1,
+        "lock": 1,
+        "fault": "E-DANGER",
+        "mixed_batches": 1
+      },
+      "illegal_commands": [
+        10,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        23,
+        25,
+        26,
+        27,
+        28
+      ],
+      "first_danger_check": 10,
+      "successful_mix_count": 1
+    },
+    "components": [
+      {
+        "field": "final_state",
+        "points": 6,
+        "mode": "exact"
+      },
+      {
+        "field": "illegal_commands",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "successful_mix_count",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T06",
+    "title": "字符矩阵",
+    "expected": {
+      "patterns_by_row": [
+        "P5",
+        "P2",
+        "P7",
+        "P4",
+        "P1",
+        "P6",
+        "P3",
+        "P8"
+      ],
+      "rows": [
+        "ABCDABCD",
+        "BBAADDCC",
+        "CDABCDAB",
+        "DDCCBBAA",
+        "AABBCCDD",
+        "BCDABCDA",
+        "CCDDAABB",
+        "DABCDABC"
+      ],
+      "main_diagonal": "ABACCCBC",
+      "checksum": 3164
+    },
+    "near_miss": {
+      "patterns_by_row": [
+        "P5",
+        "P2",
+        "P7",
+        "P4",
+        "P1",
+        "P6",
+        "P3",
+        "P7"
+      ],
+      "rows": [
+        "ABCDABCD",
+        "BBAADDCC",
+        "CDABCDAB",
+        "DDCCBBAA",
+        "AABBCCDD",
+        "BCDABCDA",
+        "CCDDAABB",
+        "DABCDABC"
+      ],
+      "main_diagonal": "ABACCCBC",
+      "checksum": 3164
+    },
+    "components": [
+      {
+        "field": "patterns_by_row",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "rows",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "main_diagonal",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "checksum",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T07",
+    "title": "目标穷举",
+    "expected": {
+      "combinations": [
+        "ABCDEL",
+        "ABDELP",
+        "ACEGIP",
+        "ACGLOP",
+        "AEGKOP",
+        "BDEIKM",
+        "CGHILM",
+        "FHIJMP"
+      ],
+      "count": 8,
+      "first": "ABCDEL",
+      "last": "FHIJMP"
+    },
+    "near_miss": {
+      "combinations": [
+        "ABCDEL",
+        "ABDELP",
+        "ACEGIP",
+        "ACGLOP",
+        "AEGKOP",
+        "BDEIKM",
+        "CGHILM",
+        "FHIJMP"
+      ],
+      "count": 7,
+      "first": "ABCDEL",
+      "last": "FHIJMP"
+    },
+    "components": [
+      {
+        "field": "combinations",
+        "points": 6,
+        "mode": "exact"
+      },
+      {
+        "field": "count",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "first",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "last",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T08",
+    "title": "信息解压",
+    "expected": {
+      "blocks": [
+        "RIVER",
+        "STONESTONE",
+        "HTRON",
+        "ECHOXXX",
+        "STONESTONE",
+        "THGILTHGIL",
+        "RIVEROHCERIVEROHCE",
+        "QRIVERZ",
+        "ENOTSENOTS",
+        "NORTHECHOXXX"
+      ],
+      "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+      "length_without_separators": 94,
+      "count_R": 10,
+      "checksum_mod_997": 336
+    },
+    "near_miss": {
+      "blocks": [
+        "RIVER",
+        "STONESTONE",
+        "HTRON",
+        "ECHOXXX",
+        "STONESTONE",
+        "THGILTHGIL",
+        "RIVEROHCERIVEROHCE",
+        "QRIVERZ",
+        "ENOTSENOTS",
+        "NORTHECHOXXX"
+      ],
+      "decoded": "RIVER|STONESTONE|HTRON|ECHOXXX|STONESTONE|THGILTHGIL|RIVEROHCERIVEROHCE|QRIVERZ|ENOTSENOTS|NORTHECHOXXX",
+      "length_without_separators": 94,
+      "count_R": 11,
+      "checksum_mod_997": 336
+    },
+    "components": [
+      {
+        "field": "blocks",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "decoded",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "length_without_separators",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "count_R",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "checksum_mod_997",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T09",
+    "title": "管道疏通",
+    "expected": {
+      "sequence": [
+        "关闭进水",
+        "打开旁路",
+        "排空",
+        "拆滤网",
+        "投化学剂",
+        "准备泵",
+        "反冲B",
+        "装滤网",
+        "关闭旁路",
+        "打开进水"
+      ],
+      "damage": 0,
+      "cost": 12,
+      "steps": 10,
+      "final": {
+        "inlet_open": 1,
+        "bypass_open": 0,
+        "drained": 0,
+        "block_A": 0,
+        "block_B": 0,
+        "filter_installed": 1,
+        "chemical_used": 1,
+        "pump_ready": 1
+      }
+    },
+    "near_miss": {
+      "sequence": [
+        "关闭进水",
+        "打开旁路",
+        "排空",
+        "拆滤网",
+        "投化学剂",
+        "准备泵",
+        "反冲B",
+        "装滤网",
+        "关闭旁路",
+        "打开进水"
+      ],
+      "damage": 1,
+      "cost": 12,
+      "steps": 10,
+      "final": {
+        "inlet_open": 1,
+        "bypass_open": 0,
+        "drained": 0,
+        "block_A": 0,
+        "block_B": 0,
+        "filter_installed": 1,
+        "chemical_used": 1,
+        "pump_ready": 1
+      }
+    },
+    "components": [
+      {
+        "field": "sequence",
+        "points": 5,
+        "mode": "exact"
+      },
+      {
+        "field": "damage",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "cost",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "steps",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "final",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "T10",
+    "title": "激光布局",
+    "expected": {
+      "lasers": [
+        "C",
+        "F",
+        "G",
+        "I"
+      ],
+      "count": 4,
+      "target_sources": {
+        "T1": [
+          "F:E",
+          "I:W"
+        ],
+        "T2": [
+          "G:S"
+        ],
+        "T3": [
+          "C:S"
+        ],
+        "T4": [
+          "C:S",
+          "I:W"
+        ],
+        "T5": [
+          "G:S"
+        ],
+        "T6": [
+          "F:E"
+        ]
+      },
+      "unused_safe_mounts": [
+        "A",
+        "B",
+        "D",
+        "E",
+        "H"
+      ]
+    },
+    "near_miss": {
+      "lasers": [
+        "C",
+        "F",
+        "G"
+      ],
+      "count": 4,
+      "target_sources": {
+        "T1": [
+          "F:E",
+          "I:W"
+        ],
+        "T2": [
+          "G:S"
+        ],
+        "T3": [
+          "C:S"
+        ],
+        "T4": [
+          "C:S",
+          "I:W"
+        ],
+        "T5": [
+          "G:S"
+        ],
+        "T6": [
+          "F:E"
+        ]
+      },
+      "unused_safe_mounts": [
+        "A",
+        "B",
+        "D",
+        "E",
+        "H"
+      ]
+    },
+    "components": [
+      {
+        "field": "lasers",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "count",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "target_sources",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "unused_safe_mounts",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  }
+]

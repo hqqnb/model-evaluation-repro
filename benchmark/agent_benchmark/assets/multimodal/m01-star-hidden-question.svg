@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#101722"/>
+  <text x="600" y="48" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#b8c7d9">Follow the five-point star path</text>
+  <path id="starPath" d="M600 120 L712 465 L420 250 L780 250 L488 465 Z" fill="none" stroke="#efb94a" stroke-width="5"/>
+  <text font-family="monospace" font-size="30" fill="#f7f1df" letter-spacing="3">
+    <textPath href="#starPath" startOffset="3%">HOW MANY WORDS CONTAIN THE LETTER R</textPath>
+  </text>
+  <g font-family="monospace" font-size="23" fill="#53657b" opacity="0.8">
+    <text x="70" y="125">Q M Z A P T L N S H C V</text>
+    <text x="72" y="175">F K W J D Y R B G U X E</text>
+    <text x="840" y="145">N V C L A R T P Q W M H</text>
+    <text x="842" y="195">D E X S J K U B Y G F Z</text>
+    <text x="75" y="610">R H N Q T A W P L C D V</text>
+    <text x="78" y="660">G Y K F M X B U J S E R</text>
+    <text x="830" y="600">P L C V R A N H Q T M W</text>
+    <text x="835" y="650">U J X D E G S K Y B F Z</text>
+  </g>
+  <g fill="#efb94a">
+    <circle cx="600" cy="120" r="7"/>
+    <circle cx="712" cy="465" r="7"/>
+    <circle cx="420" cy="250" r="7"/>
+    <circle cx="780" cy="250" r="7"/>
+    <circle cx="488" cy="465" r="7"/>
+  </g>
+</svg>

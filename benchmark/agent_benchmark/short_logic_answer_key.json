@@ -1,0 +1,510 @@
+[
+  {
+    "id": "S01",
+    "title": "可能世界",
+    "expected": {
+      "worlds": [
+        "BC",
+        "CE",
+        "DE"
+      ],
+      "world_count": 3,
+      "query_classes": {
+        "C_or_D": "necessary",
+        "B": "possible_only",
+        "A": "impossible"
+      },
+      "witnesses": {
+        "C_or_D": {
+          "true": "BC",
+          "false": null
+        },
+        "B": {
+          "true": "BC",
+          "false": "CE"
+        },
+        "A": {
+          "true": null,
+          "false": "BC"
+        }
+      }
+    },
+    "near_miss": {
+      "worlds": [
+        "BC",
+        "CE",
+        "DE"
+      ],
+      "world_count": 3,
+      "query_classes": {
+        "C_or_D": "possible_only",
+        "B": "possible_only",
+        "A": "impossible"
+      },
+      "witnesses": {
+        "C_or_D": {
+          "true": "BC",
+          "false": null
+        },
+        "B": {
+          "true": "BC",
+          "false": "CE"
+        },
+        "A": {
+          "true": null,
+          "false": "BC"
+        }
+      }
+    },
+    "components": [
+      {
+        "field": "worlds",
+        "points": 4,
+        "mode": "set"
+      },
+      {
+        "field": "world_count",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "query_classes",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "witnesses",
+        "points": 2,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "S02",
+    "title": "最小修复",
+    "expected": {
+      "repair_size": 2,
+      "deletion_sets": [
+        [
+          "R1",
+          "R2"
+        ],
+        [
+          "R1",
+          "R4"
+        ],
+        [
+          "R2",
+          "R4"
+        ]
+      ],
+      "witnesses": {
+        "R1+R2": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "green"
+        },
+        "R1+R4": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "blue"
+        },
+        "R2+R4": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "red"
+        }
+      },
+      "common_kept": [
+        "R3",
+        "R5",
+        "R6",
+        "R7"
+      ]
+    },
+    "near_miss": {
+      "repair_size": 2,
+      "deletion_sets": [
+        [
+          "R1",
+          "R2"
+        ],
+        [
+          "R1",
+          "R4"
+        ]
+      ],
+      "witnesses": {
+        "R1+R2": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "green"
+        },
+        "R1+R4": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "blue"
+        },
+        "R2+R4": {
+          "C": 1,
+          "D": 1,
+          "E": 0,
+          "color": "red"
+        }
+      },
+      "common_kept": [
+        "R3",
+        "R5",
+        "R6",
+        "R7"
+      ]
+    },
+    "components": [
+      {
+        "field": "repair_size",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "deletion_sets",
+        "points": 4,
+        "mode": "set"
+      },
+      {
+        "field": "witnesses",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "common_kept",
+        "points": 1,
+        "mode": "set"
+      }
+    ]
+  },
+  {
+    "id": "S03",
+    "title": "稳健计划",
+    "expected": {
+      "sequence": [
+        "A0",
+        "BA",
+        "flipB",
+        "CB",
+        "flipC"
+      ],
+      "steps": 5,
+      "final_by_initial": {
+        "000": "010",
+        "001": "010",
+        "010": "010",
+        "011": "010",
+        "100": "010",
+        "101": "010",
+        "110": "010",
+        "111": "010"
+      },
+      "lower_bound": 5,
+      "coverage": [
+        "000",
+        "001",
+        "010",
+        "011",
+        "100",
+        "101",
+        "110",
+        "111"
+      ]
+    },
+    "near_miss": {
+      "sequence": [
+        "A0",
+        "BA",
+        "flipB",
+        "CB"
+      ],
+      "steps": 5,
+      "final_by_initial": {
+        "000": "010",
+        "001": "010",
+        "010": "010",
+        "011": "010",
+        "100": "010",
+        "101": "010",
+        "110": "010",
+        "111": "010"
+      },
+      "lower_bound": 5,
+      "coverage": [
+        "000",
+        "001",
+        "010",
+        "011",
+        "100",
+        "101",
+        "110",
+        "111"
+      ]
+    },
+    "components": [
+      {
+        "field": "sequence",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "steps",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "final_by_initial",
+        "points": 3,
+        "mode": "exact"
+      },
+      {
+        "field": "lower_bound",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "coverage",
+        "points": 1,
+        "mode": "set"
+      }
+    ]
+  },
+  {
+    "id": "S04",
+    "title": "自指陈述",
+    "expected": {
+      "solutions": [
+        "FFTFTF"
+      ],
+      "count": 1,
+      "always_true": [
+        "S3",
+        "S5"
+      ],
+      "always_false": [
+        "S1",
+        "S2",
+        "S4",
+        "S6"
+      ]
+    },
+    "near_miss": {
+      "solutions": [
+        "FFTFFF"
+      ],
+      "count": 1,
+      "always_true": [
+        "S3",
+        "S5"
+      ],
+      "always_false": [
+        "S1",
+        "S2",
+        "S4",
+        "S6"
+      ]
+    },
+    "components": [
+      {
+        "field": "solutions",
+        "points": 5,
+        "mode": "set"
+      },
+      {
+        "field": "count",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "always_true",
+        "points": 2,
+        "mode": "set"
+      },
+      {
+        "field": "always_false",
+        "points": 2,
+        "mode": "set"
+      }
+    ]
+  },
+  {
+    "id": "S05",
+    "title": "隐藏信息博弈",
+    "expected": {
+      "guaranteed_win": true,
+      "first_action": "parity",
+      "policy": {
+        "even": {
+          "question": "low",
+          "low": "guess0",
+          "high": "guess2"
+        },
+        "odd": {
+          "question": "low",
+          "low": "guess1",
+          "high": "guess3"
+        }
+      },
+      "worst_case_steps": 3,
+      "fast_action_counterexample": {
+        "action": "parity_even_then_guess0",
+        "state": "2"
+      }
+    },
+    "near_miss": {
+      "guaranteed_win": true,
+      "first_action": "parity",
+      "policy": {
+        "even": {
+          "question": "low",
+          "low": "guess0",
+          "high": "guess2"
+        },
+        "odd": {
+          "question": "low",
+          "low": "guess1",
+          "high": "guess1"
+        }
+      },
+      "worst_case_steps": 3,
+      "fast_action_counterexample": {
+        "action": "parity_even_then_guess0",
+        "state": "2"
+      }
+    },
+    "components": [
+      {
+        "field": "guaranteed_win",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "first_action",
+        "points": 1,
+        "mode": "exact"
+      },
+      {
+        "field": "policy",
+        "points": 4,
+        "mode": "exact"
+      },
+      {
+        "field": "worst_case_steps",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "fast_action_counterexample",
+        "points": 1,
+        "mode": "exact"
+      }
+    ]
+  },
+  {
+    "id": "S06",
+    "title": "因果干预",
+    "expected": {
+      "baseline": {
+        "D": 1,
+        "E": 0,
+        "F": 1,
+        "G": 0,
+        "H": 1
+      },
+      "do_D_0": {
+        "D": 0,
+        "E": 0,
+        "F": 0,
+        "G": 0,
+        "H": 0
+      },
+      "do_A_1": {
+        "D": 0,
+        "E": 0,
+        "F": 1,
+        "G": 1,
+        "H": 0
+      },
+      "invariants": [
+        "D",
+        "E",
+        "H"
+      ],
+      "minimum_causes_for_H_flip": [
+        [
+          "D"
+        ]
+      ]
+    },
+    "near_miss": {
+      "baseline": {
+        "D": 1,
+        "E": 0,
+        "F": 1,
+        "G": 0,
+        "H": 1
+      },
+      "do_D_0": {
+        "D": 0,
+        "E": 0,
+        "F": 0,
+        "G": 0,
+        "H": 0
+      },
+      "do_A_1": {
+        "D": 0,
+        "E": 0,
+        "F": 1,
+        "G": 1,
+        "H": 0
+      },
+      "invariants": [
+        "D",
+        "E",
+        "H"
+      ],
+      "minimum_causes_for_H_flip": [
+        [
+          "E"
+        ]
+      ]
+    },
+    "components": [
+      {
+        "field": "baseline",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "do_D_0",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "do_A_1",
+        "points": 2,
+        "mode": "exact"
+      },
+      {
+        "field": "invariants",
+        "points": 2,
+        "mode": "set"
+      },
+      {
+        "field": "minimum_causes_for_H_flip",
+        "points": 2,
+        "mode": "set"
+      }
+    ]
+  }
+]

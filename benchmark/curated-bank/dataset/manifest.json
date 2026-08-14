@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "source": "百度如流知识库文档：大模型评测题库@20260805",
+  "source_url": "https://ku.baidu-int.com/d/ZQoxvV6nTqwhrl",
+  "counts": {
+    "reasoning": 8,
+    "coding": 8,
+    "multimodal": 4,
+    "total": 20
+  },
+  "files": {
+    "prompts": "dataset/prompts.json",
+    "rubrics": "rubrics/rubrics.json",
+    "outputs": "outputs/results.jsonl"
+  }
+}

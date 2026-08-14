@@ -1,0 +1,11 @@
+models:
+  model-a:
+    model: provider/model-a
+    stream: false
+    parameters:
+      temperature: 0
+  model-b:
+    model: provider/model-b
+    stream: false
+    parameters:
+      temperature: 0

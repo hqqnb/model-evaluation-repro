@@ -1,0 +1,30 @@
+[
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-deepseek/20260805T175334769425Z-007176a8",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-glm/20260805T175334781909Z-e9c1368b",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-gpt/20260805T175334770106Z-9347fdd8",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-hy3/20260805T175334961242Z-f6840f8e",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-kimi/20260805T175334844800Z-16d372cf",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-opus/20260805T175334785954Z-37c4da1a",
+    "record_count": 10
+  },
+  {
+    "run_dir": "historical-runs/high-pressure-20260805-qwen/20260805T175334835185Z-e759a9c1",
+    "record_count": 10
+  }
+]

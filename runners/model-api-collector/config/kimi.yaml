@@ -1,0 +1,8 @@
+models:
+  kimi-k3:
+    model: kimi-k3
+    stream: false
+    parameters:
+      reasoning_effort: max
+      stream_options:
+        include_usage: true
