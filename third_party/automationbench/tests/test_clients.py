@@ -9,6 +9,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
+import automationbench.clients as clients
 from verifiers.types import (
     AssistantMessage,
     SystemMessage,
@@ -22,6 +23,7 @@ from automationbench.clients import (
     GeminiInteractionsClient,
     OpenAIResponsesClient,
     RetryingOpenAIChatCompletionsClient,
+    _record_client_error,
     _is_overlong_prompt_error,
     _parse_created,
 )
@@ -34,6 +36,24 @@ def _make_tool(name="my_tool", description="A tool", parameters=None):
     tool.description = description
     tool.parameters = parameters or {"type": "object", "properties": {}}
     return tool
+
+
+def test_retry_max_attempts_can_be_limited_by_environment(monkeypatch):
+    monkeypatch.setenv("AUTO_BENCH_RETRY_MAX_ATTEMPTS", "5")
+
+    assert clients._retry_max_attempts() == 5
+
+
+def test_record_client_error_keeps_provider_failure_visible():
+    state = {}
+
+    _record_client_error(state, TimeoutError("provider request timed out"))
+
+    errors = state["_debug"]["errors"]
+    assert len(errors) == 1
+    assert errors[0]["type"] == "provider_request"
+    assert errors[0]["provider_exception"] == "TimeoutError"
+    assert "timed out" in errors[0]["message"]
 
 
 class TestToNativeTool:
@@ -685,6 +705,36 @@ class TestGetNativeResponse:
 
 
 class TestRetryingOpenAIChatCompletionsClient:
+    @pytest.mark.asyncio
+    async def test_tool_call_message_omits_null_content_for_strict_gateways(self):
+        from verifiers.clients import OpenAIChatCompletionsClient
+
+        client = object.__new__(RetryingOpenAIChatCompletionsClient)
+        native = [
+            {
+                "role": "assistant",
+                "content": None,
+                "reasoning_content": None,
+                "tool_calls": [
+                    {
+                        "id": "call-1",
+                        "type": "function",
+                        "function": {"name": "search", "arguments": "{}"},
+                    }
+                ],
+            }
+        ]
+
+        with patch.object(
+            OpenAIChatCompletionsClient,
+            "to_native_prompt",
+            new=AsyncMock(return_value=(native, {})),
+        ):
+            result, _ = await client.to_native_prompt([])
+
+        assert "content" not in result[0]
+        assert "reasoning_content" not in result[0]
+
     @pytest.mark.asyncio
     async def test_safety_classifier_error_is_not_retried_and_is_recorded(self):
         from verifiers.clients import OpenAIChatCompletionsClient

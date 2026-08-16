@@ -1,0 +1,49 @@
+{
+  "title": "Agent 正式总分登记",
+  "version": "2026-08-15",
+  "source": "人工确认后的 Agent 汇总分数",
+  "usage": "项目内所有排名和预览只读取 official_score；题目级复核分不自动汇总为模型总分。",
+  "scores": {
+    "qwen3.8-max": {
+      "official_score": 97.32,
+      "tier": "T1"
+    },
+    "gpt-5.6-sol": {
+      "official_score": 96.18,
+      "tier": "T1"
+    },
+    "kimi-k3": {
+      "official_score": 95.10,
+      "tier": "T1"
+    },
+    "opus-5": {
+      "official_score": 94.10,
+      "tier": "T1"
+    },
+    "deepseek-v4-pro": {
+      "official_score": 93.05,
+      "tier": "T2"
+    },
+    "gpt-5.5": {
+      "official_score": 92.24,
+      "tier": "T2"
+    },
+    "opus-4.8": {
+      "official_score": 92.12,
+      "tier": "T2"
+    },
+    "deepseek-v4-flash": {
+      "official_score": 89.50,
+      "tier": "T2"
+    },
+    "glm-5.2-internal": {
+      "official_score": 85.15,
+      "tier": "T3"
+    },
+    "hy3": {
+      "official_score": 75.96,
+      "tier": "T3",
+      "note": "人工确认后的正式汇报分。"
+    }
+  }
+}

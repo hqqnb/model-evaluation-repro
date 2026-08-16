@@ -12,9 +12,31 @@ import verifiers as vf
 
 from automationbench.domains.sales.tasks import get_sales_dataset
 from automationbench.rubric import create_rubric
-from automationbench.runner import AutomationBenchEnv, strip_none_values
+from automationbench.runner import (
+    AutomationBenchEnv,
+    _wrap_tool_with_visible_errors,
+    strip_none_values,
+)
 from automationbench.schema.world import WorldState
 from automationbench.task_contract import TASK_CONTRACT_SCHEMA, task_contract_sha256
+
+
+def _raising_tool(world: WorldState) -> str:
+    raise RuntimeError("expected answer: approve_refund")
+
+
+def _misleading_tool(world: WorldState) -> str:
+    return json.dumps({"success": True, "error": "backend unavailable"})
+
+
+def test_direct_tool_wrapper_exposes_exceptions_and_pseudo_successes():
+    raising = json.loads(_wrap_tool_with_visible_errors(_raising_tool)(world=WorldState()))
+    misleading = json.loads(_wrap_tool_with_visible_errors(_misleading_tool)(world=WorldState()))
+
+    assert raising["success"] is False
+    assert raising["error_code"] == "tool_execution_failed"
+    assert "approve_refund" not in json.dumps(raising)
+    assert misleading["success"] is False
 
 
 class TestAutomationBenchEnv:

@@ -1,0 +1,104 @@
+{
+  "api": "benchmark_banking",
+  "version": "v1",
+  "baseUrl": "https://banking.benchmark.local",
+  "notes": "Deterministic local banking environment inspired by tau3-bench. No live banking service or credentials are used.",
+  "endpoints": [
+    {
+      "id": "benchmark_banking.customers.get",
+      "path": "banking/v1/customers/{customerId}",
+      "method": "GET",
+      "description": "Find a simulated bank customer by customer ID.",
+      "parameters": {
+        "customerId": {
+          "type": "string",
+          "required": true,
+          "location": "path",
+          "description": "Simulated customer identifier."
+        }
+      },
+      "response": "{customer}"
+    },
+    {
+      "id": "benchmark_banking.accounts.list",
+      "path": "banking/v1/accounts",
+      "method": "GET",
+      "description": "List simulated bank accounts for a customer.",
+      "parameters": {
+        "customerId": {
+          "type": "string",
+          "required": true,
+          "location": "query",
+          "description": "Simulated customer identifier."
+        }
+      },
+      "response": "{accounts: [{account_id, status, daily_transfer_limit}]}"
+    },
+    {
+      "id": "benchmark_banking.transactions.get",
+      "path": "banking/v1/transactions/{transactionId}",
+      "method": "GET",
+      "description": "Get the current status of a simulated bank transaction.",
+      "parameters": {
+        "transactionId": {
+          "type": "string",
+          "required": true,
+          "location": "path",
+          "description": "Simulated transaction identifier."
+        }
+      },
+      "response": "{transaction}"
+    },
+    {
+      "id": "benchmark_banking.policies.search",
+      "path": "banking/v1/policies/search",
+      "method": "GET",
+      "description": "Search simulated banking policy documents before taking a restricted action.",
+      "parameters": {
+        "q": {
+          "type": "string",
+          "required": true,
+          "location": "query",
+          "description": "Policy search terms."
+        }
+      },
+      "response": "{results: [{policy_id, topic, text}]}"
+    },
+    {
+      "id": "benchmark_banking.verifications.create",
+      "path": "banking/v1/verifications",
+      "method": "POST",
+      "description": "Verify a simulated customer using an allowed identity attribute.",
+      "parameters": {},
+      "request": "Body: {customerId, method, value}",
+      "response": "{verified}"
+    },
+    {
+      "id": "benchmark_banking.transfers.review",
+      "path": "banking/v1/transfers/{transactionId}/review",
+      "method": "POST",
+      "description": "Submit a pending transfer for review without claiming it has been refunded.",
+      "parameters": {},
+      "request": "Body: {reason}",
+      "response": "{status: 'SUBMITTED', request}"
+    },
+    {
+      "id": "benchmark_banking.accounts.limit_requests.create",
+      "path": "banking/v1/accounts/{accountId}/limit-requests",
+      "method": "POST",
+      "description": "Submit a simulated daily transfer limit increase for review.",
+      "parameters": {},
+      "request": "Body: {requestedLimit, reason}",
+      "response": "{status: 'PENDING_REVIEW', request}"
+    },
+    {
+      "id": "benchmark_banking.handoffs.create",
+      "path": "banking/v1/handoffs",
+      "method": "POST",
+      "description": "Transfer a simulated banking case to a human agent.",
+      "parameters": {},
+      "request": "Body: {reason, summary}",
+      "response": "{transferred, handoff}"
+    }
+  ]
+}

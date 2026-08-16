@@ -65,6 +65,7 @@ Thumbs.db
 automationbench/tools/api/schemas/index.txt
 
 # Benchmark run outputs (contain conversation traces)
+results/
 # local/ is gitignored; files in visualizer/runs/ directly are committed
 visualizer/runs/local/
 visualizer/runs/*.partial.json/
@@ -84,3 +85,15 @@ environments/
 AGENTS.md
 CLAUDE.md
 configs/
+
+# Canonical formal benchmark manifests are safe to commit.
+!configs/
+!configs/*.json
+!configs/*.example
+
+# Keep only the minimal metadata needed by the formal-runner tests.
+!results/
+!results/agent_runs/
+!results/agent_runs/agent-suite-v1-20260814/
+!results/agent_runs/agent-suite-v1-20260814/manifest.json
+!results/agent_runs/agent-suite-v1-20260814/opus-5.json

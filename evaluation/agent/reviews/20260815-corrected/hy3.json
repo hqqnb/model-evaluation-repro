@@ -1,0 +1,97 @@
+{
+  "candidate_id": "hy3",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_score": 93,
+      "confidence": "high",
+      "model_fault": "首次登记结果时使用了系统不接受的 APPROVED/DENIED 枚举，导致 5 笔登记失败；虽然后续读取允许枚举并全部重试成功，但这是可避免的过程错误。",
+      "environment_or_rubric_issue": "无明显环境或评分规则问题；工具明确返回了允许的结果枚举。",
+      "evidence": [
+        "正确读取政策和全部 6 笔申请，并正确判定 2 笔草稿、1 笔财务升级和 3 笔不批准情形。",
+        "rf-101 和 rf-105 的邮件草稿均确认 sent=false，未执行实际退款；rf-104 创建了财务升级；6 笔工单均已回复。",
+        "在工具返回 invalid_result 后，模型根据允许枚举将 5 笔失败登记分别改为 DRAFTED_CONFIRMATION、EXPIRED、ORDER_NOT_FOUND 和 NOT_ELIGIBLE，最终 6/6 登记成功并发布 finance-ops 汇总。"
+      ]
+    },
+    {
+      "task_id": "T02",
+      "task_score": 100,
+      "confidence": "high",
+      "model_fault": "无明显模型错误。",
+      "environment_or_rubric_issue": "无明显环境或评分规则问题。",
+      "evidence": [
+        "正确读取政策、全部申请和已有日历，仅为 demo-201 与 demo-205 创建活动，且避开已有忙时；没有重复创建 demo-203 的既有活动。",
+        "对 demo-202、demo-203、demo-204、demo-206 分别明确回复人数不足、已安排、缺少信息和已关闭等原因。",
+        "已对两项新安排执行通知，并在 sales-ops 发布包含已安排、未安排和待补充信息的完整汇总。"
+      ]
+    },
+    {
+      "task_id": "T03",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未读取约束和项目目录，未制定、保存、检查或确认 Disney 行程。",
+      "environment_or_rubric_issue": "题面已知最终确认可能只返回不透明的 plan_validation_failed，但本轨迹没有进入读取、规划或最终确认阶段，无法将未完成归因于该问题。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0，finish_reasons 和 stop_reasons 均为空。",
+        "没有任何可交付的逐日安排、预算、风险预案、备选方案或保存状态。"
+      ]
+    },
+    {
+      "task_id": "T04",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未记录 API 使用与密钥安全事项，未获取数据、分析、生成或登记三个交付文件。",
+      "environment_or_rubric_issue": "题面已知工作区可能限制某些文件格式的生成；但本轨迹没有任何取数、分析或文件生成尝试，不能以该限制解释核心任务缺失。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0。",
+        "没有 openrouter_analysis.xlsx、openrouter_summary.md、openrouter_chart.svg 或质量检查、artifact 登记证据。"
+      ]
+    },
+    {
+      "task_id": "T05",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未读取和综合分析工作区文件，未生成两个分析文档，也未创建后续任务。",
+      "environment_or_rubric_issue": "无可从本轨迹确认的环境或评分规则问题。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0，未发生数据匹配、异常检查或口径分析。",
+        "管理层摘要、分析附录、artifact 登记检查及 3 个带负责人和日期的后续任务全部缺失。"
+      ]
+    },
+    {
+      "task_id": "T06",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未读取项目计划、供应商通知和内部沟通，也未更新任务、风险、状态、恢复计划或发布内部通知。",
+      "environment_or_rubric_issue": "题面已知评分器对项目状态语义存在不完全一致，但本轨迹没有任何执行或交付，无法将失败归因于评分器。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0。",
+        "没有确认受影响交付物和依赖链，也没有证据表明遵守了不移动 marketing/training 或不向外部承诺日期的约束。"
+      ]
+    },
+    {
+      "task_id": "T07",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未询问必要的转账编号、身份验证信息和目标限额，也未处理转账退回与限额调整两个独立事项。",
+      "environment_or_rubric_issue": "无可从本轨迹确认的环境或评分规则问题。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0。",
+        "没有读取转账、账户和政策，没有完成身份验证、提交审核或记录客户回复。"
+      ]
+    },
+    {
+      "task_id": "T08",
+      "task_score": 0,
+      "confidence": "high",
+      "model_fault": "没有任何模型调用或工具操作，未读取用户指令、核对发票/采购订单/收货记录，也未执行停止外部邮件、恢复后草拟必要邮件等流程。",
+      "environment_or_rubric_issue": "题面已知 INV-803 是否立即创建供应商邮件存在业务语义争议；但本轨迹完全没有执行，无法据此减轻核心任务缺失。",
+      "evidence": [
+        "轨迹显示 tool_calls=0、model_calls=0。",
+        "没有任何 MATCHED、FLAGGED 或 NEEDS_INFO 状态、原因和下一步，也没有中断前后指令读取或最终汇总。"
+      ]
+    }
+  ],
+  "provisional_average": 24.125,
+  "overall_observation": "已执行的两道任务总体表现较强：T02 完整、稳定地完成了排期与通知；T01 最终完成全部退款处理，但首次使用非法结果枚举造成多次可避免失败，随后成功恢复。T03-T08 均没有任何模型或工具执行，核心分析、操作和交付物全部缺失，因此整体平均分很低。"
+}

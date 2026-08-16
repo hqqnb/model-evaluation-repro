@@ -1,8 +1,13 @@
 {
   "schema_version": "1.0",
-  "bank_id": "model-evaluation-20260805",
+  "bank_id": "model-evaluation-20260815",
   "title": "统一大模型能力测评题库",
   "status": "active",
+  "component_versions": {
+    "single_turn": "model-evaluation-20260805",
+    "agent": "agent-suite-v1.0-20260814",
+    "latest_agent_run": "agent-suite-v1.1-tool-errors-noleak-20260815"
+  },
   "source": {
     "type": "internal_knowledge_base",
     "title": "大模型评测题库@20260805",
@@ -48,5 +53,10 @@
     "agent_tasks": "agent/tasks.md",
     "agent_execution_notes": "agent/api_compatibility.md"
   },
-  "history": "archive/"
+  "history": "archive/",
+  "notes": [
+    "The single-turn component keeps its 2026-08-05 source version.",
+    "The Agent component was updated and revalidated separately on 2026-08-14.",
+    "Formal scores and batch summaries are stored under evaluation/agent/."
+  ]
 }

@@ -39,6 +39,39 @@ from automationbench.runner import AutomationBenchEnv
 from automationbench.usage import calculate_run_usage, print_usage_report
 
 
+EVAL_STATE_COLUMNS = [
+    "_usage",
+    "_debug",
+    "_assertion_results",
+    "_end_state",
+    "_perf",
+    "_task_contract_schema",
+    "_task_contract_sha256",
+    "weighted_score",
+    "hard_fail_reasons",
+]
+
+
+def _normalize_output_record(raw_output: dict[str, Any]) -> dict[str, Any]:
+    """Keep evaluator-owned state fields when normalizing verifier output."""
+    return {
+        "task": _task_name(raw_output),
+        "reward": raw_output.get("reward", 0.0),
+        "info": raw_output.get("info", {}),
+        "prompt": raw_output.get("prompt"),
+        "completion": raw_output.get("completion"),
+        "_usage": raw_output.get("_usage"),
+        "_debug": raw_output.get("_debug"),
+        "_assertion_results": raw_output.get("_assertion_results"),
+        "_end_state": raw_output.get("_end_state"),
+        "_perf": raw_output.get("_perf"),
+        "_task_contract_schema": raw_output.get("_task_contract_schema"),
+        "_task_contract_sha256": raw_output.get("_task_contract_sha256"),
+        "weighted_score": raw_output.get("weighted_score"),
+        "hard_fail_reasons": raw_output.get("hard_fail_reasons"),
+    }
+
+
 # Public Anthropic model ids that use adaptive thinking (`thinking: adaptive` +
 # `output_config.effort`) rather than a manual `budget_tokens`. Unreleased preview models are
 # NOT listed here — they come from ADAPTIVE_MODELS_EXTRA so their codenames never enter the tree.
@@ -124,6 +157,48 @@ def _resolve_api(model: str, base_url: str | None, api_override: str = "auto") -
     ):
         return "gemini_interactions"
     return "chat_completions"
+
+
+def _client_request_timeout() -> float:
+    """Resolve the per-request timeout used by OpenAI-compatible clients.
+
+    Provider env files in this workspace already carry ``ONEAPI_TIMEOUT_SECONDS``.
+    The previous runner ignored it and used verifiers' 3600-second default, which
+    made a slow provider call look like an empty Agent trajectory. An explicit
+    AutomationBench override wins so other providers can opt in without changing
+    their existing env files.
+    """
+    for name in ("AUTO_BENCH_REQUEST_TIMEOUT_SECONDS", "ONEAPI_TIMEOUT_SECONDS"):
+        raw = os.environ.get(name)
+        if raw is None:
+            continue
+        try:
+            value = float(raw)
+        except ValueError as exc:
+            raise ValueError(f"{name} must be a positive number") from exc
+        if value <= 0:
+            raise ValueError(f"{name} must be a positive number")
+        return value
+    return 3600.0
+
+
+def _openai_client_config(
+    api_key_var: str,
+    base_url: str,
+    extra_headers: dict[str, str] | None = None,
+) -> ClientConfig:
+    """Build a bounded OpenAI-compatible client config.
+
+    The custom clients own retry policy. Leaving the SDK's internal retries
+    enabled multiplies each retry storm and can hide the actual provider error.
+    """
+    return ClientConfig(
+        api_key_var=api_key_var,
+        api_base_url=base_url,
+        timeout=_client_request_timeout(),
+        max_retries=0,
+        extra_headers=extra_headers or {},
+    )
 
 
 def _build_progress_callbacks():
@@ -348,17 +423,17 @@ async def run_evaluation(
             client = StreamingAnthropicClient(AsyncAnthropic())
     elif resolved_api == "gemini_interactions":
         client = GeminiInteractionsClient(
-            ClientConfig(
-                api_key_var=effective_key_var,
-                api_base_url=base_url or GeminiInteractionsClient.DEFAULT_BASE_URL,
-                extra_headers=extra_headers or {},
+            _openai_client_config(
+                effective_key_var,
+                base_url or GeminiInteractionsClient.DEFAULT_BASE_URL,
+                extra_headers,
             )
         )
     else:
-        config = ClientConfig(
-            api_key_var=effective_key_var,
-            api_base_url=base_url or "https://api.openai.com/v1",
-            extra_headers=extra_headers or {},
+        config = _openai_client_config(
+            effective_key_var,
+            base_url or "https://api.openai.com/v1",
+            extra_headers,
         )
         if resolved_api == "responses":
             if batch:
@@ -424,7 +499,7 @@ async def run_evaluation(
         num_examples=num_examples,
         rollouts_per_example=1,
         max_concurrent=max_concurrent,
-        state_columns=["_usage", "_debug", "_assertion_results", "_end_state", "_perf"],
+        state_columns=EVAL_STATE_COLUMNS,
         on_start=on_start,
         on_progress=on_progress,
     )
@@ -435,22 +510,7 @@ async def run_evaluation(
     raw_outputs = results["outputs"]
     metadata = results["metadata"]
 
-    outputs: list[dict[str, Any]] = []
-    for ro in raw_outputs:
-        outputs.append(
-            {
-                "task": _task_name(ro),
-                "reward": ro.get("reward", 0.0),
-                "info": ro.get("info", {}),
-                "prompt": ro.get("prompt"),
-                "completion": ro.get("completion"),
-                "_usage": ro.get("_usage"),
-                "_debug": ro.get("_debug"),
-                "_assertion_results": ro.get("_assertion_results"),
-                "_end_state": ro.get("_end_state"),
-                "_perf": ro.get("_perf"),
-            }
-        )
+    outputs: list[dict[str, Any]] = [_normalize_output_record(ro) for ro in raw_outputs]
 
     # Calculate and print usage
     pricing_db = PricingDatabase(

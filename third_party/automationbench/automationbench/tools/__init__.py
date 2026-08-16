@@ -701,6 +701,26 @@ from automationbench.tools.zapier.wave import (
     wave_update_product,
     wave_record_sale,
 )
+from automationbench.tools.zapier.banking import (
+    banking_find_customer,
+    banking_list_accounts,
+    banking_get_transaction,
+    banking_search_policy,
+    banking_verify_identity,
+    banking_request_transfer_review,
+    banking_request_limit_increase,
+    banking_transfer_to_human,
+)
+from automationbench.tools.zapier.agentic_workspace import (
+    agentic_workspace_list_files,
+    agentic_workspace_read_file,
+    agentic_workspace_write_file,
+    agentic_workspace_run_python,
+    agentic_workspace_record_artifact,
+    agentic_workspace_inspect_artifacts,
+    agentic_workspace_finalize,
+)
+from automationbench.tools.zapier.benchmark import BENCHMARK_TOOLS
 
 __all__ = [
     # Metadata
@@ -1313,6 +1333,23 @@ __all__ = [
     "wave_find_product",
     "wave_update_product",
     "wave_record_sale",
+    # Benchmark-inspired tools
+    "banking_find_customer",
+    "banking_list_accounts",
+    "banking_get_transaction",
+    "banking_search_policy",
+    "banking_verify_identity",
+    "banking_request_transfer_review",
+    "banking_request_limit_increase",
+    "banking_transfer_to_human",
+    "agentic_workspace_list_files",
+    "agentic_workspace_read_file",
+    "agentic_workspace_write_file",
+    "agentic_workspace_run_python",
+    "agentic_workspace_record_artifact",
+    "agentic_workspace_inspect_artifacts",
+    "agentic_workspace_finalize",
+    "BENCHMARK_TOOLS",
     # ALL_TOOLS
     "ALL_TOOLS",
 ]
@@ -1916,6 +1953,23 @@ ALL_TOOLS: list = [
     wave_find_product,
     wave_update_product,
     wave_record_sale,
+    # Benchmark-inspired tools
+    banking_find_customer,
+    banking_list_accounts,
+    banking_get_transaction,
+    banking_search_policy,
+    banking_verify_identity,
+    banking_request_transfer_review,
+    banking_request_limit_increase,
+    banking_transfer_to_human,
+    agentic_workspace_list_files,
+    agentic_workspace_read_file,
+    agentic_workspace_write_file,
+    agentic_workspace_run_python,
+    agentic_workspace_record_artifact,
+    agentic_workspace_inspect_artifacts,
+    agentic_workspace_finalize,
+    *BENCHMARK_TOOLS,
 ]
 
 # Meta-tools for tool discovery and execution (NOT in ALL_TOOLS)

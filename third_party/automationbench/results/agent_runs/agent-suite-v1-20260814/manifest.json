@@ -1,0 +1,165 @@
+{
+  "manifest_schema": "automationbench.formal-agent-suite.v1",
+  "batch_id": "agent-suite-v1-20260814",
+  "status": "prepared",
+  "benchmark_version": "agent-suite-v1.0",
+  "domain": "benchmark",
+  "toolset": "limited_zapier",
+  "max_steps": 50,
+  "max_concurrent_tasks_per_model": 2,
+  "max_concurrent_models": 2,
+  "task_count": 8,
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_name": "benchmark.t01_refund_processing",
+      "task_contract_sha256": "9f08131d5158ee1848e46e79858d69caafb457a2657b13a5d068d256fb594455"
+    },
+    {
+      "task_id": "T02",
+      "task_name": "benchmark.t02_demo_scheduling",
+      "task_contract_sha256": "bd96ffb5600c06580452a9a2c1a739fe6927133367742c7386fd3fcc0ab45df2"
+    },
+    {
+      "task_id": "T03",
+      "task_name": "benchmark.t03_disney_trip_planning",
+      "task_contract_sha256": "64036c0af7126541b3008c2d566274d10cba4d3c8c3b8b04316c4474dd38ad74"
+    },
+    {
+      "task_id": "T04",
+      "task_name": "benchmark.t04_openrouter_analysis",
+      "task_contract_sha256": "74a04d9db923c341350be029bad97fcd683ae2f2eb759f8357c1ff4b2b1ae5d9"
+    },
+    {
+      "task_id": "T05",
+      "task_name": "benchmark.t05_multi_file_analysis",
+      "task_contract_sha256": "8a434378859f0d661c78d9153a1b850944842cfbfc3438897e8ff4f1d000979d"
+    },
+    {
+      "task_id": "T06",
+      "task_name": "benchmark.t06_project_delay",
+      "task_contract_sha256": "ec15b4678de9dfc0b795baccb85ee2ff8eb15ff53e22a2dcd448cb2089c5c559"
+    },
+    {
+      "task_id": "T07",
+      "task_name": "benchmark.t07_banking_multi_turn",
+      "task_contract_sha256": "fcf91b5bcde3c63437f003cb5cae8f16dfa2a1c55c4d001ab15002eca35f00de"
+    },
+    {
+      "task_id": "T08",
+      "task_name": "benchmark.t08_invoice_interrupt_resume",
+      "task_contract_sha256": "41bf5bba0b0f8d47c99e757bf51a983019e184bd6411b06a869ff75535d63eb7"
+    }
+  ],
+  "models": [
+    {
+      "run_id": "opus-4.8",
+      "model": "Opus 4.8",
+      "api": "responses",
+      "base_url": "https://oneapi-comate.baidu-int.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "opus-5",
+      "model": "Opus 5",
+      "api": "responses",
+      "base_url": "https://oneapi-comate.baidu-int.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "api": "chat_completions",
+      "base_url": "https://api.deepseek.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "deepseek-v4-flash",
+      "model": "deepseek-v4-flash",
+      "api": "chat_completions",
+      "base_url": "https://api.deepseek.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "kimi-k3",
+      "model": "kimi-k3",
+      "api": "chat_completions",
+      "base_url": "https://api.moonshot.cn/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "api": "chat_completions",
+      "base_url": "https://oneapi-comate.baidu-int.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "gpt-5.5",
+      "model": "gpt-5.5",
+      "api": "chat_completions",
+      "base_url": "https://oneapi-comate.baidu-int.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "xhigh"
+    },
+    {
+      "run_id": "glm-5.2",
+      "model": "GLM-5.2",
+      "api": "chat_completions",
+      "base_url": "https://oneapi-comate.baidu-int.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "qwen3.8-max",
+      "model": "qwen3.8-max",
+      "api": "chat_completions",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "max"
+    },
+    {
+      "run_id": "hy3",
+      "model": "hy3",
+      "api": "chat_completions",
+      "base_url": "https://tokenhub.tencentmaas.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "high"
+    }
+  ],
+  "score_outputs": [
+    "weighted_score",
+    "partial_credit",
+    "strict_pass",
+    "hard_fail_reasons",
+    "assertion_results",
+    "trajectory",
+    "technical_errors"
+  ]
+}

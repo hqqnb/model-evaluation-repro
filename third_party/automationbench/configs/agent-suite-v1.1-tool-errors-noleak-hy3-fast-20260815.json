@@ -1,0 +1,77 @@
+{
+  "manifest_schema": "automationbench.formal-agent-suite.v1",
+  "batch_id": "agent-suite-v1.1-tool-errors-noleak-hy3-fast-20260815",
+  "status": "prepared",
+  "benchmark_version": "agent-suite-v1.1-tool-errors-noleak",
+  "output_dir": "../results/agent_runs/agent-suite-v1.1-tool-errors-noleak-hy3-fast-20260815",
+  "domain": "benchmark",
+  "toolset": "limited_zapier",
+  "max_steps": 4,
+  "max_concurrent_tasks_per_model": 1,
+  "max_concurrent_models": 1,
+  "client_retry_attempts": 1,
+  "task_count": 8,
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_name": "benchmark.t01_refund_processing",
+      "task_contract_sha256": "4c9b1ed38cadbbd8e0159f9b072feb9dc4c4edcf77eb0c86b635aec03079efd1"
+    },
+    {
+      "task_id": "T02",
+      "task_name": "benchmark.t02_demo_scheduling",
+      "task_contract_sha256": "aa2fb035bcb207158ccc3b4031af1ed706c086451112eec86673b65ddd5c9b87"
+    },
+    {
+      "task_id": "T03",
+      "task_name": "benchmark.t03_disney_trip_planning",
+      "task_contract_sha256": "49bb7f06f643f4e91287ff7351ed9341876ec3f95e1cf67c2123c8d287dfd44c"
+    },
+    {
+      "task_id": "T04",
+      "task_name": "benchmark.t04_openrouter_analysis",
+      "task_contract_sha256": "51e09e0e741250452001520b65757cd5528f43c4838445750ebfbd4c8e1fc8bb"
+    },
+    {
+      "task_id": "T05",
+      "task_name": "benchmark.t05_multi_file_analysis",
+      "task_contract_sha256": "5b3968e9efc0b747ec082c26d1a87f05dbab8e781f7b20b99414efaa164a7288"
+    },
+    {
+      "task_id": "T06",
+      "task_name": "benchmark.t06_project_delay",
+      "task_contract_sha256": "d7faff3fd0355d87ccec8061e90ad730c1fcd3af9ff73dd674d93606f59bcf22"
+    },
+    {
+      "task_id": "T07",
+      "task_name": "benchmark.t07_banking_multi_turn",
+      "task_contract_sha256": "92a3ba35e18515df0f50db5ce71ac3e692535a00bdb200935924aa5e8ded8ab5"
+    },
+    {
+      "task_id": "T08",
+      "task_name": "benchmark.t08_invoice_interrupt_resume",
+      "task_contract_sha256": "73753685f9867f90e5c399ac0cb6f4f565f74ccc3f24d377294cf6a3abace47d"
+    }
+  ],
+  "models": [
+    {
+      "run_id": "hy3",
+      "model": "hy3",
+      "api": "chat_completions",
+      "base_url": "https://tokenhub.tencentmaas.com/v1",
+      "env_file": "configs/agent.env.example",
+      "source_key_var": "ONEAPI_API_KEY",
+      "runtime_key_var": "OPENAI_API_KEY",
+      "reasoning_effort": "low"
+    }
+  ],
+  "score_outputs": [
+    "weighted_score",
+    "partial_credit",
+    "strict_pass",
+    "hard_fail_reasons",
+    "assertion_results",
+    "trajectory",
+    "technical_errors"
+  ]
+}

@@ -55,6 +55,9 @@ from automationbench.schema.recruitee import RecruiteeState
 from automationbench.schema.quickbooks import QuickBooksState
 from automationbench.schema.xero import XeroState
 from automationbench.schema.wave import WaveState
+from automationbench.schema.banking import BankingState
+from automationbench.schema.agentic_workspace import AgenticWorkspaceState
+from automationbench.schema.benchmark import BenchmarkState
 
 
 class WorldMeta(BaseModel):
@@ -131,3 +134,7 @@ class WorldState(BaseModel):
     quickbooks: QuickBooksState = Field(default_factory=QuickBooksState)
     xero: XeroState = Field(default_factory=XeroState)
     wave: WaveState = Field(default_factory=WaveState)
+    # Benchmark-inspired environments
+    banking: BankingState = Field(default_factory=BankingState)
+    agentic_workspace: AgenticWorkspaceState = Field(default_factory=AgenticWorkspaceState)
+    benchmark: BenchmarkState = Field(default_factory=BenchmarkState)

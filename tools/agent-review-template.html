@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent 交互复核预览</title>
+  <style>
+    :root {
+      --ink: #15232e;
+      --muted: #65727b;
+      --line: #d9e1e4;
+      --paper: #f6f7f5;
+      --panel: #ffffff;
+      --navy: #17384b;
+      --teal: #138a86;
+      --amber: #d99535;
+      --red: #ba4d45;
+      --green: #2c8668;
+      --shadow: 0 12px 28px rgba(23, 56, 75, 0.09);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background:
+      radial-gradient(circle at 10% 0%, rgba(19,138,134,.12), transparent 28rem),
+      radial-gradient(circle at 100% 12%, rgba(217,149,53,.12), transparent 26rem),
+      var(--paper); }
+    button, select, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1540px; margin: 0 auto; padding: 28px 28px 52px; }
+    .hero { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 22px; }
+    .eyebrow { color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 8px 0 8px; font-size: clamp(28px, 4vw, 48px); line-height: 1; letter-spacing: -.045em; }
+    .lede { max-width: 720px; color: var(--muted); line-height: 1.65; margin: 0; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: end; }
+    .button, .select, .input, .textarea { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--ink); }
+    .button { padding: 10px 14px; font-weight: 700; }
+    .button.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .button.subtle { background: #eef4f3; border-color: #cfe0de; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .stat { background: rgba(255,255,255,.82); border: 1px solid rgba(217,225,228,.85); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
+    .stat-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .stat-value { margin-top: 7px; font-size: 28px; font-weight: 850; letter-spacing: -.04em; }
+    .stat-note { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .controls { position: sticky; top: 0; z-index: 5; display: flex; gap: 10px; flex-wrap: wrap; padding: 12px 0; background: linear-gradient(var(--paper) 75%, transparent); }
+    .select, .input { min-height: 40px; padding: 8px 11px; }
+    .input.search { flex: 1 1 240px; min-width: 180px; }
+    .toggle { display: inline-flex; align-items: center; gap: 8px; padding: 0 10px; color: var(--muted); font-size: 13px; }
+    .rank-panel { background: rgba(255,255,255,.82); border: 1px solid rgba(217,225,228,.85); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 18px; }
+    .section-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .section-head h2 { font-size: 17px; margin: 0; }
+    .muted { color: var(--muted); }
+    .table-wrap { overflow: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 10px 9px; border-bottom: 1px solid var(--line); vertical-align: top; white-space: nowrap; }
+    th { color: var(--muted); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+    .score { font-weight: 850; color: var(--navy); }
+    .pass { color: var(--green); font-weight: 800; }
+    .fail { color: var(--red); font-weight: 800; }
+    .workspace { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; align-items: start; }
+    .task-nav, .detail { min-width: 0; }
+    .task-nav { position: sticky; top: 66px; max-height: calc(100vh - 84px); overflow: auto; padding-right: 4px; }
+    .task-button { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; width: 100%; text-align: left; padding: 13px 12px; border: 1px solid transparent; border-radius: 13px; background: transparent; color: var(--ink); margin-bottom: 7px; }
+    .task-button:hover { background: rgba(255,255,255,.7); }
+    .task-button.active { background: var(--navy); color: #fff; box-shadow: var(--shadow); }
+    .task-code { font-size: 12px; font-weight: 850; }
+    .task-name { font-size: 13px; line-height: 1.35; }
+    .task-score { font-size: 13px; font-weight: 850; }
+    .task-button.active .muted { color: rgba(255,255,255,.72); }
+    .detail-head { display: flex; justify-content: space-between; gap: 16px; align-items: start; margin-bottom: 12px; }
+    .detail-head h2 { margin: 0 0 5px; font-size: 25px; letter-spacing: -.03em; }
+    .detail-meta { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .score-hero { min-width: 120px; text-align: right; }
+    .score-hero .number { font-size: 40px; font-weight: 900; letter-spacing: -.06em; color: var(--navy); }
+    .block { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; margin: 12px 0; overflow: hidden; box-shadow: 0 5px 18px rgba(23,56,75,.05); }
+    .block > summary { cursor: pointer; padding: 14px 16px; font-weight: 850; list-style: none; }
+    .block > summary::-webkit-details-marker { display: none; }
+    .block > summary::after { content: "+"; float: right; color: var(--teal); }
+    .block[open] > summary::after { content: "−"; }
+    .block-body { padding: 0 16px 16px; }
+    .prompt { white-space: pre-wrap; line-height: 1.7; margin: 0; }
+    .timeline { display: grid; gap: 10px; }
+    .message { border-left: 4px solid var(--line); padding: 12px 14px; background: #fbfcfc; border-radius: 0 12px 12px 0; }
+    .message.role-system { border-left-color: #8c9aa3; }
+    .message.role-user { border-left-color: var(--amber); }
+    .message.role-assistant { border-left-color: var(--teal); }
+    .message.role-tool { border-left-color: var(--navy); }
+    .message-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; }
+    .role { font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .message-content { white-space: pre-wrap; line-height: 1.62; font-size: 13px; margin: 0; }
+    .tool-call { margin-top: 10px; padding: 10px 11px; border: 1px solid #d8e7e6; border-radius: 10px; background: #f3f9f8; }
+    .tool-name { color: var(--teal); font-weight: 850; font-size: 13px; margin-bottom: 5px; }
+    pre { overflow: auto; white-space: pre-wrap; word-break: break-word; font: 12px/1.55 "SFMono-Regular", Consolas, monospace; }
+    .tool-call pre, .state pre { margin: 0; }
+    .assertion-table td { white-space: normal; }
+    .assertion-table .status-cell { width: 70px; white-space: nowrap; }
+    .params { max-width: 540px; margin: 0; }
+    .review-box { display: grid; grid-template-columns: 180px 180px 1fr auto; gap: 10px; align-items: end; }
+    .field { display: grid; gap: 5px; }
+    .field label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .field .input, .field .select, .field .textarea { width: 100%; }
+    .textarea { min-height: 42px; resize: vertical; padding: 9px 11px; }
+    .review-note { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 10px 0 0; }
+    .empty { padding: 22px; border: 1px dashed var(--line); border-radius: 13px; color: var(--muted); text-align: center; }
+    .excluded { margin-top: 18px; }
+    .badge { display: inline-block; padding: 3px 7px; border-radius: 999px; background: #edf3f4; color: var(--muted); font-size: 11px; font-weight: 800; }
+    .badge.warn { background: #fff2df; color: #98621c; }
+    .badge.t1 { background: #e2f3eb; color: #1e7657; }
+    .badge.t2 { background: #fff2df; color: #98621c; }
+    .badge.t3 { background: #f8e5e3; color: #a03f38; }
+    @media (max-width: 980px) {
+      .hero { align-items: start; flex-direction: column; }
+      .hero-actions { justify-content: start; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .workspace { grid-template-columns: 1fr; }
+      .task-nav { position: static; max-height: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+      .task-button { margin-bottom: 0; }
+    }
+    @media (max-width: 620px) {
+      .shell { padding: 20px 14px 40px; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .stat { padding: 13px; }
+      .stat-value { font-size: 23px; }
+      .task-nav { grid-template-columns: 1fr; }
+      .detail-head { flex-direction: column; }
+      .score-hero { text-align: left; }
+      .review-box { grid-template-columns: 1fr 1fr; }
+      .review-box .field.note { grid-column: 1 / -1; }
+      .review-box .button { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell" id="agent-review-app">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Agent Evaluation / Human Review</div>
+        <h1>Agent 交互复核预览</h1>
+        <p class="lede">逐模型、逐题查看题面、可见回复、工具调用、工具返回、最终状态和断言评分。每个模型只显示一个正式总分，题目复核分仅用于查看单题表现。</p>
+      </div>
+      <div class="hero-actions">
+        <button class="button subtle" id="download-review">下载复核记录</button>
+        <button class="button" id="reset-all">清空本地调整</button>
+      </div>
+    </section>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="controls">
+      <select class="select" id="model-select" aria-label="选择模型"></select>
+      <input class="input search" id="task-search" type="search" placeholder="搜索题目或工具名称">
+      <label class="toggle"><input id="failed-only" type="checkbox"> 只看未严格通过</label>
+    </section>
+
+    <section class="rank-panel">
+      <div class="section-head">
+        <h2>Agent 能力排名</h2>
+        <span class="muted" id="rank-note"></span>
+      </div>
+      <div class="table-wrap" id="rank-table"></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="task-nav" id="task-nav"></aside>
+      <section class="detail" id="detail"></section>
+    </section>
+  </main>
+
+  <script>
+    const REPORT_DATA = __REPORT_DATA__;
+    const STORAGE_KEY = "agent-review-overrides-v1";
+    const state = {
+      modelKey: REPORT_DATA.default_model_key,
+      taskId: 1,
+      search: "",
+      failedOnly: false,
+      overrides: loadOverrides()
+    };
+
+    function loadOverrides() {
+      const seeded = REPORT_DATA.initial_overrides || {};
+      try {
+        return { ...seeded, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") };
+      } catch (_) {
+        return { ...seeded };
+      }
+    }
+
+    function saveOverrides() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.overrides)); }
+      catch (_) {}
+    }
+
+    function esc(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function pretty(value) {
+      if (typeof value === "string") return value;
+      return JSON.stringify(value ?? null, null, 2);
+    }
+
+    function score(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
+      const rounded = Math.round(Number(value) * 100) / 100;
+      return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(2)}%`;
+    }
+
+    function model() {
+      return REPORT_DATA.models.find(item => item.key === state.modelKey) || REPORT_DATA.models[0];
+    }
+
+    function task() {
+      return model().tasks.find(item => item.id === state.taskId) || model().tasks[0];
+    }
+
+    function reviewKey(modelKey, taskId) {
+      return `${modelKey}::T${String(taskId).padStart(2, "0")}`;
+    }
+
+    function currentReview(item) {
+      const saved = state.overrides[reviewKey(model().key, item.id)];
+      return saved || { score: item.weighted_score, strict: item.strict_pass, note: "" };
+    }
+
+    function seededReview(item) {
+      return (REPORT_DATA.initial_overrides || {})[reviewKey(model().key, item.id)];
+    }
+
+    function validModels() {
+      return REPORT_DATA.models.filter(item => item.ranked && item.status === "valid");
+    }
+
+    function averageFor(modelItem) {
+      const tasks = modelItem.tasks || [];
+      if (!tasks.length) return null;
+      return tasks.reduce((sum, item) => {
+        const override = state.overrides[reviewKey(modelItem.key, item.id)];
+        return sum + Number(override?.score ?? item.weighted_score ?? 0);
+      }, 0) / tasks.length;
+    }
+
+    function scorecardFor(modelItem) {
+      return (REPORT_DATA.scorecards || {})[modelItem.key] || null;
+    }
+
+    function officialScoreEntryFor(modelItem) {
+      return (REPORT_DATA.final_scores?.scores || {})[modelItem.key] || null;
+    }
+
+    function finalScoreFor(modelItem) {
+      const entry = officialScoreEntryFor(modelItem);
+      return entry?.official_score === null || entry?.official_score === undefined
+        ? null
+        : Number(entry.official_score);
+    }
+
+    function scoreTierFor(modelItem) {
+      return officialScoreEntryFor(modelItem)?.tier || "待统一";
+    }
+
+    function strictCountFor(modelItem) {
+      return (modelItem.tasks || []).filter(item => {
+        const override = state.overrides[reviewKey(modelItem.key, item.id)];
+        return Boolean(override?.strict ?? item.strict_pass);
+      }).length;
+    }
+
+    function renderStats() {
+      const ranked = validModels();
+      const current = model();
+      const finalScore = finalScoreFor(current);
+      document.getElementById("stats").innerHTML = [
+        ["有效模型", ranked.length, "纳入 Agent 排名"],
+        ["任务数量", REPORT_DATA.task_count, "每个有效模型均为 8/8"],
+        ["当前模型题目复核明细", `${current.tasks.length} 道`, "分数见下方题目详情"],
+        ["当前模型正式总分", score(finalScore), "只读取正式总分登记"]
+      ].map(item => `<div class="stat"><div class="stat-label">${esc(item[0])}</div><div class="stat-value">${esc(item[1])}</div><div class="stat-note">${esc(item[2])}</div></div>`).join("");
+    }
+
+    function renderModelSelect() {
+      const select = document.getElementById("model-select");
+      const ranked = REPORT_DATA.models.filter(item => item.ranked);
+      const excluded = REPORT_DATA.models.filter(item => !item.ranked);
+      select.innerHTML = [
+        `<optgroup label="有效结果">${ranked.map(item => `<option value="${esc(item.key)}">${esc(item.label)}</option>`).join("")}</optgroup>`,
+        `<optgroup label="未纳入排名">${excluded.map(item => `<option value="${esc(item.key)}">${esc(item.label)}（未纳入）</option>`).join("")}</optgroup>`
+      ].join("");
+      select.value = state.modelKey;
+    }
+
+    function renderRankTable() {
+      const ranked = validModels().slice().sort((a, b) => {
+        const aScore = finalScoreFor(a);
+        const bScore = finalScoreFor(b);
+        if (aScore === null && bScore === null) return 0;
+        if (aScore === null) return 1;
+        if (bScore === null) return -1;
+        return bScore - aScore;
+      });
+      const rows = ranked.map((item, index) => {
+        const taskResult = Number(scorecardFor(item)?.task_result ?? averageFor(item));
+        const trajectory = Number(scorecardFor(item)?.trajectory_quality ?? 0);
+        const delivery = Number(scorecardFor(item)?.delivery_quality ?? 0);
+        const finalScore = finalScoreFor(item);
+        const tier = scoreTierFor(item);
+        const strict = strictCountFor(item);
+        return `<tr>
+          <td>${index + 1}</td>
+          <td><strong>${esc(item.label)}</strong></td>
+          <td class="score">${score(taskResult)}</td>
+          <td>${score(trajectory)}</td>
+          <td>${score(delivery)}</td>
+          <td class="score">${score(finalScore)}</td>
+          <td><span class="badge ${tier.toLowerCase().replaceAll("待统一", "warn")}">${esc(tier)}</span></td>
+          <td>${strict}/8</td>
+          <td><span class="badge">${esc(item.meta.batch_id || "—")}</span></td>
+        </tr>`;
+      }).join("");
+      const method = REPORT_DATA.scoring_method?.description || "正式总分以正式总分登记为准";
+      document.getElementById("rank-note").textContent = method;
+      document.getElementById("rank-table").innerHTML = `<table>
+        <thead><tr><th>排名</th><th>模型</th><th>任务结果指标（非总分）</th><th>过程指标</th><th>交付指标</th><th>正式总分</th><th>层级</th><th>严格通过</th><th>批次</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    }
+
+    function filteredTasks() {
+      const query = state.search.trim().toLowerCase();
+      return (model().tasks || []).filter(item => {
+        if (state.failedOnly && item.strict_pass) return false;
+        if (!query) return true;
+        const haystack = [
+          item.code, item.label, item.name,
+          ...item.messages.flatMap(message => [
+            message.content,
+            ...message.tool_calls.map(call => call.name || "")
+          ])
+        ].join(" ").toLowerCase();
+        return haystack.includes(query);
+      });
+    }
+
+    function renderTaskNav() {
+      const tasks = filteredTasks();
+      if (tasks.length && !tasks.some(item => item.id === state.taskId)) state.taskId = tasks[0].id;
+      document.getElementById("task-nav").innerHTML = tasks.length ? tasks.map(item => {
+        const review = currentReview(item);
+        return `<button class="task-button ${item.id === state.taskId ? "active" : ""}" data-task-id="${item.id}">
+          <span class="task-code">${esc(item.code)}</span>
+          <span class="task-name">${esc(item.label)}<br><span class="muted">${item.assertions_passed}/${item.assertions_total} 断言通过</span></span>
+          <span class="task-score">${score(review.score)}</span>
+        </button>`;
+      }).join("") : `<div class="empty">没有符合筛选条件的题目。</div>`;
+      document.querySelectorAll("[data-task-id]").forEach(button => {
+        button.addEventListener("click", () => {
+          state.taskId = Number(button.dataset.taskId);
+          render();
+        });
+      });
+    }
+
+    function renderToolCalls(calls) {
+      return calls.map(call => {
+        const args = call.arguments_json ?? call.arguments ?? call.raw ?? "";
+        return `<div class="tool-call">
+          <div class="tool-name">${esc(call.name || "工具调用")}</div>
+          <pre>${esc(pretty(args))}</pre>
+        </div>`;
+      }).join("");
+    }
+
+    function renderTimeline(item) {
+      return item.messages.map((message, index) => {
+        const role = message.role || "unknown";
+        const label = { system: "系统", user: "用户", assistant: "模型", tool: "工具返回" }[role] || role;
+        const content = message.content ? `<pre class="message-content">${esc(message.content)}</pre>` : "";
+        const toolCalls = message.tool_calls?.length ? renderToolCalls(message.tool_calls) : "";
+        const callId = message.tool_call_id ? `<span class="muted">${esc(message.tool_call_id)}</span>` : "";
+        return `<article class="message role-${esc(role)}">
+          <div class="message-top"><span class="role">${esc(index + 1)} · ${esc(label)}</span>${callId}</div>
+          ${content}${toolCalls}
+        </article>`;
+      }).join("");
+    }
+
+    function renderAssertions(item) {
+      const rows = item.assertions.map(assertion => {
+        const status = assertion.excluded ? "排除" : assertion.passed ? "通过" : "失败";
+        const statusClass = assertion.excluded ? "muted" : assertion.passed ? "pass" : "fail";
+        return `<tr>
+          <td class="status-cell ${statusClass}">${status}</td>
+          <td>${esc(assertion.points ?? "—")}</td>
+          <td>${esc(assertion.type || "—")}</td>
+          <td><pre class="params">${esc(pretty(assertion.params || {}))}</pre></td>
+        </tr>`;
+      }).join("");
+      return `<div class="table-wrap"><table class="assertion-table">
+        <thead><tr><th>状态</th><th>分值</th><th>断言类型</th><th>断言参数</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>`;
+    }
+
+    function renderReview(item) {
+      const review = currentReview(item);
+      const seeded = seededReview(item);
+      const seededNote = seeded ? `<div class="badge">已载入校准建议：${esc(seeded.note || "无备注")}</div>` : "";
+      return `<div class="review-box">
+        ${seededNote}
+        <div class="field"><label for="review-score">本题复核分（0-100）</label><input class="input" id="review-score" type="number" min="0" max="100" step="0.01" value="${esc(review.score)}"></div>
+        <div class="field"><label for="review-strict">复核严格通过</label><select class="select" id="review-strict">
+          <option value="original" ${review.strict === item.strict_pass ? "selected" : ""}>跟随当前判断</option>
+          <option value="true" ${review.strict === true && review.strict !== item.strict_pass ? "selected" : ""}>通过</option>
+          <option value="false" ${review.strict === false && review.strict !== item.strict_pass ? "selected" : ""}>不通过</option>
+        </select></div>
+        <div class="field note"><label for="review-note">复核备注</label><textarea class="textarea" id="review-note" placeholder="记录为什么保留或调整此题分数">${esc(review.note || "")}</textarea></div>
+        <button class="button primary" id="save-review">保存本题复核</button>
+      </div>
+      <p class="review-note">保存后只更新当前浏览器中的本题复核结果，不改写正式总分登记或汇总 Markdown。需要留档时请点击右上角“下载复核记录”。</p>`;
+    }
+
+    function renderDetail() {
+      const current = model();
+      const item = task();
+      if (!item) {
+        document.getElementById("detail").innerHTML = `<div class="empty">当前模型没有可展示的正式结果。</div>`;
+        return;
+      }
+      const userMessage = item.messages.find(message => message.role === "user");
+      const systemMessage = item.messages.find(message => message.role === "system");
+      const review = currentReview(item);
+      const hardFails = item.hard_fail_reasons.length ? `<div class="badge warn">硬失败：${esc(item.hard_fail_reasons.join("；"))}</div>` : "";
+      const techErrors = item.technical_errors.length ? `<div class="badge warn">技术异常：${esc(item.technical_errors.join("；"))}</div>` : "";
+      document.getElementById("detail").innerHTML = `
+        <div class="detail-head">
+          <div><h2>${esc(item.code)} · ${esc(item.label)}</h2>
+            <div class="detail-meta">${esc(current.label)} · ${esc(current.meta.batch_id || "无批次")} · 正式总分 ${score(finalScoreFor(current))}（以汇总登记为准） · ${item.num_model_calls} 次模型调用 · ${item.num_tool_calls} 次工具调用 · ${Number(item.model_time_s || 0).toFixed(1)} 秒模型耗时</div>
+            <div class="viz-row" style="margin-top:8px">${hardFails}${techErrors}</div>
+          </div>
+          <div class="score-hero"><div class="muted">本题复核分</div><div class="number">${esc(score(review.score))}</div><div class="${review.strict ? "pass" : "fail"}">${review.strict ? "复核后严格通过" : "复核后未严格通过"}</div></div>
+        </div>
+
+        <details class="block" open><summary>题面与运行约束</summary><div class="block-body">
+          <div class="muted" style="font-size:12px;margin-bottom:6px">用户题面</div>
+          <p class="prompt">${esc(userMessage?.content || "未找到用户题面")}</p>
+          <details style="margin-top:14px"><summary class="muted" style="padding:0;font-size:12px">查看系统消息</summary><pre class="prompt" style="margin-top:8px">${esc(systemMessage?.content || "未记录系统消息")}</pre></details>
+        </div></details>
+
+        <details class="block" open><summary>完整交互时间线（模型可见输出、工具调用、工具返回）</summary><div class="block-body"><div class="timeline">${renderTimeline(item)}</div></div></details>
+
+        <details class="block" open><summary>自动断言评分（${item.assertions_passed}/${item.assertions_total} 通过，当前分数 ${esc(score(item.weighted_score))}）</summary><div class="block-body">${renderAssertions(item)}</div></details>
+
+        <details class="block" open><summary>人工复核与重新打分</summary><div class="block-body">${renderReview(item)}</div></details>
+
+        <details class="block state"><summary>最终环境状态</summary><div class="block-body"><pre>${esc(pretty(item.end_state || {}))}</pre></div></details>
+      `;
+      document.getElementById("save-review").addEventListener("click", () => {
+        const rawScore = Number(document.getElementById("review-score").value);
+        const scoreValue = Math.max(0, Math.min(100, Number.isFinite(rawScore) ? rawScore : item.weighted_score));
+        const strictValue = document.getElementById("review-strict").value;
+        state.overrides[reviewKey(current.key, item.id)] = {
+          score: scoreValue,
+          strict: strictValue === "original" ? item.strict_pass : strictValue === "true",
+          note: document.getElementById("review-note").value,
+          updated_at: new Date().toISOString()
+        };
+        saveOverrides();
+        render();
+      });
+    }
+
+    function downloadReview() {
+      const payload = {
+        exported_at: new Date().toISOString(),
+        source: "agent-interaction-review.html",
+        overrides: state.overrides
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "agent-review-overrides.json";
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function resetAll() {
+      if (!confirm("确定清空当前浏览器中的全部人工调整吗？")) return;
+      state.overrides = { ...(REPORT_DATA.initial_overrides || {}) };
+      saveOverrides();
+      render();
+    }
+
+    function render() {
+      renderModelSelect();
+      renderStats();
+      renderRankTable();
+      renderTaskNav();
+      renderDetail();
+    }
+
+    document.getElementById("model-select").addEventListener("change", event => {
+      state.modelKey = event.target.value;
+      state.taskId = 1;
+      render();
+    });
+    document.getElementById("task-search").addEventListener("input", event => {
+      state.search = event.target.value;
+      renderTaskNav();
+      renderDetail();
+    });
+    document.getElementById("failed-only").addEventListener("change", event => {
+      state.failedOnly = event.target.checked;
+      renderTaskNav();
+      renderDetail();
+    });
+    document.getElementById("download-review").addEventListener("click", downloadReview);
+    document.getElementById("reset-all").addEventListener("click", resetAll);
+    render();
+  </script>
+</body>
+</html>

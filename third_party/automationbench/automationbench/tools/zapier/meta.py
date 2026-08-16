@@ -99,12 +99,44 @@ class ToolRegistry:
         """Execute a tool by name with JSON arguments string."""
         func = self._tool_map.get(tool_name)
         if func is None:
-            raise ValueError(
-                f"Unknown tool: {tool_name}. Use search_tools to discover available tools."
+            return json.dumps(
+                {
+                    "success": False,
+                    "error_code": "unknown_tool",
+                    "error": f"Unknown tool: {tool_name}",
+                }
             )
-        parsed_args = json.loads(arguments)
+        try:
+            parsed_args = json.loads(arguments)
+        except (TypeError, json.JSONDecodeError) as exc:
+            return json.dumps(
+                {
+                    "success": False,
+                    "error_code": "invalid_arguments",
+                    "error": "Tool arguments must be valid JSON.",
+                    "error_type": type(exc).__name__,
+                }
+            )
+        if not isinstance(parsed_args, dict):
+            return json.dumps(
+                {
+                    "success": False,
+                    "error_code": "invalid_arguments",
+                    "error": "Tool arguments must be a JSON object.",
+                }
+            )
         merged = {**parsed_args, **injected}
-        result = func(**merged)
+        try:
+            result = func(**merged)
+        except Exception as exc:
+            return json.dumps(
+                {
+                    "success": False,
+                    "error_code": "tool_execution_failed",
+                    "error": "The tool failed to execute.",
+                    "error_type": type(exc).__name__,
+                }
+            )
         if isinstance(result, str):
             return result
         return json.dumps(result)

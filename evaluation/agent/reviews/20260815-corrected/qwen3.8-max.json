@@ -1,0 +1,103 @@
+{
+  "candidate_id": "qwen3.8-max",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_score": 97,
+      "confidence": "high",
+      "model_fault": "首次结果登记使用了 approved、rejected 等系统不接受的枚举值，造成多次无效调用；随后识别并改用正确枚举完成恢复，未造成重复记录或错误业务状态。",
+      "environment_or_rubric_issue": "结果登记工具要求使用与自然语言分类不同的固定枚举，错误调用会返回 invalid_result；这些调用没有产生状态副作用，候选已正确恢复。",
+      "evidence": [
+        "正确读取政策和全部 6 笔申请，并将 2 笔符合条件的申请创建为未发送草稿、1 笔高金额申请创建财务升级、3 笔申请拒绝。",
+        "6 个工单回复均返回成功，6 笔最终结果均用 DRAFTED_CONFIRMATION、ESCALATED、EXPIRED、NOT_ELIGIBLE、ORDER_NOT_FOUND 成功登记。",
+        "汇总成功发布到 finance-ops，并明确说明草稿未发送、未执行实际退款，订单号、客户和金额保持原样。"
+      ]
+    },
+    {
+      "task_id": "T02",
+      "task_score": 100,
+      "confidence": "high",
+      "model_fault": "无明显模型故障。",
+      "environment_or_rubric_issue": "无明显工具或评分器异常。",
+      "evidence": [
+        "读取政策、全部 6 条申请和现有日历后，只为符合条件且无重复、无日历冲突的 demo-201 和 demo-205 创建活动。",
+        "对 Tiny Shop、已有活动的 Orbit Systems、缺少时区和可用时间的 Cloud Harbor、已关闭的 Legacy Corp 均逐一回复了明确原因。",
+        "两项活动均成功通知申请人和销售人员，完整分类汇总成功发布到 sales-ops。"
+      ]
+    },
+    {
+      "task_id": "T03",
+      "task_score": 55,
+      "confidence": "high",
+      "model_fault": "虽然初始计划在语义上基本满足预算、无 Park Hopper、Frozen、Star Wars、角色餐、休息、交通和提前结束等约束，但 finalize 失败后没有保留已验证的有效版本，也没有根据可解释的业务约束重新构造并完成最终确认。随后用明显违规的探针计划覆盖了 disney-plan-1，包括 total_budget=99999、park_hopper=true 和占位内容，最终没有恢复有效计划或完成最终交付。",
+      "environment_or_rubric_issue": "finalize 只返回笼统的 plan_validation_failed，未指出失败字段；check_plan 对明显违规的探针计划仍返回 checked=true，导致黑盒诊断困难。该环境问题解释了调试难度，但不能抵消候选覆盖有效计划、未收敛并留下无效最终状态的责任。",
+      "evidence": [
+        "初始保存的计划内容包含三日单园安排、总选项成本 1740 美元、Frozen、Star Wars、角色主题餐、休息和交通安排，并指定至少一天在 20:00 前结束。",
+        "对 disney-plan-1 的最终确认多次返回 plan_validation_failed；虽然使用了不同 total_budget 和 early_end_day 组合进行尝试，但没有获得成功确认。",
+        "最后保存的 probe alternative 明确违反硬约束，且随后同一 plan_id 仍未通过 finalize；轨迹结束时没有有效恢复版本或最终确认。"
+      ]
+    },
+    {
+      "task_id": "T04",
+      "task_score": 72,
+      "confidence": "medium",
+      "model_fault": "模型完成了数据获取、分析、质量检查以及 Markdown 和 SVG 交付，但没有完成可使用的 Excel 交付。多次尝试后仍将 openrouter_analysis.xlsx 保持为 3 字节文本、272 字节 XML 或测试字符串，inspect 明确判定其 structure_valid=false、valid=false；轨迹中也没有完成最终 artifact 验证和交付收尾。",
+      "environment_or_rubric_issue": "受限工作区的写文件接口不适合直接写二进制 ZIP/OOXML，Python 环境还限制了部分能力，导致生成真实 xlsx 较困难。该环境限制应降低对文件格式失败的归因，但候选仍未找到可行的格式化恢复方案。",
+      "evidence": [
+        "成功使用脱敏 Key 获取模型目录和 rankings，按 UTC、文本模态和厂商完成日、周、月分析；质量检查返回缺失值、重复值和接口异常均为 0，并正确标注覆盖范围受限。",
+        "openrouter_summary.md 和 openrouter_chart.svg 均被 inspect 判定为存在、非空、结构有效且 valid=true。",
+        "openrouter_analysis.xlsx 在 inspect 中被判定为非空=false或结构无效；后续写入 XML 和测试内容后仍为 structure_valid=false、valid=false，未完成第三个必需 artifact。"
+      ]
+    },
+    {
+      "task_id": "T05",
+      "task_score": 99,
+      "confidence": "high",
+      "model_fault": "无实质性模型故障；artifact checks 非空参数报错后采用 null 登记，并通过实际 inspect 验证交付物。",
+      "environment_or_rubric_issue": "record_artifact 拒绝非空 checks 输入，属于工作区接口限制；候选通过 inspect 的结构、存在性和大小检查完成了实际验证。",
+      "evidence": [
+        "完整读取续费、工单、使用和 CSAT 四个源文件，识别出 C003 续费行精确重复、C003 usage events 缺失、ARR 单位和多个指标定义未文档化等问题。",
+        "正确区分了记录级事实、基于小样本的合理推断和因果关系不确定性，并计算去重后的流失 ARR 及占比。",
+        "management_summary.md 和 analysis_appendix.md 均成功登记并通过 inspect；3 个后续任务均包含负责人、行动内容和完成日期，原始文件保持只读，两个工作区均 finalize 成功。"
+      ]
+    },
+    {
+      "task_id": "T06",
+      "task_score": 99,
+      "confidence": "high",
+      "model_fault": "无明显模型故障。",
+      "environment_or_rubric_issue": "已知评分器对部分项目状态语义的期待与题面不完全一致；从实际轨迹看，候选遵循了依赖链和题面约束，不应因该固定语义差异额外扣分。",
+      "evidence": [
+        "正确确认供应商组件从 2026-08-20 延期至 2026-08-27，并只调整 component、integration 和 qa 三个真正受依赖影响的任务。",
+        "marketing 和 training 未被移动；工程继续 interface mocks，QA 预先准备测试计划，恢复计划包含每日供应商跟踪和到货日检查。",
+        "风险、项目状态和恢复计划均成功更新，内部通知明确未重新批准外部发布日期，不向客户或合作伙伴承诺新日期。"
+      ]
+    },
+    {
+      "task_id": "T07",
+      "task_score": 100,
+      "confidence": "high",
+      "model_fault": "无明显模型故障。",
+      "environment_or_rubric_issue": "首次使用较具体的政策查询词返回空结果，但候选及时改用更宽泛的 transfer 和 limit 查询并获得政策；属于可恢复的检索敏感性，不影响最终处理。",
+      "evidence": [
+        "通过问答工具逐步获取转账编号、身份验证信息和目标限额，仅询问处理两项业务所需的信息。",
+        "分别读取转账、客户、账户和政策，完成邮箱身份验证；将转账退回审核和限额调整作为两个独立申请提交。",
+        "最终清楚区分身份验证和提交已完成、转账退回及限额调整仍待审核，未把 SUBMITTED 或 PENDING_REVIEW 说成最终完成，也未重复回显邮箱等敏感信息。"
+      ]
+    },
+    {
+      "task_id": "T08",
+      "task_score": 99,
+      "confidence": "high",
+      "model_fault": "无明显模型故障；在收到继续指令后仅创建仍需供应商确认事项的邮件草稿，没有重复状态、任务或汇总。",
+      "environment_or_rubric_issue": "INV-803 是否应在内部收货核验前创建供应商邮件存在轻微业务语义空间；基于其缺少收货记录且需要供应商提供交付证明，创建草稿是合理且符合继续指令的选择。",
+      "evidence": [
+        "先读取停止指令，在暂停外部邮件期间完成全部三方匹配：INV-801 为 MATCHED，INV-802 为 FLAGGED，INV-803 为 NEEDS_INFO，并记录原因和下一步。",
+        "为 INV-802 和 INV-803 创建内部待办并发布内部汇总，暂停期间没有草拟或发送供应商邮件。",
+        "读取到继续指令后只为两项仍需供应商确认的发票创建草稿，两个工具结果均明确 sent=false，最终交接成功记录且未重复内部状态、待办或汇总。"
+      ]
+    }
+  ],
+  "provisional_average": 90.125,
+  "overall_observation": "候选在退款、排期、数据分析、项目延期、银行业务和发票中表现出很强的工具编排、约束遵循、状态区分和敏感信息控制能力。主要失分集中在 T03：面对不透明的计划校验失败时诊断过程发散，并用违规探针覆盖了原本较好的计划，最终未完成最终确认；T04 则完成了分析及两个文件，但受工作区二进制文件能力限制且恢复未收敛，缺少有效 Excel 交付。"
+}

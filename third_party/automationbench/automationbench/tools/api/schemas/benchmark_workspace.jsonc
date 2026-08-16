@@ -1,0 +1,75 @@
+{
+  "api": "benchmark_workspace",
+  "version": "v1",
+  "baseUrl": "https://workspace.benchmark.local",
+  "notes": "Deterministic in-memory workspace inspired by GDPval-style artifact sandboxes. No host filesystem or network access is used.",
+  "endpoints": [
+    {
+      "id": "benchmark_workspace.files.list",
+      "path": "workspace/v1/files",
+      "method": "GET",
+      "description": "List bounded metadata for files in the simulated task workspace.",
+      "parameters": {},
+      "response": "{files: [{path, mime_type, size_bytes}]}"
+    },
+    {
+      "id": "benchmark_workspace.files.get",
+      "path": "workspace/v1/files/{path}",
+      "method": "GET",
+      "description": "Read one input or generated file from the simulated task workspace.",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "required": true,
+          "location": "path",
+          "description": "Relative virtual workspace path."
+        }
+      },
+      "response": "{path, content}"
+    },
+    {
+      "id": "benchmark_workspace.files.create",
+      "path": "workspace/v1/files",
+      "method": "POST",
+      "description": "Create a generated file in the simulated task workspace.",
+      "parameters": {},
+      "request": "Body: {path, content, overwrite}",
+      "response": "{created, updated, path}"
+    },
+    {
+      "id": "benchmark_workspace.code.run",
+      "path": "workspace/v1/code",
+      "method": "POST",
+      "description": "Run bounded Python transformations against virtual workspace files.",
+      "parameters": {},
+      "request": "Body: {source}",
+      "response": "{ok, stdout}"
+    },
+    {
+      "id": "benchmark_workspace.artifacts.list",
+      "path": "workspace/v1/artifacts",
+      "method": "GET",
+      "description": "Inspect generated artifacts for existence, non-empty content, and size consistency.",
+      "parameters": {},
+      "response": "{artifacts: [{path, valid, size_matches, non_empty}]}"
+    },
+    {
+      "id": "benchmark_workspace.artifacts.create",
+      "path": "workspace/v1/artifacts",
+      "method": "POST",
+      "description": "Record deterministic metadata for a generated deliverable.",
+      "parameters": {},
+      "request": "Body: {path, kind, sizeBytes, checks}",
+      "response": "{recorded, artifact}"
+    },
+    {
+      "id": "benchmark_workspace.finalize.create",
+      "path": "workspace/v1/finalize",
+      "method": "POST",
+      "description": "Finalize a workspace task only after selected deliverables pass artifact checks.",
+      "parameters": {},
+      "request": "Body: {deliverables, summary}",
+      "response": "{finalized, deliverables, summary}"
+    }
+  ]
+}

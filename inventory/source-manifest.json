@@ -1,152 +1,153 @@
 {
-  "generated_at": "2026-08-14",
+  "generated_at": "2026-08-15",
   "canonical_root": ".",
   "policy": {
     "preserve_originals": true,
     "include_secrets": false,
     "include_local_environments": false,
-    "include_generated_runs_by_default": false
+    "include_generated_runs_by_default": false,
+    "single_repository": true,
+    "one_canonical_copy_per_module": true
   },
   "sources": [
     {
-      "source": "local-source/model-api-collector",
-      "destination": "runners/model-api-collector",
-      "classification": "include",
+      "source": "previous model-evaluation-repro repository",
+      "destination": ".",
+      "classification": "base",
       "contents": [
-        "src",
-        "tests",
-        "pyproject.toml",
-        "README.md",
-        ".gitignore",
-        ".env.example",
-        ".env.*.example",
-        "config",
-        "prompts"
+        "project README and documentation",
+        "unified question bank",
+        "model-api-collector",
+        "project validation and CI"
       ],
-      "excluded": [
-        ".env",
-        ".env.*",
-        ".git",
-        ".venv",
-        ".playwright-cli",
-        "runs",
-        "__pycache__",
-        "*.egg-info"
-      ],
-      "reason": "Core OpenAI-compatible and OneAPI response collector with tests and provider configuration examples."
+      "reason": "Existing canonical project structure retained and updated in place."
     },
     {
-      "source": "local-source/llm-evaluation-question-bank",
-      "destination": "benchmark/question_bank/single_turn",
-      "classification": "include",
-      "contents": [
-        "README.md",
-        "assets",
-        "dataset",
-        "rubrics",
-        "scripts",
-        "outputs/README.md"
-      ],
-      "excluded": [
-        ".git",
-        "runs",
-        "outputs/*.jsonl"
-      ],
-      "reason": "Reusable prompt dataset, multimodal assets, rubrics, validation, and result-recording utilities."
-    },
-    {
-      "source": "local-source/模型测评题库",
-      "destination": "benchmark/question_bank/single_turn/source_material",
-      "classification": "include",
-      "contents": [
-        "README.md",
-        "题目",
-        "dataset",
-        "rubrics",
-        "assets",
-        "评测脚本",
-        "scripts",
-        "内部答案",
-        "接续任务"
-      ],
-      "excluded": [
-        ".git",
-        ".superpowers",
-        "outputs",
-        "评测结果",
-        "__pycache__"
-      ],
-      "reason": "Complete curated reasoning, coding, and multimodal question bank with deterministic graders and private answer keys."
-    },
-    {
-      "source": "local-source/模型测试大师/benchmark",
-      "destination": "benchmark/question_bank/archive/legacy_20260803/reasoning_and_candidates",
-      "classification": "review",
-      "contents": [
-        "AGENT_TASKS*.md",
-        "CODING_*.md",
-        "FORMAL_QUESTION_BANK.md",
-        "HIGH_PRESSURE_*.md",
-        "MODEL_BENCHMARK_OVERVIEW.md",
-        "MULTIMODAL_TASKS.md",
-        "QUESTIONS.md",
-        "answer_key.json",
-        "high_pressure",
-        "short_logic",
-        "short_logic_answer_key.json",
-        "questions.json",
-        "grade.py",
-        "reference_checks.py",
-        "render_questions.py",
-        "validate_*.py",
-        "assets"
-      ],
-      "excluded": [
-        "external/automationbench/.git",
-        "external/automationbench/.venv",
-        "external/automationbench/node_modules",
-        "external/automationbench/visualizer/runs",
-        "__pycache__",
-        "*.pyc"
-      ],
-      "reason": "Agent, reasoning, coding, and multimodal benchmark definitions plus local graders and tests."
-    },
-    {
-      "source": "local-source/模型测试大师/benchmark/external/automationbench",
-      "destination": "third_party/automationbench",
-      "classification": "review",
-      "contents": [
-        "source tree excluding local environments and generated artifacts"
-      ],
-      "reason": "Important execution dependency, but license, upstream version, repository size, and vendoring strategy require review before committing."
-    },
-    {
-      "source": "local-source/模型测评_new",
+      "source": "local workspace: 模型测评_new",
       "destination": "benchmark/question_bank/agent",
       "classification": "include",
       "contents": [
         "Agent题库_最终版_v1.0.md",
         "Agent题库_API评估兼容性检查_v1.0.md"
       ],
-      "reason": "Current Agent benchmark methodology, task definitions, and compatibility analysis."
+      "reason": "Current Agent task definitions, scoring rules and API compatibility analysis."
     },
     {
-      "source": "local-source/模型测评/Agent-Benchmark-知识库章节草稿.md",
-      "destination": "benchmark/question_bank/archive/agent/knowledge-base-draft.md",
-      "classification": "review",
+      "source": "local workspace: 模型测评_new/automationbench",
+      "destination": "third_party/automationbench",
+      "classification": "include",
       "contents": [
-        "knowledge-base draft"
+        "customized AutomationBench source tree",
+        "benchmark state models and tools",
+        "formal agent runner and teacher review scripts",
+        "tests",
+        "formal batch configuration manifests",
+        "minimal historical manifest/result fixture required by runner tests"
       ],
-      "reason": "Useful context document whose publication status and canonical wording need review."
+      "excluded": [
+        ".git",
+        ".venv",
+        ".pytest_cache",
+        ".ruff_cache",
+        "__pycache__",
+        "results",
+        "visualizer/runs",
+        ".env",
+        "local provider configuration values",
+        "other generated result files"
+      ],
+      "reason": "Current customized implementation is the only canonical AutomationBench copy in the single repository."
     },
     {
-      "source": "local-source/llm-eval",
-      "destination": "legacy/llm-eval",
-      "classification": "review",
+      "source": "local workspace: 模型测评_new/data/agent_final_scores.json",
+      "destination": "evaluation/agent/formal_scores_20260815.json",
+      "classification": "include",
+      "reason": "Human-confirmed official Agent score registry used for project-level ranking."
+    },
+    {
+      "source": "local workspace: 模型测评_new/automationbench/results/agent_runs/agent-suite-v1.1-tool-errors-noleak-20260815",
+      "destination": "evaluation/agent/formal_suite_summary_20260815.*",
+      "classification": "include",
       "contents": [
-        "source and tests excluding local run logs and environments"
+        "summary.md",
+        "summary.json"
       ],
-      "reason": "Older standalone evaluator with provider adapters; preserve as legacy until overlap with the canonical collector is resolved."
+      "excluded": [
+        "raw trajectories",
+        "temporary logs",
+        "local environment paths"
+      ],
+      "reason": "Final batch-level status and score summary without the full generated run directory."
+    },
+    {
+      "source": "local workspace: llm-evaluation-question-bank/runs/20260814-agent",
+      "destination": "evaluation/agent/evidence/20260814-agent",
+      "classification": "include",
+      "contents": [
+        "README.md",
+        "manifest.json",
+        "responses/"
+      ],
+      "excluded": [
+        "unrelated question-bank runs"
+      ],
+      "reason": "80 de-identified Agent interaction records used for review and result explanation."
+    },
+    {
+      "source": "local workspace: 模型测评_new/automationbench/results/teacher_reviews/agent-suite-final-20260815-corrected",
+      "destination": "evaluation/agent/reviews/20260815-corrected",
+      "classification": "include",
+      "contents": [
+        "corrected structured reviews",
+        "materials and manifest"
+      ],
+      "excluded": [
+        "raw run artifacts"
+      ],
+      "reason": "Structured review evidence supporting the final Agent score interpretation."
+    },
+    {
+      "source": "local workspace: 模型测评_new/tools",
+      "destination": "tools",
+      "classification": "include",
+      "contents": [
+        "review generation",
+        "de-identification",
+        "knowledge-base publishing and link update scripts",
+        "editor guards"
+      ],
+      "reason": "Reusable result cleanup and publishing workflow used after evaluation."
+    },
+    {
+      "source": "local workspace: 模型测评_new/docs/superpowers/plans",
+      "destination": "docs/plans/agent-benchmark",
+      "classification": "include",
+      "contents": [
+        "benchmark-tools-integration plan",
+        "benchmark-integrity-and-efficiency plan"
+      ],
+      "reason": "Implementation rationale and test-first record for the Agent benchmark changes."
+    },
+    {
+      "source": "local workspace: 模型测评_new/tests/test_agent_review_scoring.py",
+      "destination": "tests/agent/test_agent_review_scoring.py",
+      "classification": "include",
+      "reason": "Project-level review scoring validation."
+    },
+    {
+      "source": "local workspace: 模型测评_new/output/playwright",
+      "destination": "evaluation/evidence/playwright",
+      "classification": "include",
+      "reason": "Small set of visual evidence used during result review."
     }
+  ],
+  "excluded_by_policy": [
+    "local workspace: 模型测评_new/backups",
+    "local workspace: 模型测评_new/.playwright-cli",
+    "local workspace: 模型测评_new/automationbench/.venv",
+    "local workspace: 模型测评_new/automationbench/results",
+    "local .env files, API keys, cookies and browser sessions",
+    "pytest, ruff and Python cache directories",
+    "temporary probe files and failed run artifacts"
   ]
 }

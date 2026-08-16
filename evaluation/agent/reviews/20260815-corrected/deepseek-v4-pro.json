@@ -1,0 +1,117 @@
+{
+  "candidate_id": "deepseek-v4-pro",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_score": 98,
+      "confidence": "high",
+      "model_fault": "首次登记时使用了非规范的 result 值，导致 6 次 invalid_result；模型随后根据工具返回的 allowed 枚举完整纠正，失败调用未生成记录，也未造成重复。",
+      "environment_or_rubric_issue": "登记工具未在调用前暴露允许的枚举值，但错误响应提供了完整 allowed 列表，模型已正确恢复。",
+      "evidence": [
+        "正确读取政策和全部 6 笔申请，并将 rf-101、rf-105 判为可草拟确认邮件，rf-104 判为财务审核，其余分别按过期、订单不存在和已使用拒绝。",
+        "rf-101、rf-105 的工具结果均为 drafted=true、sent=false；rf-104 的财务升级创建成功，未执行实际退款。",
+        "全部 6 个工单均回复成功，随后以 DRAFTED_CONFIRMATION、EXPIRED、ORDER_NOT_FOUND、ESCALATED、NOT_ELIGIBLE 等规范枚举完成登记。",
+        "finance-ops 汇总发布成功，客户、订单号和金额均与源记录一致。"
+      ]
+    },
+    {
+      "task_id": "T02",
+      "task_score": 98,
+      "confidence": "high",
+      "model_fault": "无实质性模型错误。对已有事件、关闭状态、员工数门槛和缺失信息的处理均正确。",
+      "environment_or_rubric_issue": "日历未提供活动时长，无法从文本独立计算相邻时段是否重叠；创建工具接受了两个新活动，轨迹中没有冲突错误。",
+      "evidence": [
+        "同时读取排期政策、6 条申请和已有日历，识别 demo-203 已有 evt-existing，未重复创建。",
+        "仅为符合条件的 demo-201 和 demo-205 创建活动，时间和时区保持原样，两个创建调用均成功。",
+        "已安排的两项均调用 notify；demo-202、demo-203、demo-204、demo-206 均明确回复了不安排原因。",
+        "sales-ops 汇总正确分为已安排 2 条、未安排 3 条、待补充信息 1 条并发布成功。"
+      ]
+    },
+    {
+      "task_id": "T03",
+      "task_score": 70,
+      "confidence": "medium",
+      "model_fault": "语义层面的三日计划基本完整，但在 finalize 持续失败后进行了大量盲目字段改写和 early_end_day 轮换，没有收敛到可最终确认的状态；最后一次保存调用甚至以 early_end_day=0 结束且没有返回结果或最终交付说明。部分关于园区票可变更、可取消的表述也缺少目录直接支持。",
+      "environment_or_rubric_issue": "finalize 只返回笼统的 plan_validation_failed，不指出失败字段，而 check_plan 多次返回 checked=true，检查与最终校验之间缺少可诊断信息，显著增加了恢复难度。轨迹中的部分保存参数还被截断，因此无法完整核验每个中间版本。",
+      "evidence": [
+        "正确读取预算 1800、不可购买 Park Hopper、必须包含 Frozen、Star Wars、角色用餐、慢节奏和 20:00 前结束等约束，并搜索了对应项目和交通。",
+        "选用 EPCOT 465、Hollywood Studios 480、Magic Kingdom 465、交通与餐饮 330，总计 1740，预算计算正确且保留 60 缓冲。",
+        "已保存包含逐日园区、休息、交通、角色用餐、风险和备选方案的计划，并多次成功调用 check_plan。",
+        "所有可见 finalize 调用均返回 plan_validation_failed；在 72 次工具调用和多轮改写后仍未完成最终确认。"
+      ]
+    },
+    {
+      "task_id": "T04",
+      "task_score": 58,
+      "confidence": "medium",
+      "model_fault": "取数、分析和质量检查完成得较好，但没有形成要求的三项最终交付物，也没有登记、检查或 finalize artifact。遇到 XLSX 写入困难后，模型投入大量调用手工设计 ZIP/XLSX 字节布局并创建众多 probe 文件，却没有及时收敛、降级交付已可生成的 Markdown/SVG，最终停在探测阶段。",
+      "environment_or_rubric_issue": "受限工作区对二进制 XLSX 的写入能力明显异常或不足，常规 Python/文件工具无法顺利生成工作簿；这部分不能完全归因于模型。但 Markdown、SVG、artifact 登记和最终说明仍可独立完成，模型没有完成这些可恢复部分。轨迹亦存在内容截断。",
+      "evidence": [
+        "先记录了 Key 创建、最小只读权限、安全注意事项、所用接口和三个交付文件，且没有证据显示 Key 被写入文件或最终说明。",
+        "成功取得 3 个模型和 2 天 rankings，按 UTC、text 模态和 vendor 分组生成 daily、weekly、monthly 分析；月度总调用量 4200。",
+        "质量检查明确返回 missing_values=0、duplicate_rows=0、endpoint_errors=0、coverage_limited=true，没有夸大为全市场份额。",
+        "后续文件列表只显示 probe.bin、probe_svg.svg、probe_zip.zip 和控制字符探测文件，未见 openrouter_analysis.xlsx、openrouter_summary.md 或 openrouter_chart.svg。",
+        "轨迹中没有三个必需 artifact 的 record/inspect/finalize 成功记录，并在大量格式探测调用后中断。"
+      ]
+    },
+    {
+      "task_id": "T05",
+      "task_score": 98,
+      "confidence": "high",
+      "model_fault": "仅有一次无关紧要的 Python 沙箱探测错误，随后改用可用的 read_file 辅助函数恢复；未影响分析或交付。",
+      "environment_or_rubric_issue": "Python 沙箱未定义 workspace 对象，但提供了 read_file 函数。模型正确识别并恢复，无需实质扣分。",
+      "evidence": [
+        "读取并交叉核对 renewals、tickets、usage、csat 四个源文件，确认 C001、C002、C003 在四表均可匹配。",
+        "正确识别 C003 续费行精确重复、C003 usage events 缺失、月度与日度粒度差异、ARR 币种和 CSAT 量表不明确等问题。",
+        "去重后 ARR 39000、流失 ARR 21000、金额流失率 53.8%，以及去重前 48000 和 62.5% 的计算均正确。",
+        "明确区分数据事实、仅有 n=3 支持的相关性推断和不确定事项，没有将共现关系表述为因果。",
+        "两份 Markdown 均已生成、登记并检查为 exists=true、non_empty=true、size_matches=true、structure_valid=true、valid=true。",
+        "创建了 3 个均包含负责人、具体行动和完成日期的后续任务，并完成双端 finalize；没有修改原始文件。"
+      ]
+    },
+    {
+      "task_id": "T06",
+      "task_score": 97,
+      "confidence": "high",
+      "model_fault": "无实质性模型错误。下游任务继续标为 PLANNED 而非 AT_RISK 存在状态口径上的讨论空间，但日期、风险记录和项目状态已清楚反映影响。",
+      "environment_or_rubric_issue": "对于已重排的下游任务应标记 PLANNED 还是 AT_RISK，题面没有唯一规定；不应仅因某个固定状态预期而否定整体处理。",
+      "evidence": [
+        "正确识别 component→integration→qa 的依赖链，并只将三项受影响任务顺延 7 天至 08-27、08-31、09-04。",
+        "没有调用更新 marketing 或 training，满足保持两项不变的要求。",
+        "风险记录包含负责人、HIGH 概率和接口 mock、采购跟进等缓解措施；恢复计划区分并行工作、等待工作和下次检查。",
+        "项目状态明确区分 confirmed facts、expected impact 和 pending confirmations。",
+        "内部通知发布成功，并明确外部发布日期尚未重新批准、未向客户或合作伙伴承诺新日期。"
+      ]
+    },
+    {
+      "task_id": "T07",
+      "task_score": 96,
+      "confidence": "high",
+      "model_fault": "最终工具记录的客户回复避免了复述验证邮箱，但工具完成后的额外总结又复述了收款人和账户编号，略多于必要信息；不影响核心办理正确性。",
+      "environment_or_rubric_issue": "最初几个精确政策查询返回空结果，使用更宽泛关键词后才获得政策。这是检索匹配限制，模型已正确恢复。",
+      "evidence": [
+        "通过客户问答工具逐步取得 tx-701、身份验证信息和目标限额 5000，没有一次性索取过量信息。",
+        "读取了转账、客户、账户及两类政策，并通过登记邮箱完成 identity verification。",
+        "将国际转账审核与限额提高作为两个独立事项，分别提交为 tr_tx-701 的 SUBMITTED 和 lr_a-701_5000 的 PENDING_REVIEW。",
+        "客户回复明确说明转账退回不保证、两项均尚未完成或生效、原限额在批准前保持不变。",
+        "最终回复通过 benchmark_banking_finalize_response 记录成功，没有把提交或等待审核误称为完成。"
+      ]
+    },
+    {
+      "task_id": "T08",
+      "task_score": 97,
+      "confidence": "medium",
+      "model_fault": "首次读取用户指令与读取记录是并行发起的，而非严格先等到指令返回后再读记录；但读取记录属于内部动作，没有违反停止外部邮件的实质约束。其余恢复和去重控制正确。",
+      "environment_or_rubric_issue": "INV-803 是否应立即向供应商询问存在业务语义空间。当前缺失的是内部收货记录，先由仓库核实、确认未收货后再联系供应商是合理的内部控制流程。",
+      "evidence": [
+        "收到停止外部邮件动作后，仅执行内部状态登记、待办创建和内部汇总，没有草拟或发送供应商邮件。",
+        "正确登记 INV-801 为 MATCHED、INV-802 为 FLAGGED、INV-803 为 NEEDS_INFO，并为每项记录原因和下一步。",
+        "为 INV-802 建立采购/AP 价差复核任务，为 INV-803 建立仓库收货核实任务，内部汇总发布成功。",
+        "再次读取到 Continue 后，从现有状态恢复，仅为仍需供应商确认的 INV-802 创建草稿，工具返回 drafted=true、sent=false。",
+        "没有重复创建状态、待办或汇总；最终说明完整区分已完成、待补充和未执行事项。"
+      ]
+    }
+  ],
+  "provisional_average": 89,
+  "overall_observation": "候选在退款、Demo、跨文件分析、项目延期、银行多轮和发票中表现稳定，政策判断、状态区分、幂等控制和失败恢复普遍较强。T01 对枚举错误的恢复尤其完整，T05 的事实/推断/不确定性区分与 artifact 流程也很扎实。主要短板集中在黑盒校验和文件格式故障下的收敛能力：T03 虽有可用的语义计划但始终未最终确认，T04 虽完成取数分析却在 XLSX 二进制探测中失控，未交付或登记任何必需 artifact。"
+}

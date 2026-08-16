@@ -40,3 +40,9 @@ AutomationBench 依赖 Python 3.13。安装后，按其 README 运行指定任�
 - 题库版本和导出文件路径。
 
 正式测评默认使用 `--max-concurrent 1` 先验证单题，再逐步增加并发，避免错误配置放大费用。
+
+本仓库当前归档的 Agent 题库版本是
+`agent-suite-v1.0-20260814`，最终批次摘要位于
+[`evaluation/agent/formal_suite_summary_20260815.md`](../evaluation/agent/formal_suite_summary_20260815.md)。
+如果只是复核已有结果，优先阅读该摘要和
+[`evaluation/agent/formal_scores_20260815.json`](../evaluation/agent/formal_scores_20260815.json)，不要从历史运行目录重新拼接正式总分。

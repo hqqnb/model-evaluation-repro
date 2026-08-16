@@ -1,0 +1,281 @@
+{
+  "manifest_schema": "automationbench.formal-agent-suite.v1",
+  "batch_id": "agent-suite-v1.1-tool-errors-noleak-20260815",
+  "generated_at": "2026-08-15T13:08:45.008203",
+  "task_count": 8,
+  "models": {
+    "opus-4.8": {
+      "model": "Opus 4.8",
+      "provider_preflight": {
+        "run_id": "opus-4.8",
+        "model": "Opus 4.8",
+        "api": "responses",
+        "base_url": "https://oneapi-comate.baidu-int.com/v1",
+        "started_at": "2026-08-15T11:35:16.157537",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 3.438,
+        "completed_at": "2026-08-15T11:35:19.595574"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 91.1842105263158,
+      "strict_pass_rate": 0.625,
+      "strict_pass_count": 5,
+      "status": "complete"
+    },
+    "opus-5": {
+      "model": "Opus 5",
+      "provider_preflight": {
+        "run_id": "opus-5",
+        "model": "Opus 5",
+        "api": "responses",
+        "base_url": "https://oneapi-comate.baidu-int.com/v1",
+        "started_at": "2026-08-15T11:35:16.157600",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 2.47,
+        "completed_at": "2026-08-15T11:35:18.627224"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 92.5,
+      "strict_pass_rate": 0.75,
+      "strict_pass_count": 6,
+      "status": "complete"
+    },
+    "deepseek-v4-pro": {
+      "model": "deepseek-v4-pro",
+      "provider_preflight": {
+        "run_id": "deepseek-v4-pro",
+        "model": "deepseek-v4-pro",
+        "api": "chat_completions",
+        "base_url": "https://api.deepseek.com/v1",
+        "started_at": "2026-08-15T11:35:18.627437",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 1.67,
+        "completed_at": "2026-08-15T11:35:20.297266"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 86.1842105263158,
+      "strict_pass_rate": 0.5,
+      "strict_pass_count": 4,
+      "status": "complete"
+    },
+    "deepseek-v4-flash": {
+      "model": "deepseek-v4-flash",
+      "provider_preflight": {
+        "run_id": "deepseek-v4-flash",
+        "model": "deepseek-v4-flash",
+        "api": "chat_completions",
+        "base_url": "https://api.deepseek.com/v1",
+        "started_at": "2026-08-15T11:35:19.595851",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 1.518,
+        "completed_at": "2026-08-15T11:35:21.114151"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 89.3092105263158,
+      "strict_pass_rate": 0.625,
+      "strict_pass_count": 5,
+      "status": "complete"
+    },
+    "kimi-k3": {
+      "model": "kimi-k3",
+      "provider_preflight": {
+        "run_id": "kimi-k3",
+        "model": "kimi-k3",
+        "api": "chat_completions",
+        "base_url": "https://api.moonshot.cn/v1",
+        "started_at": "2026-08-15T11:35:20.297698",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 3.965,
+        "completed_at": "2026-08-15T11:35:24.263240"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 95.625,
+      "strict_pass_rate": 0.75,
+      "strict_pass_count": 6,
+      "status": "complete"
+    },
+    "gpt-5.6-sol": {
+      "model": "gpt-5.6-sol",
+      "provider_preflight": {
+        "run_id": "gpt-5.6-sol",
+        "model": "gpt-5.6-sol",
+        "api": "chat_completions",
+        "base_url": "https://oneapi-comate.baidu-int.com/v1",
+        "started_at": "2026-08-15T11:35:21.114541",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 8.37,
+        "completed_at": "2026-08-15T11:35:29.484741"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 95.0,
+      "strict_pass_rate": 0.75,
+      "strict_pass_count": 6,
+      "status": "complete"
+    },
+    "glm-5.2-internal": {
+      "model": "GLM-5.2-内部",
+      "provider_preflight": {
+        "run_id": "glm-5.2-internal",
+        "model": "GLM-5.2-内部",
+        "api": "chat_completions",
+        "base_url": "https://oneapi-comate.baidu-int.com/v1",
+        "started_at": "2026-08-15T11:35:24.263771",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 0.882,
+        "completed_at": "2026-08-15T11:35:25.146068"
+      },
+      "raw_task_count": 0,
+      "capability_task_count": 0,
+      "technical_failure_count": 8,
+      "avg_weighted_score": null,
+      "strict_pass_rate": null,
+      "strict_pass_count": 0,
+      "status": "technical_failure"
+    },
+    "qwen3.8-max": {
+      "model": "qwen3.8-max",
+      "provider_preflight": {
+        "run_id": "qwen3.8-max",
+        "model": "qwen3.8-max",
+        "api": "chat_completions",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "started_at": "2026-08-15T11:35:25.146369",
+        "status": "passed",
+        "tool_call_verified": true,
+        "attempts": 1,
+        "duration_seconds": 2.209,
+        "completed_at": "2026-08-15T11:35:27.355152"
+      },
+      "raw_task_count": 8,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "technical_failures": [],
+      "avg_weighted_score": 88.75,
+      "strict_pass_rate": 0.75,
+      "strict_pass_count": 6,
+      "status": "complete"
+    },
+    "hy3": {
+      "model": "hy3",
+      "provider_preflight": {
+        "run_id": "hy3",
+        "model": "hy3",
+        "api": "chat_completions",
+        "base_url": "https://tokenhub.tencentmaas.com/v1",
+        "started_at": "2026-08-15T11:35:27.355393",
+        "status": "technical_failure",
+        "tool_call_verified": false,
+        "category": "billing",
+        "error_type": "APIStatusError",
+        "error": "Error code: 402 - {'error': {'type': 'gateway_error', 'code': '403004', 'message': 'The account associated with the API Key is in arrears and the accessed service ID has been isolated. Please top up the account and re-enable the service in the console.', 'message_zh': 'API Key 所属账号已欠费，访问的服务 ID 已被隔离。请充值后在控制台重新启用服务。', 'request_id': 'c05ca76e-4d32-4b23-85bc-102698ff0187'}}",
+        "attempts": 2,
+        "duration_seconds": 0.232,
+        "completed_at": "2026-08-15T11:35:27.586998"
+      },
+      "raw_task_count": 0,
+      "capability_task_count": 0,
+      "technical_failure_count": 8,
+      "avg_weighted_score": null,
+      "strict_pass_rate": null,
+      "strict_pass_count": 0,
+      "status": "technical_failure"
+    }
+  },
+  "ranking": [
+    {
+      "run_id": "kimi-k3",
+      "model": "kimi-k3",
+      "avg_weighted_score": 95.625,
+      "strict_pass_rate": 0.75,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 1
+    },
+    {
+      "run_id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "avg_weighted_score": 95.0,
+      "strict_pass_rate": 0.75,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 2
+    },
+    {
+      "run_id": "opus-5",
+      "model": "Opus 5",
+      "avg_weighted_score": 92.5,
+      "strict_pass_rate": 0.75,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 3
+    },
+    {
+      "run_id": "qwen3.8-max",
+      "model": "qwen3.8-max",
+      "avg_weighted_score": 88.75,
+      "strict_pass_rate": 0.75,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 4
+    },
+    {
+      "run_id": "opus-4.8",
+      "model": "Opus 4.8",
+      "avg_weighted_score": 91.1842105263158,
+      "strict_pass_rate": 0.625,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 5
+    },
+    {
+      "run_id": "deepseek-v4-flash",
+      "model": "deepseek-v4-flash",
+      "avg_weighted_score": 89.3092105263158,
+      "strict_pass_rate": 0.625,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 6
+    },
+    {
+      "run_id": "deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "avg_weighted_score": 86.1842105263158,
+      "strict_pass_rate": 0.5,
+      "capability_task_count": 8,
+      "technical_failure_count": 0,
+      "rank": 7
+    }
+  ]
+}

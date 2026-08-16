@@ -49,7 +49,22 @@ from verifiers.utils.client_utils import setup_openai_client
 # an "abort". Retrying the full transient family with capped exponential backoff
 # + jitter is the root-cause fix; only a genuinely non-transient error (e.g. a
 # 400 bad request) or exhausting every attempt is allowed to propagate.
-_RETRY_MAX_ATTEMPTS = 40
+_DEFAULT_RETRY_MAX_ATTEMPTS = 40
+_RETRY_MAX_ATTEMPTS_ENV = "AUTO_BENCH_RETRY_MAX_ATTEMPTS"
+
+
+def _retry_max_attempts() -> int:
+    """Return the process-level retry budget, preserving the historical default."""
+    raw_value = os.environ.get(_RETRY_MAX_ATTEMPTS_ENV)
+    if raw_value is None:
+        return _DEFAULT_RETRY_MAX_ATTEMPTS
+    try:
+        attempts = int(raw_value)
+    except ValueError as exc:
+        raise ValueError(f"{_RETRY_MAX_ATTEMPTS_ENV} must be a positive integer") from exc
+    if attempts <= 0:
+        raise ValueError(f"{_RETRY_MAX_ATTEMPTS_ENV} must be a positive integer")
+    return attempts
 
 # Preserve every Responses API output item on the assistant message so a later
 # tool turn can replay reasoning items together with function calls. OpenAI
@@ -89,46 +104,7 @@ def _retry_delay(attempt: int, retry_after: float | None = None) -> float:
     return base + random.uniform(0, 1)
 
 
-def sanitize_oai_schema(node):
-    """Normalize a JSON Schema fragment for strict OpenAI-compatible gateways.
-
-    OneAPI-style gateways reject schemas whose anyOf/object entries lack a
-    ``type`` key (e.g. ``{"anyOf": [{}, {"type": "null"}]}`` produced by
-    pydantic).  This recursively:
-      - replaces empty schemas with a permissive ``{"type": "string"}``,
-      - drops ``{"type": "null"}`` alternatives,
-      - collapses single-entry ``anyOf``,
-      - adds ``type`` to objects/arrays and leaf nodes that lack one.
-    """
-    if not isinstance(node, dict):
-        return node
-    if not node:
-        return {"type": "string"}
-    out = dict(node)
-    if "anyOf" in out:
-        entries = [sanitize_oai_schema(e) for e in out["anyOf"]]
-        real = [e for e in entries if e.get("type") != "null"]
-        if not real:
-            real = [{"type": "string"}]
-        if len(real) == 1:
-            out.pop("anyOf")
-            out.update(real[0])
-        else:
-            out["anyOf"] = real
-    if "properties" in out:
-        out.setdefault("type", "object")
-        out["properties"] = {
-            k: sanitize_oai_schema(v) for k, v in out["properties"].items()
-        }
-    if "items" in out:
-        out.setdefault("type", "array")
-        out["items"] = sanitize_oai_schema(out["items"])
-    if "type" not in out and "anyOf" not in out:
-        out["type"] = "string"
-    return out
-
-
-# _RETRY_MAX_ATTEMPTS attempts at min(60, 2**attempt) sum to ~35 minutes, all of it
+# The default retry budget sums to ~35 minutes, all of it
 # inside one API call with no output. That is correct behaviour (better a slow rollout
 # than an aborted one) but it is indistinguishable from a hung run, and a whole
 # debugging session has been lost to exactly that ambiguity. Announce a retry storm
@@ -142,7 +118,7 @@ def _warn_retry_storm(attempt: int, err: Any, label: str) -> None:
         return
     kind = type(err).__name__ if err is not None else "empty-response"
     print(
-        f"[retry] {label}: attempt {attempt + 1}/{_RETRY_MAX_ATTEMPTS} after {kind} — "
+        f"[retry] {label}: attempt {attempt + 1}/{_retry_max_attempts()} after {kind} — "
         f"sleeping ~{min(60.0, 2.0**attempt):.0f}s (a run can legitimately stall for "
         f"minutes here; it is retrying, not hung)",
         flush=True,
@@ -223,6 +199,20 @@ def _record_safety_classifier_error(state: Any, err: BaseException) -> None:
     # task.  Exception responses have no native response object, so record the
     # equivalent terminal marker here.
     debug.setdefault("stop_reasons", []).append("refusal")
+
+
+def _record_client_error(state: Any, err: BaseException) -> None:
+    """Persist the final provider request error instead of returning a blank trace."""
+    if not isinstance(state, dict):
+        return
+    debug = state.setdefault("_debug", {})
+    debug.setdefault("errors", []).append(
+        {
+            "type": "provider_request",
+            "provider_exception": type(err).__name__,
+            "message": _exception_chain_text(err),
+        }
+    )
 
 
 def _perf(state: Any) -> dict | None:
@@ -416,8 +406,9 @@ class StreamingAnthropicClient(AnthropicMessagesClient):
 
         # Retry the full transient-error family (rate limit, overloaded, any 5xx
         # gateway/server error, dropped connection, timeout) with capped
-        # exponential backoff + jitter, honoring Retry-After. See _RETRY_MAX_ATTEMPTS.
-        for attempt in range(_RETRY_MAX_ATTEMPTS):
+        # exponential backoff + jitter, honoring Retry-After.
+        max_attempts = _retry_max_attempts()
+        for attempt in range(max_attempts):
             try:
                 t0 = time.monotonic()
                 async with self.client.messages.stream(**create_kwargs) as stream:
@@ -425,7 +416,7 @@ class StreamingAnthropicClient(AnthropicMessagesClient):
                 _record_model_call(state, time.monotonic() - t0, response)
                 return response
             except (anthropic.APIConnectionError, anthropic.APITimeoutError):
-                if attempt == _RETRY_MAX_ATTEMPTS - 1:
+                if attempt == max_attempts - 1:
                     raise
                 await asyncio.sleep(_retry_delay(attempt))
             except anthropic.APIStatusError as e:
@@ -436,7 +427,7 @@ class StreamingAnthropicClient(AnthropicMessagesClient):
                     or "overloaded_error" in err_str
                     or "rate_limit_error" in err_str
                 )
-                if not is_retryable or attempt == _RETRY_MAX_ATTEMPTS - 1:
+                if not is_retryable or attempt == max_attempts - 1:
                     raise
                 await asyncio.sleep(_retry_delay(attempt, _parse_retry_after(e)))
         raise RuntimeError("unreachable")
@@ -456,7 +447,7 @@ class OpenAIResponsesClient(Client[AsyncOpenAI, list[dict], Any, dict]):
         result: dict[str, Any] = {"type": "function", "name": tool.name}
         if tool.description:
             result["description"] = tool.description
-        result["parameters"] = sanitize_oai_schema(tool.parameters)
+        result["parameters"] = tool.parameters
         return result
 
     async def to_native_prompt(self, messages: Messages) -> tuple[list[dict], dict]:
@@ -562,7 +553,8 @@ class OpenAIResponsesClient(Client[AsyncOpenAI, list[dict], Any, dict]):
 
         call_kwargs = self.build_call_kwargs(prompt, model, sampling_args, tools, **kwargs)
 
-        for attempt in range(_RETRY_MAX_ATTEMPTS):
+        max_attempts = _retry_max_attempts()
+        for attempt in range(max_attempts):
             try:
                 t0 = time.monotonic()
                 resp = await self.client.responses.create(**call_kwargs)
@@ -579,13 +571,13 @@ class OpenAIResponsesClient(Client[AsyncOpenAI, list[dict], Any, dict]):
                 openai.APITimeoutError,
                 openai.InternalServerError,
             ) as e:
-                if attempt == _RETRY_MAX_ATTEMPTS - 1:
+                if attempt == max_attempts - 1:
                     raise
                 await asyncio.sleep(_retry_delay(attempt, _parse_retry_after(e)))
             except openai.APIStatusError as e:
                 # Any other 5xx is transient; 4xx (except handled 400/429) is not.
                 status = getattr(e, "status_code", None)
-                if status is None or status < 500 or attempt == _RETRY_MAX_ATTEMPTS - 1:
+                if status is None or status < 500 or attempt == max_attempts - 1:
                     raise
                 await asyncio.sleep(_retry_delay(attempt, _parse_retry_after(e)))
         raise RuntimeError("unreachable")
@@ -883,14 +875,15 @@ class GeminiInteractionsClient(Client[httpx.AsyncClient, list[dict], dict, dict]
         **kwargs,
     ) -> dict:
         """POST /interactions, retrying the transient family (429/5xx/connection/
-        timeout/failed-status/empty-output) with capped backoff — see _RETRY_MAX_ATTEMPTS."""
+        timeout/failed-status/empty-output) with capped backoff."""
         state = kwargs.pop("state", None)
         per_request_headers = kwargs.pop("extra_headers", None)
 
         payload = self.build_call_kwargs(prompt, model, sampling_args, tools, **kwargs)
 
-        for attempt in range(_RETRY_MAX_ATTEMPTS):
-            last_attempt = attempt == _RETRY_MAX_ATTEMPTS - 1
+        max_attempts = _retry_max_attempts()
+        for attempt in range(max_attempts):
+            last_attempt = attempt == max_attempts - 1
             try:
                 t0 = time.monotonic()
                 resp = await self.client.post(
@@ -1021,30 +1014,14 @@ class RetryingOpenAIChatCompletionsClient(OpenAIChatCompletionsClient):
             d = cast(dict, m)
             if d.get("reasoning_content") is None:
                 d.pop("reasoning_content", None)
+            if d.get("role") == "assistant" and d.get("content") is None and d.get("tool_calls"):
+                d.pop("content", None)
         return native, extra
 
     async def get_native_response(self, *args, **kwargs):
-        # OneAPI strict gateways reject tool schemas whose anyOf/object entries
-        # lack a 'type' key (pydantic emits {"anyOf": [{}, {"type": "null"}]}).
-        # Sanitize the native tool definitions before they reach the gateway.
-        tools = kwargs.get("tools", args[3] if len(args) > 3 else None)
-        if tools:
-            cleaned = []
-            for tool in tools:
-                native = dict(tool)
-                fn = dict(tool.get("function") or {})
-                if isinstance(fn.get("parameters"), dict):
-                    fn["parameters"] = sanitize_oai_schema(fn["parameters"])
-                native["function"] = fn
-                cleaned.append(native)
-            if "tools" in kwargs:
-                kwargs["tools"] = cleaned
-            elif len(args) > 3:
-                args = list(args)
-                args[3] = cleaned
-                args = tuple(args)
         state = kwargs.get("state")
-        for attempt in range(_RETRY_MAX_ATTEMPTS):
+        max_attempts = _retry_max_attempts()
+        for attempt in range(max_attempts):
             try:
                 t0 = time.monotonic()
                 resp = await super().get_native_response(*args, **kwargs)
@@ -1057,7 +1034,7 @@ class RetryingOpenAIChatCompletionsClient(OpenAIChatCompletionsClient):
                 if choices:
                     msg = choices[0].message
                     if not (msg.content or msg.tool_calls or parse_reasoning_content(msg)):
-                        if attempt == _RETRY_MAX_ATTEMPTS - 1:
+                        if attempt == max_attempts - 1:
                             return resp
                         _warn_retry_storm(attempt, None, "chat/empty-response")
                         await asyncio.sleep(_retry_delay(attempt))
@@ -1066,6 +1043,7 @@ class RetryingOpenAIChatCompletionsClient(OpenAIChatCompletionsClient):
             except _NON_RETRYABLE_CHAT as e:
                 # Genuine client errors (bad request, auth, not-found, …) won't
                 # change on retry — fail fast and loud.
+                _record_client_error(state, e)
                 if _is_safety_classifier_error(e):
                     _record_safety_classifier_error(state, e)
                     raise ModelError("provider safety classifier rejected the request") from e
@@ -1083,7 +1061,8 @@ class RetryingOpenAIChatCompletionsClient(OpenAIChatCompletionsClient):
                 # (the dominant abort cause on the proxy/alpha path), as well as
                 # connection/timeout/5xx/rate-limit. After the last attempt it
                 # propagates, and the --ensure-complete gate re-runs the task.
-                if attempt == _RETRY_MAX_ATTEMPTS - 1:
+                if attempt == max_attempts - 1:
+                    _record_client_error(state, e)
                     raise
                 _warn_retry_storm(attempt, e, "chat")
                 await asyncio.sleep(_retry_delay(attempt, _parse_retry_after(e)))

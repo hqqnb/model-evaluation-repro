@@ -9,6 +9,7 @@ import copy
 import inspect
 import json
 import time
+from functools import wraps
 from typing import Any, Callable
 
 import verifiers as vf
@@ -35,6 +36,37 @@ def strip_none_values(obj):
         return [strip_none_values(item) for item in obj if item is not None]
     else:
         return obj
+
+
+def _wrap_tool_with_visible_errors(tool: Callable) -> Callable:
+    """Keep direct tool failures visible to the model instead of raising."""
+
+    @wraps(tool)
+    def wrapped(*args: Any, **kwargs: Any) -> Any:
+        try:
+            result = tool(*args, **kwargs)
+        except Exception as exc:
+            return json.dumps(
+                {
+                    "success": False,
+                    "error_code": "tool_execution_failed",
+                    "error": "The tool failed to execute.",
+                    "error_type": type(exc).__name__,
+                }
+            )
+
+        if isinstance(result, str):
+            try:
+                payload = json.loads(result)
+            except json.JSONDecodeError:
+                return result
+            if isinstance(payload, dict) and payload.get("error") and payload.get("success") is True:
+                payload["success"] = False
+                return json.dumps(payload, ensure_ascii=False, sort_keys=True)
+        return result
+
+    wrapped.__signature__ = inspect.signature(tool)
+    return wrapped
 
 
 # Service field names on WorldState, longest first so prefix matching prefers
@@ -145,7 +177,10 @@ class AutomationBenchEnv(vf.StatefulToolEnv):
                 # Auto-detect args_to_skip: skip 'world' only if the function accepts it
                 sig = inspect.signature(tool)
                 args_to_skip = ["world"] if "world" in sig.parameters else []
-                self.add_tool(tool, args_to_skip=args_to_skip)
+                self.add_tool(
+                    _wrap_tool_with_visible_errors(tool),
+                    args_to_skip=args_to_skip,
+                )
 
         # Add any additional custom tools
         if tools:
@@ -202,6 +237,7 @@ class AutomationBenchEnv(vf.StatefulToolEnv):
         if initialized_state is None:
             raise RuntimeError("verifiers returned no state during benchmark setup")
         state = initialized_state
+
         # Get task info (deserialize from JSON if it's a string)
         info = state.get("info", {})
         if isinstance(info, str):
@@ -268,6 +304,7 @@ class AutomationBenchEnv(vf.StatefulToolEnv):
 
         # Override state["tool_defs"] with per-task filtered tools
         state["tool_defs"] = filtered_tools
+
         return state
 
     def _extract_usage_and_debug(self, state: vf.State) -> None:

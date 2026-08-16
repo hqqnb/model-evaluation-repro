@@ -1,0 +1,491 @@
+{
+  "run_id": "20260814-agent",
+  "generated_at": "2026-08-16",
+  "source": "agent-suite-final-20260815",
+  "task_count": 8,
+  "model_count": 10,
+  "document_count": 80,
+  "redaction": "API keys, bearer tokens and other credentials were redacted before archiving.",
+  "documents": [
+    {
+      "task_id": "T01",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t01/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t01/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t01/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t01/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t01/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "hy3",
+      "path": "responses/agent-t01/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "kimi-k3",
+      "path": "responses/agent-t01/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "opus-4.8",
+      "path": "responses/agent-t01/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "opus-5",
+      "path": "responses/agent-t01/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T01",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t01/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t02/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t02/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t02/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t02/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t02/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "hy3",
+      "path": "responses/agent-t02/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "kimi-k3",
+      "path": "responses/agent-t02/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "opus-4.8",
+      "path": "responses/agent-t02/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "opus-5",
+      "path": "responses/agent-t02/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T02",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t02/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t03/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t03/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t03/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t03/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t03/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "hy3",
+      "path": "responses/agent-t03/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "kimi-k3",
+      "path": "responses/agent-t03/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "opus-4.8",
+      "path": "responses/agent-t03/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "opus-5",
+      "path": "responses/agent-t03/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T03",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t03/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t04/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t04/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t04/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t04/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t04/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "hy3",
+      "path": "responses/agent-t04/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "kimi-k3",
+      "path": "responses/agent-t04/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "opus-4.8",
+      "path": "responses/agent-t04/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "opus-5",
+      "path": "responses/agent-t04/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T04",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t04/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t05/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t05/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t05/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t05/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t05/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "hy3",
+      "path": "responses/agent-t05/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "kimi-k3",
+      "path": "responses/agent-t05/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "opus-4.8",
+      "path": "responses/agent-t05/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "opus-5",
+      "path": "responses/agent-t05/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T05",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t05/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t06/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t06/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t06/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t06/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t06/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "hy3",
+      "path": "responses/agent-t06/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "kimi-k3",
+      "path": "responses/agent-t06/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "opus-4.8",
+      "path": "responses/agent-t06/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "opus-5",
+      "path": "responses/agent-t06/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T06",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t06/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t07/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t07/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t07/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t07/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t07/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "hy3",
+      "path": "responses/agent-t07/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "kimi-k3",
+      "path": "responses/agent-t07/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "opus-4.8",
+      "path": "responses/agent-t07/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "opus-5",
+      "path": "responses/agent-t07/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T07",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t07/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "deepseek-v4-flash",
+      "path": "responses/agent-t08/deepseek-v4-flash.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "deepseek-v4-pro",
+      "path": "responses/agent-t08/deepseek-v4-pro.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "glm-5.2-internal",
+      "path": "responses/agent-t08/glm-5.2-internal.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "gpt-5.5",
+      "path": "responses/agent-t08/gpt-5.5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "gpt-5.6-sol",
+      "path": "responses/agent-t08/gpt-5.6-sol.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "hy3",
+      "path": "responses/agent-t08/hy3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "kimi-k3",
+      "path": "responses/agent-t08/kimi-k3.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "opus-4.8",
+      "path": "responses/agent-t08/opus-4.8.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "opus-5",
+      "path": "responses/agent-t08/opus-5.md",
+      "source_run": "agent-suite-final-20260815"
+    },
+    {
+      "task_id": "T08",
+      "model": "qwen3.8-max",
+      "path": "responses/agent-t08/qwen3.8-max.md",
+      "source_run": "agent-suite-final-20260815"
+    }
+  ]
+}

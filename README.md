@@ -1,139 +1,114 @@
 # 模型测评项目
 
-这是一个把**出题、执行、评分、证据保存和结果解读**连成一条完整链路的大模型测评项目。它的目的不是收集几道题、给模型排一个名次，而是回答一个更具体的问题：
+这是一个把**题库设计、模型调用、Agent 工具执行、评分复核和结果归档**放在同一个仓库里的大模型测评项目。仓库的重点不是只给模型排一个名次，而是记录：
 
-> 当模型面对不同类型的真实任务时，它到底能不能正确理解、完成并交付结果？
+- 测评题目为什么这样设计；
+- 不同题型应该使用哪条评测链路；
+- Agent 是否真的完成了工具调用、状态变化和交付；
+- 结果如何评分、复核和解释；
+- 后续同事如何定位题目、代码、结果和证据。
 
-项目当前使用一套统一题库。题库按能力分成推理、Coding、多模态和 Agent 四类，但四类题目共同服务于同一个测评目标，不是四个彼此独立的项目。
+## 当前归档快照
 
-## 我们为什么这样搭建
+本仓库是对截至 **2026-08-15** 已完成工作的单仓归档。当前有效的主要成果包括：
 
-只看模型最后写出的一段话，无法判断它是否真的完成了任务。例如：
+| 模块 | 当前内容 | 入口 |
+| --- | --- | --- |
+| 项目总览 | 工作范围、方法、版本和结论 | [`docs/工作总览.md`](docs/工作总览.md) |
+| 统一题库 | 推理、Coding、多模态和 Agent 四类题目，共 28 道 | [`benchmark/question_bank/manifest.json`](benchmark/question_bank/manifest.json) |
+| Agent 题库 | T01-T08、评分规则和 API 兼容性说明 | [`benchmark/question_bank/agent/`](benchmark/question_bank/agent/) |
+| API 采集 | 单轮回答采集器、Provider 配置和测试 | [`runners/model-api-collector/`](runners/model-api-collector/) |
+| Agent 执行 | 定制版 AutomationBench、工具、状态、断言和运行脚本 | [`third_party/automationbench/`](third_party/automationbench/) |
+| 正式总分 | 人工确认后的 Agent 汇总分数 | [`evaluation/agent/formal_scores_20260815.json`](evaluation/agent/formal_scores_20260815.json) |
+| 最终批次摘要 | `agent-suite-v1.1-tool-errors-noleak-20260815` 的运行摘要 | [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md) |
+| 交互证据 | 8 道题、10 个模型、80 份已脱敏回答记录 | [`evaluation/agent/evidence/20260814-agent/`](evaluation/agent/evidence/20260814-agent/) |
+| 结果发布工具 | 评分整理、脱敏、复核和知识库链接回填脚本 | [`tools/`](tools/) |
 
-- 代码看起来完整，但实际运行不了；
-- 图片问题答对了，但关键细节是猜出来的；
-- Agent 说“已经处理完”，但工具没有真正执行，业务状态也没有改变；
-- 结果大体正确，却违反了“不发邮件”“不退款”“不修改原文件”等边界。
+## 先看什么
 
-因此，这个项目把模型回答之外的证据也纳入测评。不同题目会检查不同的交付结果：答案是否正确、代码是否能运行、图片信息是否识别准确、工具是否正确调用、最终状态是否满足要求，以及是否避开了高风险错误。
+如果你只是想快速理解项目，按下面顺序阅读：
 
-## 我们测什么
+1. [`docs/工作总览.md`](docs/工作总览.md)：看完整工作分解、每部分做了什么、目前处于什么状态。
+2. [`benchmark/question_bank/manifest.json`](benchmark/question_bank/manifest.json)：看统一题库的版本和题型范围。
+3. [`benchmark/question_bank/agent/tasks.md`](benchmark/question_bank/agent/tasks.md)：看 Agent 八道正式题目和评分口径。
+4. [`evaluation/agent/formal_scores_20260815.json`](evaluation/agent/formal_scores_20260815.json)：看项目采用的正式总分。
+5. [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md)：看最终 Agent 批次的技术状态、平均分和严格通过率。
+6. [`docs/reproduction.md`](docs/reproduction.md)：看如何在不暴露密钥的情况下进行本地验证或重新运行。
 
-当前题库快照是 `model-evaluation-20260805`，共 28 道题：
+## 测评链路
 
-| 能力 | 题量 | 用日常语言说，它在测什么 |
-| --- | ---: | --- |
-| 推理 | 8 | 条件很多、信息不完整或存在干扰时，模型能不能想对 |
-| Coding | 8 | 模型能不能把要求变成真正可运行、可检查的程序 |
-| 多模态 | 4 | 模型能不能看懂图片中的信息，并据此作答 |
-| Agent | 8 | 模型能不能使用工具，把一件多步骤事务安全、完整地办完 |
+仓库中保留两条不同的评测链路，不能混用：
 
-完整范围和材料入口见 [`benchmark/question_bank/manifest.json`](benchmark/question_bank/manifest.json)。
+### 单轮 API 采集
 
-## 题库是什么
+适用于推理、Coding 和部分多模态题目。采集器负责发送一次请求并保存原始回答、推理内容、Token、耗时和错误。
 
-题库不只是“给模型看的题面”，而是一套完整的测评材料：
+入口：
 
-- **题目**：模型需要完成的目标、背景和约束；
-- **素材**：图片、数据文件、初始业务状态或其他任务材料；
-- **评分规则**：哪些结果算完成，哪些错误会扣分或触发分数上限；
-- **验证方法**：答案核对、黑盒测试、人工评审、工具轨迹和最终状态检查；
-- **历史记录**：题目如何经过预跑、筛选和版本更新。
+- [`runners/model-api-collector/README.md`](runners/model-api-collector/README.md)
+- [`scripts/run-evaluation.sh`](scripts/run-evaluation.sh)
+- [`benchmark/question_bank/single_turn/`](benchmark/question_bank/single_turn/)
 
-当前正式入口是 [`benchmark/question_bank/`](benchmark/question_bank/)。其中 `single_turn/` 保存推理、Coding 和多模态题，`agent/` 保存 Agent 题；它们是同一套题库的不同执行方式。旧版本和实验材料统一放在 `benchmark/question_bank/archive/`，不会作为当前版本的第二套题库。
+这条链路**不执行工具调用，也不维护外部环境状态**，因此不能把单次工具调用文本当成完整 Agent 测评。
 
-## 一道题是怎样变成一个测评结果的
+### 多轮 Agent 执行
 
-```text
-明确要测的能力
-        ↓
-设计题目、约束和禁止事项
-        ↓
-准备答案、评分规则、素材或模拟环境
-        ↓
-用统一题面执行模型
-        ↓
-保存回答、代码、图片证据或工具过程
-        ↓
-按可核对的标准评分并人工复核
-        ↓
-结合分数、证据和失败原因解释结果
+适用于 T01-T08 Agent 题目。运行器会加载初始状态，向模型提供工具，执行模型发起的工具调用，把结果回传给模型，并根据最终环境状态和断言评分。
+
+入口：
+
+- [`third_party/automationbench/README.md`](third_party/automationbench/README.md)
+- [`third_party/automationbench/automationbench/scripts/formal_agent_suite.py`](third_party/automationbench/automationbench/scripts/formal_agent_suite.py)
+- [`benchmark/question_bank/agent/api_compatibility.md`](benchmark/question_bank/agent/api_compatibility.md)
+
+这条链路评价的是“模型 + 工具 + 环境状态 + 断言”的完整闭环，而不是模型对工具调用的文字描述。
+
+## 正式结果的阅读边界
+
+仓库中有两类结果，含义不同：
+
+- [`formal_scores_20260815.json`](evaluation/agent/formal_scores_20260815.json)：人工确认后登记的项目正式总分，当前排名和对外汇总以其中的 `official_score` 为准。
+- [`formal_suite_summary_20260815.json`](evaluation/agent/formal_suite_summary_20260815.json)：某一个最终批次的运行摘要，记录该批次的平均加权分、严格通过率、技术失败和预检状态。
+
+两者不能直接混成一个排名。正式总分包含人工汇总口径；批次摘要用于说明某一轮实际运行的结果和技术完整性。
+
+## 复现与安全
+
+默认先运行不访问外部 API 的检查：
+
+```bash
+./scripts/bootstrap.sh
+./scripts/smoke-test.sh
+python3 scripts/validate_project.py
+python3 benchmark/question_bank/validate_manifest.py
 ```
 
-具体来说，我们会：
+正式运行前需要明确记录题库版本、模型 ID、服务商、接口协议、并发、最大步数和输出目录。不要把 API Key、Cookie、本地登录态、`.env` 文件或未脱敏业务数据写入仓库。
 
-1. 先定义题目要区分的能力，而不是先找一道看起来复杂的题。
-2. 把任务目标拆成可以核对的要求，并写清楚不能做什么。
-3. 将模型输入和内部评分材料分开，避免把答案直接交给模型。
-4. 在相同题目和明确记录的请求条件下比较模型，必要时进行独立重复。
-5. 根据题型收集不同证据，而不是只保存最终一句话。
-6. 对结果进行人工复核，区分模型能力问题、执行失败和外部服务问题。
+仓库中的 Agent 交互记录已经做过密钥脱敏；大量临时运行目录、浏览器缓存、虚拟环境、失败探针和本地备份没有纳入公开归档。
 
-## 四类题目如何操作
-
-### 推理
-
-模型需要处理多条条件、数字、规则或不完整信息，并给出确定答案和必要的推导。评分重点是结论是否正确、推理是否自洽，以及能否识别题目中的错误或陷阱。
-
-### Coding
-
-模型需要交付可以运行的代码或完整的小型项目。评分不要求代码长得像参考答案，而是通过运行、黑盒测试或项目级检查判断功能是否真的完成，同时检查交互、稳定性和题目要求的边界。
-
-### 多模态
-
-每道题使用固定图片和明确问题。评分会分别检查模型是否读到了关键文字、位置、数量或关系，也会检查它在看不清时是否诚实表达不确定，而不是无依据地编造答案。
-
-### Agent
-
-模型需要在一个可观察、可重置的任务环境中完成多轮操作。测评不把“我已经完成了”当作证据，而是检查工具调用、工具返回、环境状态、记录和通知是否真的符合题目要求。涉及资金、权限、隐私、外部承诺或停止指令时，还会设置严重错误边界。
-
-当前部分 Agent 题已经具备执行环境，尚在适配的题目会在 [`benchmark/question_bank/agent/api_compatibility.md`](benchmark/question_bank/agent/api_compatibility.md) 中明确说明，不把“题目写好了”误称为“已经可以完整运行”。
-
-## 怎样保证测评合理
-
-我们主要依靠以下原则：
-
-- **有区分度**：题目要能够拉开不同模型的实际差异，不能只测会不会套模板。
-- **可核对**：每道题都要有答案、评分项或最终状态，结果不能只能凭印象判断。
-- **测真实交付**：Coding 看能不能运行，Agent 看是否真正完成状态变化，多模态看关键细节是否准确。
-- **保留边界**：不把“提交申请”说成“已经完成”，不把“计划”说成“已执行”，不允许越权或高风险操作被普通小失误抵消。
-- **版本清楚**：比较结果时同时记录题库版本、模型、请求条件、重复次数和评分方式。
-- **证据完整**：保存原始回答、测试结果、工具轨迹、最终状态和错误信息，方便复核。
-
-## 结果应该怎样理解
-
-总分是摘要，不是全部结论。一个可信的测评结果至少要同时看：
-
-- 模型最终回答或交付物；
-- 具体评分项通过了什么、失败了什么；
-- Coding 的运行或测试证据；
-- Agent 的工具过程和最终环境状态；
-- 是否出现严重错误、超时、限流或其他外部原因；
-- 多次运行是否稳定。
-
-项目不会把本地题库上的分数表述成官方 benchmark 分数，也不会把一次 API 失败直接解释成模型能力失败。模型服务更新、题库版本变化、请求参数和外部数据变化，都可能影响结果。
-
-## 项目结构
+## 目录结构
 
 ```text
-benchmark/question_bank/       统一题库、评分材料、素材和历史版本
-runners/                       单轮模型回答采集入口
-third_party/                   Agent 执行环境和第三方依赖
-evaluation/                    结果归档约定
-configs/                       Provider 与模型配置示例
-scripts/                       本地校验、初始化和运行入口
-docs/                          方法论、评分、架构和复现指南
-examples/                      脱敏示例输入与结果
-inventory/                     来源、归并和保留范围记录
+benchmark/
+  question_bank/              统一题库、评分规则和历史候选题
+configs/                      不含密钥的 Provider/Model 配置示例
+docs/                         方法、架构、复现、工作总览和实施计划
+evaluation/                   结果说明、正式分数和脱敏证据
+runners/                     单轮 API 采集器
+scripts/                     项目级验证和运行入口
+tests/                       项目级测试
+third_party/automationbench/  定制后的 Agent 执行和评分环境
+tools/                       结果复核、脱敏和发布工具
 ```
 
-## 进一步阅读
+## 版本和归档原则
 
-- [题库总览](benchmark/question_bank/README.md)
-- [测评方法论](docs/methodology.md)
-- [项目架构](docs/architecture.md)
-- [评分说明](docs/scoring.md)
-- [复现指南](docs/reproduction.md)
-- [GitHub 项目](https://github.com/hqqnb/model-evaluation-repro)
+- 当前有效代码每个模块只保留一份，不在目录中复制多个历史版本。
+- 版本变化优先通过 Git 提交记录查看；只有对复盘有价值的材料才进入归档或证据目录。
+- 运行结果按题库版本、批次和模型区分；不能把失败重跑或 smoke 结果当成正式结果。
+- 如果未来更新题库、评分口径或正式总分，应同步更新对应 manifest、工作总览和结果说明。
 
-复现指南负责环境、配置、命令和运行参数；README 只负责解释项目为什么这样搭建、题库是什么，以及结果为什么可以被复核。
+## 许可证与第三方代码
+
+第三方 AutomationBench 的许可证和来源说明见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) 及 [`third_party/automationbench/LICENSE`](third_party/automationbench/LICENSE)。

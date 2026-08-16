@@ -13,6 +13,53 @@ from automationbench.task_contract import TASK_CONTRACT_SCHEMA, task_contract_sh
 from automationbench.usage import RunUsage, format_cost
 
 STEP_CAP_MARGIN = 2
+_REDACTED = "[REDACTED]"
+_SENSITIVE_KEY_NAMES = {
+    "api_key",
+    "apikey",
+    "secret",
+    "test_api_key",
+    "openrouter_eval_api_key",
+}
+
+
+def _is_sensitive_key(key: Any) -> bool:
+    return str(key).lower().replace("-", "_") in _SENSITIVE_KEY_NAMES
+
+
+def _collect_sensitive_values(value: Any, *, key: Any = None) -> set[str]:
+    """Collect secret-like values before sanitizing a public result export."""
+    values: set[str] = set()
+    if _is_sensitive_key(key) and isinstance(value, str) and value:
+        values.add(value)
+    if isinstance(value, dict):
+        for child_key, child_value in value.items():
+            values.update(_collect_sensitive_values(child_value, key=child_key))
+    elif isinstance(value, (list, tuple)):
+        for child_value in value:
+            values.update(_collect_sensitive_values(child_value))
+    return values
+
+
+def _redact_sensitive(value: Any, secrets: set[str], *, key: Any = None) -> Any:
+    """Redact secret fields and occurrences embedded in transcript strings."""
+    if _is_sensitive_key(key):
+        return _REDACTED
+    if isinstance(value, dict):
+        return {
+            child_key: _redact_sensitive(child_value, secrets, key=child_key)
+            for child_key, child_value in value.items()
+        }
+    if isinstance(value, list):
+        return [_redact_sensitive(child_value, secrets) for child_value in value]
+    if isinstance(value, tuple):
+        return tuple(_redact_sensitive(child_value, secrets) for child_value in value)
+    if isinstance(value, str):
+        redacted = value
+        for secret in sorted(secrets, key=len, reverse=True):
+            redacted = redacted.replace(secret, _REDACTED)
+        return redacted
+    return value
 
 
 def is_aborted(task: dict[str, Any], step_cap: int) -> bool:
@@ -97,6 +144,8 @@ def export_results(
             _serialize_msg(m)
             for m in (prompt + completion if isinstance(prompt, list) else completion)
         ]
+        sensitive_values = _collect_sensitive_values(task_info)
+        safe_messages = _redact_sensitive(messages, sensitive_values)
 
         # Get token usage - prefer _usage accumulated in add_model_response (via state_columns)
         task_usage = output.get("_usage") or {}
@@ -140,7 +189,7 @@ def export_results(
         # it, which is exactly where refusal-classifier stops land).
         stop_reasons = debug_info.get("stop_reasons", [])
         empty_responses = debug_info.get("empty_responses", [])
-        errors = debug_info.get("errors", [])
+        errors = _redact_sensitive(debug_info.get("errors", []), sensitive_values)
 
         # Per-assertion results stored by rubric as a side effect
         assertion_results = output.get("_assertion_results") or []
@@ -198,6 +247,10 @@ def export_results(
             "name": task_name,
             "score": float(reward),
             "passed": reward == 1.0,
+            "partial_credit": float(reward),
+            "weighted_score": float(output.get("weighted_score", float(reward) * 100)),
+            "strict_pass": reward == 1.0,
+            "hard_fail_reasons": list(output.get("hard_fail_reasons") or []),
             "assertions_total": assertions_total,
             "assertions_passed": assertions_passed,
             "assertion_results": assertion_results,
@@ -212,9 +265,11 @@ def export_results(
             "tool_time_s": round(float(perf.get("tool_time_s", 0.0) or 0.0), 3),
             "cost": task_cost,
             "steps": steps,
-            "messages": messages,  # Include full chat completion
+            "messages": safe_messages,  # Include the redacted chat completion
+            "trajectory": safe_messages,
+            "technical_errors": list(errors),
             **contract_fields,
-            "end_state": output.get("_end_state"),
+            "end_state": _redact_sensitive(output.get("_end_state"), sensitive_values),
         }
 
         # Add debug info if there were any issues
@@ -251,6 +306,11 @@ def export_results(
             "avg_score": sum(float(o.get("reward", 0.0)) for o in outputs) / len(outputs)
             if outputs
             else 0.0,
+            "avg_weighted_score": (
+                sum(float(t["weighted_score"]) for t in task_results) / len(task_results)
+                if task_results
+                else 0.0
+            ),
             "pass_rate": (
                 sum(1 for t in task_results if t["passed"]) / len(task_results)
                 if task_results

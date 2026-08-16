@@ -10,6 +10,7 @@ from automationbench.domains.marketing import get_marketing_dataset
 from automationbench.domains.operations import get_operations_dataset
 from automationbench.domains.sales import get_sales_dataset
 from automationbench.domains.support import get_support_dataset
+from automationbench.domains.benchmark import get_benchmark_dataset
 
 try:
     from automationbench.domains.simple import get_simple_dataset
@@ -26,6 +27,7 @@ DOMAINS: dict[str, Callable[[], Dataset]] = {
     "support": get_support_dataset,
     "finance": get_finance_dataset,
     "hr": get_hr_dataset,
+    "benchmark": get_benchmark_dataset,
 }
 
 if _has_simple:

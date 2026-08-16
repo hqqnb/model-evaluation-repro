@@ -5,8 +5,6 @@
 
 import json
 
-import pytest
-
 from automationbench.schema.world import WorldState
 from automationbench.tools.zapier.meta import (
     ToolRegistry,
@@ -32,6 +30,11 @@ def _another_tool(world: WorldState, query: str) -> str:
 def _no_world_tool(message: str) -> str:
     """Tool that does not take a world parameter."""
     return json.dumps({"message": message})
+
+
+def _failing_tool(world: WorldState) -> str:
+    """A tool that raises unexpectedly."""
+    raise RuntimeError("expected answer: approve_refund")
 
 
 class TestToolRegistry:
@@ -73,10 +76,11 @@ class TestToolRegistry:
         assert parsed["name"] == "test"
         assert parsed["count"] == 3
 
-    def test_execute_unknown_tool_raises(self):
+    def test_execute_unknown_tool_returns_visible_failure(self):
         registry = ToolRegistry([_dummy_tool])
-        with pytest.raises(ValueError, match="Unknown tool"):
-            registry.execute("nonexistent", "{}", world=WorldState())
+        result = json.loads(registry.execute("nonexistent", "{}", world=WorldState()))
+        assert result["success"] is False
+        assert result["error_code"] == "unknown_tool"
 
     def test_execute_injects_kwargs(self):
         registry = ToolRegistry([_dummy_tool])
@@ -85,10 +89,19 @@ class TestToolRegistry:
         parsed = json.loads(result)
         assert parsed["name"] == "hi"
 
-    def test_execute_invalid_json_raises(self):
+    def test_execute_invalid_json_returns_visible_failure(self):
         registry = ToolRegistry([_dummy_tool])
-        with pytest.raises(json.JSONDecodeError):
-            registry.execute("_dummy_tool", "not json", world=WorldState())
+        result = json.loads(registry.execute("_dummy_tool", "not json", world=WorldState()))
+        assert result["success"] is False
+        assert result["error_code"] == "invalid_arguments"
+
+    def test_execute_handler_exception_returns_visible_failure(self):
+        registry = ToolRegistry([_failing_tool])
+        result = json.loads(registry.execute("_failing_tool", "{}", world=WorldState()))
+        assert result["success"] is False
+        assert result["error_code"] == "tool_execution_failed"
+        assert result["error_type"] == "RuntimeError"
+        assert "approve_refund" not in json.dumps(result)
 
     def test_get_full_description_strips_world(self):
         desc = ToolRegistry._get_full_description(_dummy_tool)
@@ -165,7 +178,8 @@ class TestExecuteTool:
         # Should not raise — returns some result
         assert isinstance(result, (dict, list))
 
-    def test_unknown_tool_raises(self):
+    def test_unknown_tool_returns_visible_failure(self):
         world = WorldState()
-        with pytest.raises(ValueError, match="Unknown tool"):
-            execute_tool(world, "totally_fake_tool", "{}")
+        result = json.loads(execute_tool(world, "totally_fake_tool", "{}"))
+        assert result["success"] is False
+        assert result["error_code"] == "unknown_tool"

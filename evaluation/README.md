@@ -14,3 +14,5 @@
 
 `examples/results/sample-run.json` 只展示结果结构，不代表真实测评成绩。
 不要把 API Key、Cookie、本地登录态、未脱敏业务数据或大批量临时运行日志写入仓库。
+
+当前 Agent 结果归档位于 [`evaluation/agent/`](agent/)，其中正式总分、最终批次摘要、交互证据和人工复核材料分开保存。

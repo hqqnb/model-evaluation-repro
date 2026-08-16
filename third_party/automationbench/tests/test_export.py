@@ -146,6 +146,44 @@ class TestTaskContractFingerprint:
 
 
 class TestExportResults:
+    def test_benchmark_secrets_are_redacted_from_transcript_and_end_state(self):
+        secret = "TEST_KEY_PLACEHOLDER_2026"
+        outputs = [
+            {
+                "task": "benchmark.t04_openrouter_analysis",
+                "reward": 1.0,
+                "info": {
+                    "task_name": "benchmark.t04_openrouter_analysis",
+                    "assertions": [],
+                    "initial_state": {
+                        "benchmark": {
+                            "data": {"openrouter": {"test_api_key": secret}}
+                        }
+                    },
+                },
+                "prompt": [{"role": "user", "content": f"Use {secret}"}],
+                "completion": [
+                    {"role": "assistant", "content": f"I will use {secret}"}
+                ],
+                "_end_state": {
+                    "benchmark": {
+                        "data": {"openrouter": {"test_api_key": secret}},
+                        "tool_log": [{"arguments": {"api_key": secret}}],
+                    }
+                },
+                "_usage": {"input_tokens": 10, "output_tokens": 10},
+                "_debug": {"errors": [f"secret={secret}"]},
+            }
+        ]
+        usage = _make_run_usage(1)
+
+        result = export_results(outputs, usage, "m", ["benchmark"])
+        serialized = json.dumps(result, ensure_ascii=False)
+
+        assert secret not in serialized
+        assert "[REDACTED]" in serialized
+        assert result["tasks"][0]["messages"][0]["content"] == "Use [REDACTED]"
+
     def test_basic_export_structure(self):
         outputs = _make_outputs(2)
         usage = _make_run_usage(2)
@@ -333,6 +371,42 @@ class TestExportResults:
         task = result["tasks"][0]
         assert task["assertions_passed"] == 1
         assert task["assertions_total"] == 2  # excludes the excluded one
+
+    def test_agent_score_and_trajectory_fields_are_exported(self):
+        outputs = [
+            {
+                "task": "benchmark.t04_openrouter_analysis",
+                "reward": 0.5,
+                "info": {"assertions": [{"type": "a", "points": 100}]},
+                "prompt": [{"role": "user", "content": "Run the task"}],
+                "completion": [
+                    {
+                        "role": "assistant",
+                        "content": "",
+                        "tool_calls": [{"name": "tool_a", "arguments": {}}],
+                    },
+                    {"role": "tool", "content": '{"ok": true}'},
+                ],
+                "weighted_score": 50.0,
+                "hard_fail_reasons": ["openrouter_api_key_leaked"],
+                "_assertion_results": [
+                    {"passed": False, "excluded": False, "points": 100}
+                ],
+                "_usage": {},
+                "_debug": {"errors": ["provider timeout"]},
+            }
+        ]
+        usage = _make_run_usage(1)
+
+        result = export_results(outputs, usage, "m", ["benchmark"])
+        task = result["tasks"][0]
+
+        assert task["partial_credit"] == 0.5
+        assert task["weighted_score"] == 50.0
+        assert task["strict_pass"] is False
+        assert task["hard_fail_reasons"] == ["openrouter_api_key_leaked"]
+        assert task["trajectory"] == task["messages"]
+        assert task["technical_errors"] == ["provider timeout"]
 
     def test_saves_to_file(self, tmp_path):
         outputs = _make_outputs(1)

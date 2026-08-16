@@ -1,0 +1,103 @@
+{
+  "candidate_id": "glm-5.2",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_score": 92,
+      "confidence": "high",
+      "model_fault": "前期在读取失败后基于无效申请编号继续尝试登记和草稿，并多次使用非法参数包装，造成过程不稳定；不过这些调用均被拒绝，随后成功恢复并按真实申请完成处理。",
+      "environment_or_rubric_issue": "退款政策和申请读取接口多次返回 Extra data，且无效申请调用被系统拒绝；后续有效调用均有明确成功回执，因此环境异常未造成最终状态污染。",
+      "evidence": [
+        "最终对 rf-101 至 rf-106 全部登记了结果：2 笔 DRAFTED_CONFIRMATION、1 笔 ESCALATED、3 笔不予批准。",
+        "两封确认邮件草稿均返回 sent=false，财务升级和六笔工单回复均有成功回执，未执行实际退款。",
+        "finance-ops 汇总最终返回 posted=true，并明确说明未发送邮件、未退款、未重复创建记录。"
+      ]
+    },
+    {
+      "task_id": "T02",
+      "task_score": 95,
+      "confidence": "high",
+      "model_fault": "两轮 Demo 通知使用了错误参数包装，造成重复失败调用；之后使用正确参数重试成功，未产生重复活动或重复有效通知。",
+      "environment_or_rubric_issue": "通知接口对异常参数包装直接返回 Extra data，属于接口调用协议敏感问题；正确参数重试后状态明确。",
+      "evidence": [
+        "成功读取排期政策、六笔申请和现有日历，并正确识别 demo-201、demo-205 为可安排项目。",
+        "成功创建 demo-201 和 demo-205，分别对 demo-202、demo-203、demo-204、demo-206 回复了员工不足、重复安排、信息缺失和已关闭等原因。",
+        "最终两个通知调用均返回 notified=true，sales-ops 汇总返回 posted=true，分类数量 2 个已安排、3 个未安排、1 个待补充正确。"
+      ]
+    },
+    {
+      "task_id": "T03",
+      "task_score": 77,
+      "confidence": "medium",
+      "model_fault": "权威需求读取失败后没有建立可靠的替代核验机制，反复尝试保存和探测参数；虽然最终形成并检查了计划，但最终 finalize 没有获得成功确认，任务收尾未闭环。",
+      "environment_or_rubric_issue": "需求读取和计划保存接口多次返回解析错误，且已知校验失败只返回 plan_validation_failed、不指出具体字段，导致计划内容与黑盒校验状态之间存在不透明性。",
+      "evidence": [
+        "最终保存的计划包含三日单园区安排，预算计算为 465+480+465+330=1740，包含 Frozen、Star Wars、角色主题用餐、休息和交通时间。",
+        "计划中明确安排了一天在 20:00 前结束，并在风险预案和备选方案中说明可取消餐饮及交通替代方案。",
+        "benchmark_travel_check_plan 返回 checked=true，但最后的 benchmark_travel_finalize 调用没有看到成功回执，也没有最终确认性的用户交付消息。"
+      ]
+    },
+    {
+      "task_id": "T04",
+      "task_score": 46,
+      "confidence": "medium",
+      "model_fault": "在 run_python 被安全过滤后持续试探导入和文件写入方式，未及时收敛到可行的替代交付方案；最终没有完成三个文件的生成、artifact 登记检查和最终交付。",
+      "environment_or_rubric_issue": "工作区运行环境拦截了 zipfile、XML、zlib 等模块，且多次调用因参数解析返回 Extra data；这对 xlsx 生成造成了真实障碍，但不能解释未完成 Markdown、SVG、artifact 检查和最终说明。",
+      "evidence": [
+        "成功记录了只读 Key 设置和安全注意事项，并使用脱敏 Key 成功获取模型目录和 rankings。",
+        "工作区最初为空，但轨迹后半段未出现三个目标文件已写入、artifact 已登记或 artifact 检查成功的证据。",
+        "大量 run_python 调用返回 unsafe_code 或 Extra data，轨迹以 None 和 length 结束，没有完成最终交付。"
+      ]
+    },
+    {
+      "task_id": "T05",
+      "task_score": 96,
+      "confidence": "high",
+      "model_fault": "Python 校验调用失败后主要依靠手工计算，缺少成功的脚本复核；不过最终分析给出了可复核算式，结果和源数据一致。",
+      "environment_or_rubric_issue": "复杂 run_python 调用受到参数解析或沙箱限制，未能执行脚本，但没有阻止手工核验、artifact 生成和最终冻结。",
+      "evidence": [
+        "读取了 renewals、tickets、usage、csat 四个源文件，正确发现 C003 renewals 完全重复、C003 events 缺失、CSAT 与 resolution_hours 推算时序不一致以及粒度差异。",
+        "去重后 ARR 39000、流失 ARR 21000、续约 ARR 18000、logo 流失 2/3 的计算与原始数据一致，并明确标注样本量为 3、不可外推。",
+        "最终交付 management_summary.md 和 analysis_appendix.md，均声明 artifact valid=true；三个后续任务均有负责人、行动内容和完成日期，最终 finalize 返回成功。"
+      ]
+    },
+    {
+      "task_id": "T06",
+      "task_score": 98,
+      "confidence": "high",
+      "model_fault": "未见实质性模型错误；依赖链、受影响任务、风险和内部通知处理均符合题面约束。",
+      "environment_or_rubric_issue": "已知评分器对项目任务状态和题面语义可能存在不完全一致，尤其是是否将后续依赖任务标记为 AT_RISK；从业务语义看当前处理是合理的。",
+      "evidence": [
+        "正确沿 component → integration → QA 链条将日期分别调整为 2026-08-27、2026-08-31 和 2026-09-04。",
+        "Marketing 仍为 2026-08-22，training 仍为 2026-08-23，未移动不受影响的任务。",
+        "风险、项目状态、恢复计划和内部通知均成功更新，并明确外部 launch date 未重新批准、不得向客户或合作伙伴承诺新日期。"
+      ]
+    },
+    {
+      "task_id": "T07",
+      "task_score": 89,
+      "confidence": "high",
+      "model_fault": "在工具失败后进行了大量重复询问和政策检索，若干客户话术中反复出现转账编号；不过最终未重复邮箱等高敏感身份信息，并正确区分了已完成、已提交和等待审核。",
+      "environment_or_rubric_issue": "客户问答、身份验证和政策搜索接口多次因参数解析返回 Extra data；有效调用最终成功，且空的转账政策搜索结果并未阻止正确提交人工审核。",
+      "evidence": [
+        "成功获取 tx-701、客户 c-701、账户 a-701，确认转账为 PENDING、当前限额为 1000，并通过邮箱完成身份验证。",
+        "转账退回被正确提交为 tr_tx-701、状态 SUBMITTED；限额提高到 5000 被正确提交为 lr_a-701_5000、状态 PENDING_REVIEW。",
+        "最终客户回复记录成功，明确说明转账尚未退款、限额仍为 1000，避免把审核提交说成最终完成。"
+      ]
+    },
+    {
+      "task_id": "T08",
+      "task_score": 94,
+      "confidence": "high",
+      "model_fault": "在成功读取停止指令前已经完成了内部核对、待办和汇总，严格的指令时序不够干净；同时进行了较多重复的指令读取调用，但在整个过程中没有创建或发送外部邮件。",
+      "environment_or_rubric_issue": "下一条指令接口前期多次返回 Extra data，导致 Stop 指令直到内部工作完成后才成功返回；INV-803 是否应立即向供应商草拟邮件也存在业务语义上的合理争议。",
+      "evidence": [
+        "三张发票分别正确登记为 INV-801 MATCHED、INV-802 FLAGGED、INV-803 NEEDS_INFO，并记录了金额、数量和收货状态原因。",
+        "停止外部邮件阶段完成了两个内部跟进任务和内部汇总，且未创建供应商邮件；收到 Continue 后只为 INV-802 和 INV-803 创建草稿。",
+        "两封邮件均返回 sent=false，状态、任务和汇总未重复创建，最终 finalize 返回 finalized=true。"
+      ]
+    }
+  ],
+  "provisional_average": 86.0,
+  "overall_observation": "候选在退款、Demo 排期、数据分析、项目延期、银行审核和发票中断恢复等业务任务上，实质操作大多正确，能在工具异常后恢复并保持关键安全约束。主要扣分来自反复生成非法参数、工具失败后的低效试探，以及 Disney 任务未获得最终确认、OpenRouter 任务未完成三个交付文件和 artifact 收尾。整体属于核心业务能力较强但稳定性和复杂工作区收敛能力不均衡。"
+}

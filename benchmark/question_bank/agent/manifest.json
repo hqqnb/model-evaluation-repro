@@ -1,6 +1,8 @@
 {
   "schema_version": "1.0",
-  "bank_id": "model-evaluation-20260805",
+  "bank_id": "agent-suite-v1.0-20260814",
+  "updated": "2026-08-14",
+  "status": "active",
   "task_count": 8,
   "tasks": [
     {

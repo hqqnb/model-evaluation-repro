@@ -33,7 +33,14 @@ def linkedin_get_my_profile(
     """
     profile = world.linkedin.get_current_user_profile()
     if profile is None:
-        return json.dumps({"success": True, "message": "No authenticated user profile", "id": None})
+        return json.dumps(
+            {
+                "success": False,
+                "error": "no_authenticated_user_profile",
+                "message": "No authenticated user profile",
+                "id": None,
+            }
+        )
 
     result = {
         "success": True,

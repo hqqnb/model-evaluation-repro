@@ -44,8 +44,8 @@ class TestLinkedInGetMyProfile:
         assert result_dict["success"] is True
         assert "first_name" in result_dict
 
-    def test_get_my_profile_no_user(self):
-        """Get my profile with no user returns success with null id."""
+    def test_get_my_profile_no_user_returns_failure(self):
+        """No authenticated profile is a visible tool failure."""
         world = WorldState()
 
         result = linkedin_get_my_profile(
@@ -53,7 +53,8 @@ class TestLinkedInGetMyProfile:
         )
 
         result_dict = json.loads(result)
-        assert result_dict["success"] is True
+        assert result_dict["success"] is False
+        assert result_dict["error"] == "no_authenticated_user_profile"
         assert result_dict["id"] is None  # No authenticated user
 
 

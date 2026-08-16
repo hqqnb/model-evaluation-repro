@@ -61,6 +61,8 @@ from automationbench.tools.api.routes.xero import route_xero
 from automationbench.tools.api.routes.wave import route_wave
 from automationbench.tools.api.routes.bamboohr import route_bamboohr
 from automationbench.tools.api.routes.recruitee import route_recruitee
+from automationbench.tools.api.routes.benchmark_banking import route_banking
+from automationbench.tools.api.routes.benchmark_workspace import route_agentic_workspace
 
 
 def _coerce_to_dict(value) -> dict:
@@ -86,6 +88,8 @@ def _router_service(router) -> str:
 # Static URL prefix routing: (url_prefix_to_strip, internal_prefix_to_add, router_fn)
 # Given a full URL: strip url_prefix, prepend internal_prefix, pass to router.
 _STATIC_URL_ROUTERS = [
+    ("https://banking.benchmark.local/", "banking/", route_banking),
+    ("https://workspace.benchmark.local/", "workspace/", route_agentic_workspace),
     ("https://gmail.googleapis.com/", "", route_gmail),
     (
         "https://www.googleapis.com/gmail/",

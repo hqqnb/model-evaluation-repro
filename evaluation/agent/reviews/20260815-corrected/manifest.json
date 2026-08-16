@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-08-15T14:43:58.533444",
+  "teacher_model": "gpt-5.6-sol",
+  "candidate_count": 9,
+  "candidates": [
+    "qwen3.8-max",
+    "gpt-5.6-sol",
+    "kimi-k3",
+    "opus-5",
+    "opus-4.8",
+    "deepseek-v4-flash",
+    "deepseek-v4-pro",
+    "glm-5.2",
+    "hy3"
+  ],
+  "output_dir": "automationbench/results/teacher_reviews/agent-suite-final-20260815"
+}

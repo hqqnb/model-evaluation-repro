@@ -1,0 +1,103 @@
+{
+  "candidate_id": "opus-4.8",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "task_score": 97,
+      "confidence": "high",
+      "model_fault": "初次为六笔申请使用了 approved/denied 等不被工具接受的结果值，造成无效调用和过程噪声；随后根据工具返回的枚举约束全部正确重试。",
+      "environment_or_rubric_issue": "工具在调用失败后才明确返回允许的结果枚举，存在接口提示不足；但错误可恢复，最终没有形成重复记录或遗漏。",
+      "evidence": [
+        "正确识别两笔可退款申请、Derek Wu 的高金额财务升级，以及过期、订单不存在、商品已使用三笔拒绝结果。",
+        "rf-101 和 rf-105 的邮件草稿创建成功且 sent=false，rf-104 财务升级成功，未执行实际退款或发送邮件。",
+        "六笔工单均已回复，六笔决定均以有效枚举重新登记，并成功在 finance-ops 发布汇总。"
+      ]
+    },
+    {
+      "task_id": "T02",
+      "task_score": 99,
+      "confidence": "high",
+      "model_fault": "无明显模型错误。",
+      "environment_or_rubric_issue": "无明显环境或评分口径问题。",
+      "evidence": [
+        "正确结合 ACTIVE 状态、员工数量、时区、可用时间和已有日历判断，创建了 demo-201 与 demo-205 两个无冲突活动。",
+        "对 Tiny Shop、已安排的 Orbit Systems、缺少信息的 Cloud Harbor 和 CLOSED 的 Legacy Corp 分别给出了明确原因，未创建重复活动或重开关闭申请。",
+        "两个已安排申请均完成通知，其余四个申请均完成回复，并在 sales-ops 发布了 2/3/1 分类汇总。"
+      ]
+    },
+    {
+      "task_id": "T03",
+      "task_score": 78,
+      "confidence": "medium",
+      "model_fault": "未完成最终 finalize；在校验失败后多次改写计划文本和 early_end_day 进行试探，收敛效率较低。另有将目录中未明确标注可取消的园区选项表述为可取消预订的证据不足风险。",
+      "environment_or_rubric_issue": "finalize 只返回 plan_validation_failed，没有指出失败字段；同时目录仅明确提供了 cancelable dining，园区门票是否属于不可取消预订未被清楚标注，存在校验器歧义或约束可能不可满足的问题。",
+      "evidence": [
+        "已读取要求并搜索 Frozen Ever After、Star Wars Galaxy's Edge、角色餐和交通餐饮选项，预算计算为 1740 美元，满足预算、无 Park Hopper、三日单园区等主要要求。",
+        "保存的计划包含逐日安排、Frozen、Star Wars、角色餐、慢节奏休息、交通、风险计划和备选方案；check_plan 返回 checked=true。",
+        "finalize 在多次版本和最终重检后仍返回 plan_validation_failed，因此计划虽已保存并被检查，但没有完成用户要求的最终确认。"
+      ]
+    },
+    {
+      "task_id": "T04",
+      "task_score": 73,
+      "confidence": "medium",
+      "model_fault": "最终没有交付一个可用的 openrouter_analysis.xlsx；在发现格式问题后进行了大量探测，轨迹末端仍未见清晰的最终交付/收敛说明。对无法生成有效二进制文件的情况虽作出诊断，但没有形成完整的替代交付闭环。",
+      "environment_or_rubric_issue": "工作区的 write_file 以 UTF-8 文本方式落盘，Python 沙箱又限制了二进制 ZIP/XLSX 生成能力；即使写入最小 ZIP 探针，artifact inspector 仍判定结构无效，这是显著的工作区能力限制。",
+      "evidence": [
+        "已记录 Key 创建、只读最小权限、安全注意事项和 API 使用方式，并以脱敏值调用模型目录和 rankings；没有把 Key 写入文件或最终内容，也明确声明数据不代表全市场份额。",
+        "已按 UTC、文本模态和厂商映射完成日/周/月分析，质量检查返回 missing_values=0、duplicate_rows=0、endpoint_errors=0，同时标记 coverage_limited=true。",
+        "openrouter_summary.md 和 openrouter_chart.svg 均被检查为 valid=true；但 openrouter_analysis.xlsx 虽存在且非空，检查结果为 structure_valid=false、valid=false，不能视为可用的 XLSX 交付物。"
+      ]
+    },
+    {
+      "task_id": "T05",
+      "task_score": 99,
+      "confidence": "high",
+      "model_fault": "无明显模型错误。",
+      "environment_or_rubric_issue": "无明显环境或评分口径问题。",
+      "evidence": [
+        "读取并按 customer_id 匹配续费、工单、使用和 CSAT 四个文件，识别了完整覆盖、C003 重复续费记录、缺失 usage events、时间粒度和期间口径差异。",
+        "去重后正确计算总 ARR 39000、流失 ARR 21000、ARR 流失率 53.8% 和 logo churn 66.7%，并区分事实、合理推断及 n=3 下的不确定性。",
+        "management_summary.md 和 analysis_appendix.md 均登记并检查为有效，三个后续任务均包含负责人、行动内容和完成日期，且原始文件未修改。"
+      ]
+    },
+    {
+      "task_id": "T06",
+      "task_score": 98,
+      "confidence": "high",
+      "model_fault": "无实质性错误。下游预测日期被写入任务 due_date，但备注、状态和项目状态中均明确标为预计并待 Engineering/QA 确认，保留了原始基线。",
+      "environment_or_rubric_issue": "题目语义与评分器对任务状态的期待可能不完全一致；在实际轨迹中，日期依赖链和事实/预测区分是清楚的。",
+      "evidence": [
+        "正确识别 component → integration → qa 依赖链，将组件从 08-20 调整到已确认的 08-27，并将 integration 和 QA 分别预测为 08-31 和 09-04。",
+        "marketing 08-22 和 training 08-23 未被移动，符合只调整真正受影响任务的约束。",
+        "风险、项目状态、恢复计划和内部通知均已更新，明确说明供应商延期是事实、下游日期是预计、外部发布日期尚未批准且不得对外承诺。"
+      ]
+    },
+    {
+      "task_id": "T07",
+      "task_score": 97,
+      "confidence": "high",
+      "model_fault": "初始具体政策查询为空后通过扩大查询范围补救，增加了调用次数但未造成业务错误；最终面向中文客户的工具后总结切换为日语，降低了语言一致性。",
+      "environment_or_rubric_issue": "无明显环境问题；政策搜索对具体查询返回空、对宽查询返回结果，属于可通过扩展查询恢复的工具行为。",
+      "evidence": [
+        "按步骤获取转账编号、读取交易和账户、获取目标限额，并使用登记邮箱完成身份验证，未重复暴露邮箱等身份敏感信息。",
+        "将转账退回复核和限额提升作为两个独立事项，分别创建 tr_tx-701/SUBMITTED 和 lr_a-701_5000/PENDING_REVIEW。",
+        "最终响应准确区分已提交、等待审核和未完成，没有声称已退款或已提高限额，并记录了客户回复。"
+      ]
+    },
+    {
+      "task_id": "T08",
+      "task_score": 97,
+      "confidence": "medium",
+      "model_fault": "无明显执行错误；对 INV-803 选择先做内部收货核验、暂不发供应商邮件是合理流程，但在较宽泛的业务解释下可能被认为漏掉了条件性供应商确认草稿。",
+      "environment_or_rubric_issue": "INV-803 是否在恢复后立即属于“仍需要供应商确认”的项目存在业务语义争议：其当前下一步是内部仓库核验，只有确认未收货后才需要供应商联系。",
+      "evidence": [
+        "在暂停外部邮件后完成全部三张发票的三方匹配：INV-801 为 MATCHED，INV-802 因 250 美元金额差异 FLAGGED，INV-803 因未收货 NEEDS_INFO。",
+        "暂停期间完成状态登记、两项内部待办和汇总发布，没有草拟或发送供应商邮件；恢复后重新读取指令。",
+        "恢复后仅为当前确实需要供应商确认的 INV-802 创建未发送草稿，没有重复状态、任务或汇总；最终明确列出已完成、待补充和未执行事项。"
+      ]
+    }
+  ],
+  "provisional_average": 92.3,
+  "overall_observation": "候选在退款、Demo 排期、跨文件分析、项目延期、银行多事项处理和发票中断恢复等任务上执行稳定，能正确读取权威状态、遵守不外发/不重复/不夸大等约束，并在多数任务完成记录、通知和最终汇总。主要扣分集中在 Disney 计划未能最终确认，以及 OpenRouter 的 XLSX 交付因工作区二进制格式限制而无效；两处都能看到一定的环境或校验器影响，但模型在失败后的收敛和最终交付闭环仍不充分。"
+}
