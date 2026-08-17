@@ -16,3 +16,5 @@
 不要把 API Key、Cookie、本地登录态、未脱敏业务数据或大批量临时运行日志写入仓库。
 
 当前 Agent 结果归档位于 [`evaluation/agent/`](agent/)，其中正式总分、最终批次摘要、交互证据和人工复核材料分开保存。
+
+当前单轮补跑批次位于 [`evaluation/single_turn/recovery-20260817/`](single_turn/recovery-20260817/)，包含 7 个此前缺失或技术失败单元的状态记录；成功回答追加在 [`benchmark/question_bank/single_turn/outputs/results.jsonl`](../benchmark/question_bank/single_turn/outputs/results.jsonl)。

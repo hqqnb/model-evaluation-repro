@@ -10,7 +10,7 @@
 
 ## 当前归档快照
 
-本仓库是对截至 **2026-08-15** 已完成工作的单仓归档。当前有效的主要成果包括：
+本仓库是对截至 **2026-08-17** 已完成工作的单仓归档。当前有效的主要成果包括：
 
 | 模块 | 当前内容 | 入口 |
 | --- | --- | --- |
@@ -23,6 +23,7 @@
 | 最终批次摘要 | `agent-suite-v1.1-tool-errors-noleak-20260815` 的运行摘要 | [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md) |
 | 交互证据 | 8 道题、10 个模型、80 份已脱敏回答记录 | [`evaluation/agent/evidence/20260814-agent/`](evaluation/agent/evidence/20260814-agent/) |
 | 结果发布工具 | 评分整理、脱敏、复核和知识库链接回填脚本 | [`tools/`](tools/) |
+| 单轮补跑批次 | 2026-08-17 针对 7 个缺失/技术失败单元的补跑记录 | [`evaluation/single_turn/recovery-20260817/`](evaluation/single_turn/recovery-20260817/) |
 
 ## 先看什么
 
@@ -34,6 +35,10 @@
 4. [`evaluation/agent/formal_scores_20260815.json`](evaluation/agent/formal_scores_20260815.json)：看项目采用的正式总分。
 5. [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md)：看最终 Agent 批次的技术状态、平均分和严格通过率。
 6. [`docs/reproduction.md`](docs/reproduction.md)：看如何在不暴露密钥的情况下进行本地验证或重新运行。
+
+本轮补跑实际完成 7 个请求：3 个接口成功、4 个技术失败。成功回答已追加到
+[`benchmark/question_bank/single_turn/outputs/results.jsonl`](benchmark/question_bank/single_turn/outputs/results.jsonl)；
+失败原因和请求元数据见补跑批次的 `summary.json`，不自动改写正式分数。
 
 ## 测评链路
 
