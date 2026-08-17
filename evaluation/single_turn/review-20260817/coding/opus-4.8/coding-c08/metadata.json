@@ -1,0 +1,17 @@
+{
+  "model": "Opus 4.8",
+  "prompt_id": "coding-c08",
+  "review_date": "2026-08-17",
+  "source_path": "/Users/zay/Documents/deepseek测评/cs2-tactical",
+  "artifact_type": "multi-file-browser-game",
+  "score_proposal": 8.0,
+  "browser_verification": {
+    "dust2": "loaded",
+    "refinery": "loaded",
+    "canals": "loaded",
+    "buy_menu": "verified",
+    "live_match": "verified"
+  },
+  "evaluation_side_fix": false,
+  "notes": "Functionally broad and runnable; visual assets and Dust2 spatial fidelity remain simplified."
+}
