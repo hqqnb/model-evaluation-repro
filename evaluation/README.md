@@ -18,3 +18,5 @@
 当前 Agent 结果归档位于 [`evaluation/agent/`](agent/)，其中正式总分、最终批次摘要、交互证据和人工复核材料分开保存。
 
 当前单轮补跑批次位于 [`evaluation/single_turn/recovery-20260817/`](single_turn/recovery-20260817/)，包含 7 个此前缺失或技术失败单元的状态记录；成功回答追加在 [`benchmark/question_bank/single_turn/outputs/results.jsonl`](../benchmark/question_bank/single_turn/outputs/results.jsonl)。
+
+以如流主表《大模型评测@20260817》为来源的最新缺口补跑位于 [`evaluation/single_turn/ku-recovery-20260817/`](single_turn/ku-recovery-20260817/)，共 10 个单元，3 个接口成功、7 个技术失败，尚未自动回填如流主表。
