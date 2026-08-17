@@ -1,0 +1,60 @@
+{
+  "attempt_count": 1,
+  "attempt_errors": [],
+  "completed_stream": true,
+  "effective_parameters": {
+    "model": "claude-opus-4-8",
+    "reasoning": null,
+    "status": "completed",
+    "temperature": 1,
+    "tools": [],
+    "top_p": 1
+  },
+  "ended_at": "2026-08-17T11:56:44.980803Z",
+  "endpoint": "/v1/responses",
+  "finish_reason": "stop",
+  "http_status": 200,
+  "model": "Opus 4.8",
+  "model_alias": "opus-4.8",
+  "prompt_id": "coding-c06",
+  "prompt_notes": "统一 model-api-collector 重跑；仅增加文本交付约束",
+  "prompt_tags": [
+    "coding",
+    "benchmark-20260817",
+    "retry"
+  ],
+  "prompt_title": "coding #6 retry",
+  "raw_response_path": "requests/6a98aa6a9bbc4fc9913ca18243b9c085/response.sse",
+  "reasoning_text_path": "requests/6a98aa6a9bbc4fc9913ca18243b9c085/reasoning.md",
+  "repeat_index": 1,
+  "request_id": "6a98aa6a9bbc4fc9913ca18243b9c085",
+  "request_sha256": "0167fe54ed1ad3fd319327184c0b349b63c276b6935840b6ebbb608be5d0ceab",
+  "requested_parameters": {
+    "reasoning_effort": "max",
+    "store": false,
+    "temperature": 0,
+    "tools": []
+  },
+  "response_text_path": "requests/6a98aa6a9bbc4fc9913ca18243b9c085/response.md",
+  "run_id": "20260817T115546130010Z-7c2049e4",
+  "started_at": "2026-08-17T11:55:46.131612Z",
+  "status": "success",
+  "time_to_first_event_ms": 2760.641167,
+  "time_to_first_reasoning_ms": 2760.966,
+  "time_to_first_text_ms": 2971.439208,
+  "time_to_headers_ms": 2759.989583,
+  "total_time_ms": 58849.448667,
+  "usage": {
+    "completion_tokens": 3194,
+    "input_tokens": 12474,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 3194,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 12474,
+    "total_tokens": 15668
+  }
+}

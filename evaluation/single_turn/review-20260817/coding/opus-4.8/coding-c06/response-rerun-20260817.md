@@ -1,0 +1,330 @@
+以下是完整的单文件弓箭射击模拟游戏。将代码保存为 `index.html`，用浏览器打开即可运行。
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>弓箭射击模拟</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, #87ceeb 0%, #b6e3a4 60%, #6aa84f 100%);
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh; padding: 16px; user-select: none;
+  }
+  h1 { color: #2f3e1f; margin-bottom: 8px; text-shadow: 0 1px 0 #fff; }
+  .hud {
+    display: flex; gap: 24px; align-items: center; margin-bottom: 10px;
+    background: rgba(255,255,255,.6); padding: 8px 18px; border-radius: 10px;
+    font-size: 18px; font-weight: 600; color: #2f3e1f;
+  }
+  .hud .time { color: #b7410e; min-width: 90px; }
+  .layout { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  #gameWrap { position: relative; }
+  canvas {
+    background: linear-gradient(180deg,#bfe6ff 0%,#dff4c8 55%,#8bc34a 100%);
+    border: 4px solid #3f5133; border-radius: 12px; cursor: crosshair;
+    display: block; box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  }
+  .panel {
+    background: rgba(255,255,255,.85); border-radius: 12px; padding: 16px;
+    width: 260px; box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  }
+  .panel h2 { font-size: 18px; color: #2f3e1f; margin-bottom: 8px; }
+  #board { list-style: none; }
+  #board li {
+    display: flex; justify-content: space-between; padding: 6px 8px;
+    border-bottom: 1px dashed #ccc; font-variant-numeric: tabular-nums;
+  }
+  #board li:first-child { font-weight: 700; color: #b7410e; }
+  .rank { color: #555; }
+  .controls { margin-top: 12px; display: flex; gap: 8px; }
+  button {
+    flex: 1; padding: 10px; border: none; border-radius: 8px; cursor: pointer;
+    background: #b7410e; color: #fff; font-weight: 600; font-size: 15px;
+  }
+  button.secondary { background: #4b6b32; }
+  button:hover { filter: brightness(1.08); }
+  .hint { margin-top: 10px; font-size: 13px; color: #444; line-height: 1.5; }
+  .overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,.55); color: #fff;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 12px; text-align: center; gap: 12px; padding: 20px;
+  }
+  .overlay.hidden { display: none; }
+  .overlay h2 { font-size: 26px; }
+  .overlay p { font-size: 18px; }
+</style>
+</head>
+<body>
+  <h1>🏹 弓箭射击模拟</h1>
+  <div class="hud">
+    <span>命中：<span id="hitCount">0</span> / 4</span>
+    <span>用时：<span class="time" id="timer">0.00s</span></span>
+  </div>
+
+  <div class="layout">
+    <div id="gameWrap">
+      <canvas id="game" width="640" height="480"></canvas>
+      <div class="overlay" id="overlay">
+        <h2 id="ovTitle">准备开始</h2>
+        <p id="ovDesc">点击“开始”后，用鼠标瞄准并点击射击四个靶子。</p>
+        <button id="startBtn" style="max-width:160px">开始</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>🏆 排行榜（用时越短越靠前）</h2>
+      <ul id="board"></ul>
+      <div class="controls">
+        <button id="restartBtn" class="secondary">重新开始</button>
+        <button id="clearBtn" class="secondary">清空榜单</button>
+      </div>
+      <div class="hint">
+        规则：点击“开始”后计时开始，用鼠标点击命中全部 4 个靶子。
+        全部命中后计时停止并记录成绩。用时最短者排名第一。
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const hitCountEl = document.getElementById('hitCount');
+  const timerEl = document.getElementById('timer');
+  const boardEl = document.getElementById('board');
+  const overlay = document.getElementById('overlay');
+  const ovTitle = document.getElementById('ovTitle');
+  const ovDesc = document.getElementById('ovDesc');
+  const startBtn = document.getElementById('startBtn');
+  const restartBtn = document.getElementById('restartBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+  const TARGET_COUNT = 4;
+  const STORAGE_KEY = 'archery_scores_v1';
+
+  let targets = [];
+  let arrows = [];       // 飞行中的箭
+  let hits = 0;
+  let running = false;
+  let startTime = 0;
+  let elapsed = 0;
+  let rafId = null;
+
+  // ---- 排行榜（localStorage，失败则内存降级） ----
+  let memScores = [];
+  function loadScores() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return memScores.slice(); }
+  }
+  function saveScores(list) {
+    memScores = list.slice();
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function addScore(seconds) {
+    const list = loadScores();
+    list.push({ time: seconds, date: Date.now() });
+    list.sort((a, b) => a.time - b.time);   // 用时升序 = 名次高
+    const top = list.slice(0, 10);
+    saveScores(top);
+    renderBoard(seconds);
+  }
+  function renderBoard(highlight) {
+    const list = loadScores();
+    boardEl.innerHTML = '';
+    if (list.length === 0) {
+      boardEl.innerHTML = '<li><span class="rank">暂无记录</span></li>';
+      return;
+    }
+    list.forEach((s, i) => {
+      const li = document.createElement('li');
+      const mark = (highlight != null && Math.abs(s.time - highlight) < 1e-6) ? ' ⭐' : '';
+      li.innerHTML = '<span class="rank">#' + (i + 1) + '</span>' +
+                     '<span>' + s.time.toFixed(2) + 's' + mark + '</span>';
+      boardEl.appendChild(li);
+    });
+  }
+
+  // ---- 靶子生成 ----
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+  function spawnTargets() {
+    targets = [];
+    for (let i = 0; i < TARGET_COUNT; i++) {
+      let x, y, ok, tries = 0;
+      const r = rand(28, 40);
+      do {
+        x = rand(r + 20, W - r - 20);
+        y = rand(r + 20, H - r - 120);
+        ok = targets.every(t => Math.hypot(t.x - x, t.y - y) > t.r + r + 10);
+        tries++;
+      } while (!ok && tries < 200);
+      targets.push({ x, y, r, hit: false });
+    }
+  }
+
+  // ---- 绘制 ----
+  function drawTarget(t) {
+    const rings = [
+      { f: 0.0, c: '#e74c3c' },
+      { f: 0.28, c: '#ffffff' },
+      { f: 0.55, c: '#e74c3c' },
+      { f: 0.78, c: '#ffffff' },
+    ];
+    // 外圈
+    ctx.beginPath(); ctx.arc(t.x, t.y, t.r, 0, Math.PI * 2);
+    ctx.fillStyle = '#e74c3c'; ctx.fill();
+    ctx.beginPath(); ctx.arc(t.x, t.y, t.r * 0.72, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff'; ctx.fill();
+    ctx.beginPath(); ctx.arc(t.x, t.y, t.r * 0.46, 0, Math.PI * 2);
+    ctx.fillStyle = '#e74c3c'; ctx.fill();
+    ctx.beginPath(); ctx.arc(t.x, t.y, t.r * 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = '#f1c40f'; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,.35)';
+    ctx.beginPath(); ctx.arc(t.x, t.y, t.r, 0, Math.PI * 2); ctx.stroke();
+  }
+
+  function drawHitMark(t) {
+    ctx.save();
+    ctx.strokeStyle = '#2ecc71'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(t.x - t.r * 0.4, t.y);
+    ctx.lineTo(t.x - t.r * 0.1, t.y + t.r * 0.35);
+    ctx.lineTo(t.x + t.r * 0.45, t.y - t.r * 0.35);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawArrow(a) {
+    ctx.save();
+    ctx.translate(a.x, a.y);
+    ctx.rotate(a.angle);
+    ctx.strokeStyle = '#5a3a1a'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(-18, 0); ctx.lineTo(10, 0); ctx.stroke();
+    ctx.fillStyle = '#333';
+    ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(8, -4); ctx.lineTo(8, 4); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#c0392b';
+    ctx.beginPath(); ctx.moveTo(-18, 0); ctx.lineTo(-24, -4); ctx.moveTo(-18, 0); ctx.lineTo(-24, 4); ctx.stroke();
+    ctx.restore();
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    // 地面
+    ctx.fillStyle = 'rgba(90,150,60,.4)';
+    ctx.fillRect(0, H - 60, W, 60);
+    targets.forEach(t => { drawTarget(t); if (t.hit) drawHitMark(t); });
+    arrows.forEach(drawArrow);
+  }
+
+  // ---- 循环 ----
+  function loop() {
+    if (running) {
+      elapsed = (performance.now() - startTime) / 1000;
+      timerEl.textContent = elapsed.toFixed(2) + 's';
+    }
+    // 更新箭
+    for (let i = arrows.length - 1; i >= 0; i--) {
+      const a = arrows[i];
+      a.x += a.vx; a.y += a.vy; a.life--;
+      if (a.life <= 0 || a.x < -40 || a.x > W + 40 || a.y < -40 || a.y > H + 40) {
+        arrows.splice(i, 1);
+      }
+    }
+    render();
+    rafId = requestAnimationFrame(loop);
+  }
+
+  // ---- 交互 ----
+  function shootAt(mx, my) {
+    if (!running) return;
+    // 从底部中间发射一支箭飞向点击位置（视觉效果）
+    const sx = W / 2, sy = H - 20;
+    const ang = Math.atan2(my - sy, mx - sx);
+    const speed = 22;
+    arrows.push({
+      x: sx, y: sy, vx: Math.cos(ang) * speed, vy: Math.sin(ang) * speed,
+      angle: ang, life: 60
+    });
+    // 命中判定
+    for (const t of targets) {
+      if (!t.hit && Math.hypot(t.x - mx, t.y - my) <= t.r) {
+        t.hit = true;
+        hits++;
+        hitCountEl.textContent = hits;
+        if (hits >= TARGET_COUNT) finish();
+        break;
+      }
+    }
+  }
+
+  canvas.addEventListener('click', function (e) {
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (W / rect.width);
+    const my = (e.clientY - rect.top) * (H / rect.height);
+    shootAt(mx, my);
+  });
+
+  function startGame() {
+    hits = 0; arrows = [];
+    hitCountEl.textContent = '0';
+    spawnTargets();
+    running = true;
+    startTime = performance.now();
+    elapsed = 0;
+    overlay.classList.add('hidden');
+    if (!rafId) loop();
+  }
+
+  function finish() {
+    running = false;
+    const finalTime = (performance.now() - startTime) / 1000;
+    timerEl.textContent = finalTime.toFixed(2) + 's';
+    addScore(finalTime);
+    ovTitle.textContent = '🎯 全部命中！';
+    ovDesc.textContent = '用时 ' + finalTime.toFixed(2) + ' 秒，已记入排行榜。';
+    startBtn.textContent = '再来一次';
+    overlay.classList.remove('hidden');
+  }
+
+  startBtn.addEventListener('click', startGame);
+  restartBtn.addEventListener('click', startGame);
+  clearBtn.addEventListener('click', function () {
+    saveScores([]);
+    renderBoard();
+  });
+
+  // 初始化
+  spawnTargets();
+  render();
+  renderBoard();
+})();
+</script>
+</body>
+</html>
+```
+
+运行方式
+
+- 把上面的代码保存为 `index.html`。
+- 双击文件或用任意现代浏览器（Chrome / Edge / Firefox / Safari）打开即可，无需服务器或联网。
+- 点击“开始”后计时启动，用鼠标点击画布中的靶子进行射击。
+
+自检说明
+
+- 四个靶子：`TARGET_COUNT = 4`，`spawnTargets()` 会随机生成 4 个互不重叠的靶子，初始加载即可看到。
+- 计时：点击“开始”记录 `startTime`，每帧刷新 HUD 中的用时；命中全部 4 个靶子时 `finish()` 停止计时并显示最终秒数。
+- 命中判定：`shootAt()` 用点击坐标与靶心的距离和半径比较，命中未击中的靶子则计数 +1，命中数到 4 触发结算。
+- 排行榜：成绩存入 `localStorage`（键 `archery_scores_v1`），按用时升序排序，用时最短排第一，展示前 10 名；本次成绩带 ⭐ 高亮。若浏览器禁用 `localStorage`，会自动降级为内存存储，当次会话内仍可排序显示。
+- 可用“重新开始”重开一局，用“清空榜单”清除历史记录。
+
+快速验证建议：打开后连续点中 4 个靶子，确认计时停止、弹出结算、排行榜出现记录；再玩一局用时不同，确认榜单按用时从小到大排序。
+
+安全提示：本页面纯前端、无网络请求、无鉴权需求，数据仅保存在本地浏览器中。

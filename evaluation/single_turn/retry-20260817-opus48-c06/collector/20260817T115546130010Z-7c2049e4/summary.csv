@@ -1,0 +1,2 @@
+run_id,request_id,prompt_id,model_alias,model,status,http_status,time_to_first_event_ms,time_to_first_reasoning_ms,time_to_first_text_ms,total_time_ms,prompt_tokens,completion_tokens,total_tokens,raw_response_path,response_text_path,error_type
+20260817T115546130010Z-7c2049e4,6a98aa6a9bbc4fc9913ca18243b9c085,coding-c06,opus-4.8,Opus 4.8,success,200,2760.641167,2760.966,2971.439208,58849.448667,12474,3194,15668,requests/6a98aa6a9bbc4fc9913ca18243b9c085/response.sse,requests/6a98aa6a9bbc4fc9913ca18243b9c085/response.md,
