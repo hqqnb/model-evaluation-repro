@@ -108,9 +108,12 @@ ONEAPI_TIMEOUT_SECONDS=300
 工具或 Agent；流式请求开启 `stream_options.include_usage` 以保存 Token 用量。
 上面的地址适用于腾讯云中国站；国际站 Key 需要改用新加坡接口。
 
-`Opus 5` 和 `Opus 4.8` 使用公司提供的 OneAPI `/v1/responses` 中转，不要求
-Anthropic 官方 Key。配置显式请求 `reasoning_effort: max`，但不会添加系统提示词、
-工具调用或 Agent 循环。采集器会把题目原样放入 Responses API 的 `input` 字段。
+`Opus 5` 使用公司提供的 OneAPI `/v1/chat/completions` 流式中转，`Opus 4.8`
+使用 `/v1/responses` 流式中转，不要求 Anthropic 官方 Key。两者都显式请求
+`reasoning_effort: max`，不会添加系统提示词、工具调用或 Agent 循环。采集器会
+根据模型入口把题目分别放入 Chat Completions 的 `messages` 或 Responses API
+的 `input` 字段。Opus 5 的 Responses 文本转换目前会返回
+`convert_request_failed`，因此正式配置使用已验证可用的 Chat Completions 路径。
 
 ## 4. 准备题目
 

@@ -92,6 +92,34 @@ def fake_server():
                     },
                 )
                 return
+            if self.path == "/upstream-404-once":
+                count = state.retry_counts.get(self.path, 0) + 1
+                state.retry_counts[self.path] = count
+                if count == 1:
+                    self._send_json(
+                        404,
+                        {
+                            "error": {
+                                "message": "bad response status code 404",
+                                "type": "upstream_error",
+                                "code": "bad_response_status_code",
+                            }
+                        },
+                    )
+                    return
+                self._send_json(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "message": {"content": "recovered upstream answer"},
+                                "finish_reason": "stop",
+                            }
+                        ],
+                        "usage": {"prompt_tokens": 2, "completion_tokens": 3},
+                    },
+                )
+                return
             if self.path == "/v1/responses" and not request_json.get(
                 "stream", True
             ):

@@ -19,12 +19,10 @@ models:
       reasoning_effort: xhigh
   opus-5:
     model: Opus 5
-    endpoint: /v1/responses
+    endpoint: /v1/chat/completions
     stream: true
     parameters:
       temperature: 0
-      store: false
-      tools: []
       reasoning_effort: max
   opus-4.8:
     model: Opus 4.8

@@ -174,10 +174,29 @@ class OneAPITransport:
         if result.error_type == "http_error":
             if self._is_deterministic_http_error(result.error_body):
                 return False
-            return result.http_status == 429 or (
+            return (
+                result.http_status == 404
+                and self._is_transient_upstream_http_error(result.error_body)
+            ) or result.http_status == 429 or (
                 result.http_status is not None and result.http_status >= 500
             )
         return True
+
+    @staticmethod
+    def _is_transient_upstream_http_error(error_body: Optional[str]) -> bool:
+        if not error_body:
+            return False
+        try:
+            payload = json.loads(error_body)
+        except json.JSONDecodeError:
+            return False
+        error = payload.get("error") if isinstance(payload, dict) else None
+        if not isinstance(error, dict):
+            return False
+        return (
+            error.get("type") == "upstream_error"
+            and error.get("code") == "bad_response_status_code"
+        )
 
     @staticmethod
     def _is_deterministic_http_error(error_body: Optional[str]) -> bool:

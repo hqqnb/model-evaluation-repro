@@ -23,7 +23,7 @@
 | 最终批次摘要 | `agent-suite-v1.1-tool-errors-noleak-20260815` 的运行摘要 | [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md) |
 | 交互证据 | 8 道题、10 个模型、80 份已脱敏回答记录 | [`evaluation/agent/evidence/20260814-agent/`](evaluation/agent/evidence/20260814-agent/) |
 | 结果发布工具 | 评分整理、脱敏、复核和知识库链接回填脚本 | [`tools/`](tools/) |
-| 单轮补跑批次 | 2026-08-17 针对 7 个缺失/技术失败单元的补跑记录 | [`evaluation/single_turn/recovery-20260817/`](evaluation/single_turn/recovery-20260817/) |
+| 单轮补跑批次 | 2026-08-17 缺口补跑、流式修复和 C08 继续运行记录 | [`evaluation/single_turn/stream-fix-20260817/`](evaluation/single_turn/stream-fix-20260817/) |
 
 ## 先看什么
 
@@ -36,9 +36,11 @@
 5. [`evaluation/agent/formal_suite_summary_20260815.md`](evaluation/agent/formal_suite_summary_20260815.md)：看最终 Agent 批次的技术状态、平均分和严格通过率。
 6. [`docs/reproduction.md`](docs/reproduction.md)：看如何在不暴露密钥的情况下进行本地验证或重新运行。
 
-本轮补跑实际完成 7 个请求：3 个接口成功、4 个技术失败。成功回答已追加到
-[`benchmark/question_bank/single_turn/outputs/results.jsonl`](benchmark/question_bank/single_turn/outputs/results.jsonl)；
-失败原因和请求元数据见补跑批次的 `summary.json`，不自动改写正式分数。
+本轮补跑与修复共形成 7 个可追溯结果：Opus 4.8 的 2 道推理题复用
+2026-08-15 的最高强度流式成功运行，Opus 5 的 5 道 Coding 题均已取得
+完整接口回答，其中 C08 的回答仍需检查是否真正交付了项目产物。失败原因、
+重试策略和请求元数据见 [`evaluation/single_turn/stream-fix-20260817/`](evaluation/single_turn/stream-fix-20260817/)；
+不自动改写正式分数。
 
 ## 测评链路
 

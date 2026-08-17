@@ -169,6 +169,27 @@ def test_retry_selects_complete_response_and_preserves_attempts(
     assert (tmp_path / "response.attempt-1.json").exists()
 
 
+def test_transient_upstream_404_is_retried(tmp_path, fake_server):
+    raw_path = tmp_path / "response.json"
+    result = make_transport(fake_server).execute(
+        endpoint="/upstream-404-once",
+        payload={
+            "model": "Opus 5",
+            "messages": [{"role": "user", "content": "hello"}],
+            "stream": False,
+        },
+        raw_body_path=raw_path,
+    )
+
+    assert result.succeeded is True
+    assert result.content == "recovered upstream answer"
+    assert result.attempt_count == 2
+    assert result.attempt_errors == [
+        {"type": "http_error", "message": "OneAPI returned HTTP 404"}
+    ]
+    assert (tmp_path / "response.attempt-1.json").exists()
+
+
 def test_responses_stream_preserves_effective_parameters(tmp_path, fake_server):
     result = make_transport(fake_server, max_attempts=1).execute(
         endpoint="/v1/responses-effective-stream",
