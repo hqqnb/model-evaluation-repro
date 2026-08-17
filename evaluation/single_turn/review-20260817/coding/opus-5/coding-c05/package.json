@@ -1,0 +1,14 @@
+{
+  "name": "watch3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Three.js 3D GMT wristwatch driven by the real clock, with dual time zones and day/date discs.",
+  "scripts": {
+    "test": "node --test test/",
+    "serve": "python3 -m http.server 8080"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

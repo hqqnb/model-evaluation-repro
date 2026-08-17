@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>弓箭射击竞速 · Archery Time Trial</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px; min-height: 100vh;
+    background: #0b1220; color: #e9eef6;
+    font-family: system-ui, "Noto Sans SC", sans-serif;
+    display: flex; justify-content: center;
+  }
+  .wrap { width: min(1360px, 100%); display: grid; gap: 18px; grid-template-columns: minmax(0,1fr) 320px; }
+  h1 { margin: 0 0 6px; font-size: 20px; }
+  p.sub { margin: 0 0 14px; color: #93a4bd; font-size: 14px; }
+  canvas { width: 100%; aspect-ratio: 960 / 540; background: #101a2c; border-radius: 12px; display: block; touch-action: none; }
+  canvas:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+  .hud { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+  .chip { background: #16233c; border: 1px solid #24365a; border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+  .chip b { color: #ffd166; font-variant-numeric: tabular-nums; }
+  .power { height: 10px; background: #16233c; border: 1px solid #24365a; border-radius: 999px; overflow: hidden; }
+  .power i { display: block; height: 100%; width: 0; background: linear-gradient(90deg,#7dffa0,#ffd166,#ff6b6b); transition: width .05s linear; }
+  aside { background: #101a2c; border: 1px solid #1f2f4d; border-radius: 12px; padding: 16px; }
+  aside h2 { font-size: 16px; margin: 0 0 10px; }
+  ol#board { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 6px; }
+  #board li { display: grid; grid-template-columns: 26px 1fr auto auto; gap: 8px; align-items: center;
+    background: #16233c; border-radius: 8px; padding: 7px 10px; font-size: 14px; }
+  #board li.empty { display: block; color: #93a4bd; background: none; padding: 0; }
+  #board .pos { color: #ffd166; font-weight: 700; }
+  #board .t { font-variant-numeric: tabular-nums; }
+  #board .sc { color: #93a4bd; font-size: 12px; }
+  #result { background: #16233c; border: 1px solid #2f7fd0; border-radius: 10px; padding: 12px; margin-bottom: 14px; }
+  label { display: block; font-size: 13px; margin: 10px 0 4px; color: #93a4bd; }
+  input, button { font: inherit; border-radius: 8px; }
+  input { width: 100%; padding: 8px 10px; background: #0b1220; border: 1px solid #24365a; color: inherit; }
+  button { padding: 9px 14px; margin-top: 10px; border: 0; background: #2f7fd0; color: #fff; cursor: pointer; width: 100%; }
+  button:hover:not(:disabled) { background: #3d92e6; }
+  button:disabled { opacity: .5; cursor: default; }
+  #restart { background: #24365a; }
+  .keys { font-size: 13px; color: #93a4bd; line-height: 1.7; margin-top: 14px; }
+  kbd { background: #16233c; border: 1px solid #24365a; border-radius: 4px; padding: 1px 6px; font-size: 12px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main>
+    <h1>弓箭射击竞速</h1>
+    <p class="sub">击中全部 4 个靶子，用时越短排名越高。计时从第一箭射出开始。</p>
+    <canvas id="stage" width="960" height="540" tabindex="0"
+      aria-label="弓箭射击场地：左侧为弓手，右侧有四个靶子。使用方向键瞄准，空格键蓄力发射。"></canvas>
+    <div class="hud">
+      <span class="chip">用时 <b id="hud-time">0.00s</b></span>
+      <span class="chip">命中 <b id="hud-hits">0/4</b></span>
+      <span class="chip">射出 <b id="hud-shots">0</b> 箭</span>
+      <span class="chip">环数 <b id="hud-score">0 环</b></span>
+    </div>
+    <div class="power" aria-hidden="true"><i id="power-fill"></i></div>
+  </main>
+
+  <aside>
+    <div id="result" hidden>
+      <strong>本局成绩</strong>
+      <p id="result-text" style="margin:6px 0 0;font-size:14px"></p>
+      <label for="player-name">你的名字</label>
+      <input id="player-name" maxlength="16" placeholder="匿名弓手" />
+      <button id="save-score">保存到排行榜</button>
+    </div>
+
+    <h2>排行榜 · 最快 10 名</h2>
+    <ol id="board"></ol>
+    <button id="restart">重新开始（R）</button>
+
+    <p class="keys">
+      <strong>操作</strong><br />
+      鼠标：移动瞄准，按住蓄力，松开发射<br />
+      键盘：<kbd>↑</kbd><kbd>↓</kbd> 调整角度，<kbd>←</kbd><kbd>→</kbd> 微调，<kbd>空格</kbd> 蓄力发射，<kbd>R</kbd> 重开<br />
+      最多同时 3 箭在空中；2 号、4 号靶会按固定节奏移动，对所有玩家一致。
+    </p>
+  </aside>
+</div>
+<div id="live" class="sr" role="status" aria-live="polite"></div>
+<script type="module" src="./src/game.js"></script>
+</body>
+</html>
