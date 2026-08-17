@@ -1,0 +1,26 @@
+{
+  "model": "Opus 5",
+  "prompt_id": "coding-c08",
+  "review_date": "2026-08-17",
+  "source_path": "/Users/zay/Documents/deepseek测评/cs-tactical-fps",
+  "artifact_type": "multi-file-browser-game",
+  "original_delivery_score": 4.0,
+  "repaired_artifact_quality_reference": 9.5,
+  "tests": {
+    "command": "npm test",
+    "passed": 83,
+    "failed": 0
+  },
+  "browser_verification": {
+    "dust2": "loaded",
+    "refinery": "loaded",
+    "bazaar": "loaded",
+    "buy_menu": "verified"
+  },
+  "evaluation_side_fix": {
+    "applied": true,
+    "file": "js/main.js",
+    "reason": "audio initialization blocked match startup",
+    "original_sha256": "81921148f56165b844ae20a158fc23db5c308e9bc08d4bed6b0d831c4760c19e"
+  }
+}

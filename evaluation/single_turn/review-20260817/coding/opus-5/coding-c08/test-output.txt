@@ -1,0 +1,115 @@
+
+> cs-tactical-fps@1.0.0 test
+> node tests/run.js
+
+
+[1m1 · registries and weapon maths[0m
+  ✓ every WEAPON_ID is defined
+  ✓ viewmodel archetypes are known
+  ✓ ak47 damage falls off with range
+  ✓ spread: standing beats moving
+  ✓ spread: air is worst
+  ✓ recoil pattern climbs — y0=18.84 y9=38.08
+  ✓ armour reduces health damage — 27.9 < 36.0
+
+[1m2 · maps: geometry, navigation, tactics[0m
+
+  [36m炙热沙城 II (dust2)[0m
+  ✓ dust2: brushes built — 743 brushes / 225 solid
+  ✓ dust2: nav has no isolated nodes — 79 nodes, 188 links
+  ✓ dust2: every node reachable from T spawn
+  ✓ dust2: T can reach site A
+  ✓ dust2: T can reach site B
+  ✓ dust2: CT can reach site A
+  ✓ dust2: CT can reach site B
+  ✓ dust2: all spawn/plant/hold/nav positions are standable
+  ✓ dust2: tactics reference real nav nodes
+  ✓ dust2: 15 utility lines within throw range
+
+  [36m炼油厂 (refinery)[0m
+  ✓ refinery: brushes built — 378 brushes / 154 solid
+  ✓ refinery: nav has no isolated nodes — 49 nodes, 88 links
+  ✓ refinery: every node reachable from T spawn
+  ✓ refinery: T can reach site A
+  ✓ refinery: T can reach site B
+  ✓ refinery: CT can reach site A
+  ✓ refinery: CT can reach site B
+  ✓ refinery: all spawn/plant/hold/nav positions are standable
+  ✓ refinery: tactics reference real nav nodes
+  ✓ refinery: 14 utility lines within throw range
+
+  [36m沙漠集市 (bazaar)[0m
+  ✓ bazaar: brushes built — 518 brushes / 176 solid
+  ✓ bazaar: nav has no isolated nodes — 54 nodes, 108 links
+  ✓ bazaar: every node reachable from T spawn
+  ✓ bazaar: T can reach site A
+  ✓ bazaar: T can reach site B
+  ✓ bazaar: CT can reach site A
+  ✓ bazaar: CT can reach site B
+  ✓ bazaar: all spawn/plant/hold/nav positions are standable
+  ✓ bazaar: tactics reference real nav nodes
+  ✓ bazaar: 16 utility lines within throw range
+
+[1m3 · sealing: players cannot walk out of the map[0m
+  ✓ dust2: 560 blind walks stayed inside — 0 leaks
+  ✓ refinery: 560 blind walks stayed inside — 0 leaks
+  ✓ bazaar: 560 blind walks stayed inside — 0 leaks
+
+[1m4 · Dust2 fidelity: the sight lines that define the map[0m
+  ✓ 长门 → A 大北端 (长道对枪线) — los=true dist=32.0m
+  ✓ A 坑 → 长道 (CT 架点) — los=true dist=23.4m
+  ✓ 中门 → CT 中路 (中路对枪线) — los=true dist=35.2m
+  ✓ A 小过道 → A 包点 — los=true dist=9.6m
+  ✓ A 平台 → 长道口 (下包点防守) — los=true dist=24.7m
+  ✓ B 洞口 → B 平台 — los=true dist=13.7m
+  ✓ B 门 → B 包点 — los=true dist=10.8m
+  ✓ A 斜坡 → A 包点 (CT 回防) — los=true dist=16.2m
+  ✓ T 出生点 → A 包点 (必须被遮挡) — los=false dist=69.3m
+  ✓ 中路 → A 包点 (必须被遮挡) — los=false dist=30.9m
+  ✓ B 包点 → A 包点 (必须被遮挡) — los=false dist=56.6m
+  ✓ T 出生点 → B 包点 (必须被遮挡) — los=false dist=41.6m
+  ✓ T 到两个包点的距离接近 (双向进攻可行) — A 89m / B 56m
+  ✓ CT 到 A 更近，到 B 的换点代价更高 (与经典 Dust2 一致) — CT A 36m B 72m
+  ✓ CT 换点距离足够长 (回防有代价) — 108m ≈ 24.9s
+
+[1m5 · scripted objective: buy → walk → plant → defuse[0m
+  ✓ local actor spawned alive
+  ✓ bot buy plan produced items — kevlar,flash,smoke
+  ✓ can buy an AK during freeze time in the buy zone
+  ✓ AK is in the primary slot — money left 2300
+  ✓ armour and helmet applied
+  ✓ round went live — live
+  ✓ firing consumes ammo — 30 → 25
+  ✓ a grenade was thrown — 1 live
+  ✓ no live projectiles after detonation
+  ✓ bomb planted at site A — phase=planted site=A
+  ✓ a CT is alive to defuse
+  ✓ bomb defused and the round went to CT — winner=CT bomb=defused reason=Vega 拆除了炸弹
+
+[1m6 · full bot-vs-bot matches on every map[0m
+
+  [36m炙热沙城 II[0m  774s simulated in 2668ms
+  ✓ dust2: match ran without exceptions
+  ✓ dust2: match reached a result — score 4:4 after 8 rounds
+  ✓ dust2: rounds decided by play — T/detonate T/detonate CT/elim T/elim T/elim T/detonate CT/time T/elim
+  ✓ dust2: bots fought — 53 kills, 27 headshots
+  ✓ dust2: bots played the objective — 6 plants / 0 defuses / 3 detonations
+
+  [36m炼油厂[0m  816s simulated in 1596ms
+  ✓ refinery: match ran without exceptions
+  ✓ refinery: match reached a result — score 4:4 after 8 rounds
+  ✓ refinery: rounds decided by play — T/detonate T/detonate CT/time CT/time T/elim CT/time CT/time T/detonate
+  ✓ refinery: bots fought — 32 kills, 13 headshots
+  ✓ refinery: bots played the objective — 4 plants / 0 defuses / 3 detonations
+
+  [36m沙漠集市[0m  805s simulated in 1886ms
+  ✓ bazaar: match ran without exceptions
+  ✓ bazaar: match reached a result — score 4:4 after 8 rounds
+  ✓ bazaar: rounds decided by play — T/detonate T/detonate CT/time CT/time CT/time CT/elim T/detonate T/detonate
+  ✓ bazaar: bots fought — 32 kills, 21 headshots
+  ✓ bazaar: bots played the objective — 4 plants / 0 defuses / 4 detonations
+  ✓ bots use utility across the three maps — 24 grenade detonations
+
+────────────────────────────────────────────────────────────────
+[1m83 passed, 0 failed[0m
+全部测试通过 ✓
