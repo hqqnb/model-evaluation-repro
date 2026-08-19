@@ -24,6 +24,7 @@
 | 交互证据 | 8 道题、10 个模型、80 份已脱敏回答记录 | [`evaluation/agent/evidence/20260814-agent/`](evaluation/agent/evidence/20260814-agent/) |
 | 结果发布工具 | 评分整理、脱敏、复核和知识库链接回填脚本 | [`tools/`](tools/) |
 | 单轮补跑批次 | 2026-08-17 缺口补跑、流式修复和 C08 继续运行记录 | [`evaluation/single_turn/stream-fix-20260817/`](evaluation/single_turn/stream-fix-20260817/) |
+| 可复用测评 Skill | 新模型接入、运行、恢复、评分、GitHub 预览和如流回填全链路 | [`skills/model-evaluation-repro/SKILL.md`](skills/model-evaluation-repro/SKILL.md) |
 
 ## 先看什么
 

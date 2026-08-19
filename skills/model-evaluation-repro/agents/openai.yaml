@@ -1,0 +1,4 @@
+interface:
+  display_name: "完整模型测评"
+  short_description: "新增模型的接入、运行、评分、发布与如流回填完整全链路"
+  default_prompt: "Use $model-evaluation-repro to test a new model end to end and produce review-ready results."

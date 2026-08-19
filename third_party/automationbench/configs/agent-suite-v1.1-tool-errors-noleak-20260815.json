@@ -59,7 +59,7 @@
       "model": "Opus 4.8",
       "api": "responses",
       "base_url": "https://oneapi-comate.baidu-int.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -69,7 +69,7 @@
       "model": "Opus 5",
       "api": "responses",
       "base_url": "https://oneapi-comate.baidu-int.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -79,7 +79,7 @@
       "model": "deepseek-v4-pro",
       "api": "chat_completions",
       "base_url": "https://api.deepseek.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -89,7 +89,7 @@
       "model": "deepseek-v4-flash",
       "api": "chat_completions",
       "base_url": "https://api.deepseek.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -99,7 +99,7 @@
       "model": "kimi-k3",
       "api": "chat_completions",
       "base_url": "https://api.moonshot.cn/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -109,7 +109,7 @@
       "model": "gpt-5.6-sol",
       "api": "chat_completions",
       "base_url": "https://oneapi-comate.baidu-int.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -119,7 +119,7 @@
       "model": "GLM-5.2-内部",
       "api": "chat_completions",
       "base_url": "https://oneapi-comate.baidu-int.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -129,7 +129,7 @@
       "model": "qwen3.8-max",
       "api": "chat_completions",
       "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "max"
@@ -139,7 +139,7 @@
       "model": "hy3",
       "api": "chat_completions",
       "base_url": "https://tokenhub.tencentmaas.com/v1",
-      "env_file": "configs/agent.env.example",
+      "env_file": "configs/.env.local",
       "source_key_var": "ONEAPI_API_KEY",
       "runtime_key_var": "OPENAI_API_KEY",
       "reasoning_effort": "high"
